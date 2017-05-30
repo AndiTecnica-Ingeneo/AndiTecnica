@@ -34,7 +34,7 @@ Public Class Principal
 
         Dim nombrepagina = Me.Page.ToString.Split(".")
         Dim paginactual = nombrepagina(1).Replace("_", ".").ToLower.Trim
-        If paginactual <> "indexview.aspx" Then
+        If paginactual <> "index.aspx" Then
 
             If SessionManager.UserId = 0 Then
                 Response.Redirect("Login.aspx", True)
@@ -48,7 +48,7 @@ Public Class Principal
                 'Next'FALTAAAA
 
                 If autorizado = False Then
-                    Response.Redirect("IndexView.aspx?a=no", True)
+                    Response.Redirect("Index.aspx", True)
                 End If
             End If
         End If
