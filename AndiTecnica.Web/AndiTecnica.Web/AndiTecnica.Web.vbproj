@@ -67,7 +67,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\" />
+    <Folder Include="Imagenes\" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -101,13 +101,54 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Estilo\CSS\animate.css" />
+    <Content Include="Estilo\CSS\animation.css" />
+    <Content Include="Estilo\CSS\bootstrap-datepicker.min.css" />
+    <Content Include="Estilo\CSS\bootstrap-dialog.css" />
+    <Content Include="Estilo\CSS\bootstrap-theme.css" />
+    <Content Include="Estilo\CSS\bootstrap-theme.min.css" />
+    <Content Include="Estilo\CSS\bootstrap.css" />
+    <Content Include="Estilo\CSS\bootstrap.min.css" />
+    <Content Include="Estilo\CSS\diseno_app.css" />
+    <Content Include="Estilo\CSS\font-awesome.css" />
+    <Content Include="Estilo\CSS\jquery.toastmessage.css" />
+    <Content Include="Estilo\CSS\style.css" />
+    <Content Include="Estilo\FONTS\glyphicons-halflings-regular.svg" />
+    <Content Include="Estilo\JS\bootstrap-datepicker.min.js" />
+    <Content Include="Estilo\JS\bootstrap-dialog.js" />
+    <Content Include="Estilo\JS\bootstrap.js" />
+    <Content Include="Estilo\JS\bootstrap.min.js" />
+    <Content Include="Estilo\JS\custom.js" />
+    <Content Include="Estilo\JS\html5element.js" />
+    <Content Include="Estilo\JS\html5shiv.js" />
+    <Content Include="Estilo\JS\jquery-1.11.2.min.js" />
+    <Content Include="Estilo\JS\jquery-scrolltofixed.js" />
+    <Content Include="Estilo\JS\jquery.easing.1.3.js" />
+    <Content Include="Estilo\JS\jquery.isotope.js" />
+    <Content Include="Estilo\JS\jquery.nav.js" />
+    <Content Include="Estilo\JS\jquery.toastmessage.js" />
+    <Content Include="Estilo\JS\npm.js" />
+    <Content Include="Estilo\JS\respond-1.1.0.min.js" />
+    <Content Include="Estilo\JS\wow.js" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\web.config" />
+    <Content Include="Estilo\CSS\bootstrap-theme.css.map" />
+    <Content Include="Estilo\CSS\bootstrap-theme.min.css.map" />
+    <Content Include="Estilo\CSS\bootstrap.css.map" />
+    <Content Include="Estilo\CSS\bootstrap.min.css.map" />
+    <Content Include="Estilo\FONTS\glyphicons-halflings-regular.eot" />
+    <Content Include="Estilo\FONTS\glyphicons-halflings-regular.ttf" />
+    <Content Include="Estilo\FONTS\glyphicons-halflings-regular.woff" />
+    <Content Include="Estilo\FONTS\glyphicons-halflings-regular.woff2" />
+    <Content Include="Estilo\JS\b44zvk2h.ccn" />
+    <Content Include="Estilo\JS\rlt23lk5.opm" />
+    <Content Include="MasterPages\Principal.Master" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Views\Seguridad\Perfiles.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +157,13 @@
     </Compile>
     <Compile Include="Login.aspx.vb">
       <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\Principal.Master.designer.vb">
+      <DependentUpon>Principal.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\Principal.Master.vb">
+      <DependentUpon>Principal.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -136,6 +184,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Views\Seguridad\Perfiles.aspx.designer.vb">
+      <DependentUpon>Perfiles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Seguridad\Perfiles.aspx.vb">
+      <DependentUpon>Perfiles.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

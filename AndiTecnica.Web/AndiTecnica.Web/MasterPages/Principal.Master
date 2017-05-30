@@ -1,0 +1,95 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Principal.master.vb" Inherits="AndiTecnica.Web.Principal" %>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>AndiTecnica</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <script type="text/javascript" src="../../Estilo/JS/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../../Estilo/JS/jquery.nav.js"></script>
+    <script type="text/javascript" src='../../Estilo/JS/bootstrap.min.js'></script>
+
+
+    <link href="../Estilo/CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Estilo/CSS/style.css" rel="stylesheet" />
+    <link href="../Estilo/CSS/font-awesome.css" rel="stylesheet" />
+    <link href="../Estilo/CSS/animate.css" rel="stylesheet" />
+    <link href="../Estilo/CSS/diseno_app.css" rel="stylesheet" />
+
+
+    <link rel="icon" type="image/png" href="~/Imagenes/IconoTrans.png">
+</head>
+<body>
+
+
+        <form id="form1" runat="server">
+            <div>
+                <asp:UpdatePanel ID="udp_base" runat="server">
+                    <ContentTemplate>
+                        <table class="cien">
+                            <tr class="bg-primary">
+                                <td class="cien">
+                                    <table class="cien">
+                                        <tr>
+                                            <td class="dieciocho">
+                                                <asp:ContentPlaceHolder ID="cph_botones" runat="server">
+                                                </asp:ContentPlaceHolder>
+                                            </td>
+                                            <td class="ochenta">
+                                                <nav id="menu" class="navbar navbar-inverse" role="navigation">
+                                                    <div class="navbar-header">
+                                                      <button id="nav-toggle" class="navbar-toggle" data-target="#main-nav" data-toggle="collapse" type="button">
+                                                        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+                                                      </button>
+                                                    </div>
+                                                    <div id="main-nav" class="collapse navbar-collapse navStyle">
+                                                      <ul id="mainNav" class="nav navbar-nav" runat="server">
+                                                        
+ 
+                                                       </ul>
+                                                    </div>
+                                                </nav>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="cien">
+                                    <br />
+                                    <div id="div_mensajes" runat="server">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:ContentPlaceHolder ID="cph_contenido" runat="server">
+                                    </asp:ContentPlaceHolder>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="cien text-center bg-primary small">INGENEO</td>
+                            </tr>
+                        </table>
+                        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </form>   
+
+
+
+
+
+
+</body>
+</html>
