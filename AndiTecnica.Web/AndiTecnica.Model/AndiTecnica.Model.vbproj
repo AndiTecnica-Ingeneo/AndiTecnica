@@ -72,7 +72,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\Seguridad\PerfilesBL.vb" />
     <Compile Include="BL\Seguridad\UsuariosBL.vb" />
+    <Compile Include="Dao\Seguridad\PerfilesDao.vb" />
     <Compile Include="Dao\Seguridad\UsuariosDao.vb" />
     <Compile Include="Entities\Autorizaciones.vb">
       <DependentUpon>Model.tt</DependentUpon>
