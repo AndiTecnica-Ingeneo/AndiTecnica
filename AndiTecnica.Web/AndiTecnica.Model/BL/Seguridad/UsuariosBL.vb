@@ -1,10 +1,11 @@
-﻿Imports AndiTecnica.Model.Dao
+﻿
+Imports AndiTecnica.Model.Dao
 
-Namespace BL
+Namespace BL.Usuarios
 
     Friend Class UsuariosBL
 
-        Public Function ListarUsuarios() As List(Of Usuarios)
+        Public Function ListarUsuarios() As List(Of Model.Usuarios)
             Try
                 Dim dao As New UsuariosDao
                 Return dao.ListarUsuarios
@@ -13,7 +14,7 @@ Namespace BL
             End Try
         End Function
 
-        Public Function ConsultarUsuarioxId(ByVal usuarioid As Integer) As Usuarios
+        Public Function ConsultarUsuarioxId(ByVal usuarioid As Integer) As Model.Usuarios
             Try
                 Dim dao As New UsuariosDao
                 Return dao.ConsultarUsuarioxId(usuarioid)
@@ -82,7 +83,7 @@ Namespace BL
         '    End Try
         'End Sub
 
-        Public Function IniciarSesion(ByVal usuario As String, ByVal clave As String) As Usuarios
+        Public Function IniciarSesion(ByVal usuario As String, ByVal clave As String) As Model.Usuarios
             Try
                 Dim dao As New UsuariosDao
                 Return dao.IniciarSesion(usuario, clave)
