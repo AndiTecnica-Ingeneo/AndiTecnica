@@ -16,8 +16,8 @@ Public Class Login
             If usuario Is Nothing Then
                 div_error.Visible = True
             Else
-                'SessionManager.MensajesProgramIN = Nothing
-                ' SessionManager.UserId = usuario.UsuarioId
+                SessionManager.MensajesAndiTecnica = Nothing
+                SessionManager.UserId = usuario.UsuarioId
                 FormsAuthentication.RedirectFromLoginPage(usuario.UsuarioId, False)
                 Response.Redirect("Index.aspx", True)
             End If
