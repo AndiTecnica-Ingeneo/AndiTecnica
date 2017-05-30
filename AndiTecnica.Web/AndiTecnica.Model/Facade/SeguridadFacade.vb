@@ -15,6 +15,18 @@ Namespace SeguridadFacade
         End Function
 #End Region
 
+#Region "Usuario"
+        Public Function ConsultarUsuarioxId(ByVal usuarioid As Integer) As Usuarios
+            Try
+                Dim bl As New UsuariosBL
+                Return bl.ConsultarUsuarioxId(usuarioid)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+#End Region
+
+
 
     End Class
 End Namespace

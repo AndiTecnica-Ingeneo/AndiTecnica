@@ -59,6 +59,15 @@ Partial Public Class Principal
     Protected WithEvents mainNav As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
+    '''lkb_cerrarsesion control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lkb_cerrarsesion As Global.System.Web.UI.WebControls.LinkButton
+    
+    '''<summary>
     '''div_mensajes control.
     '''</summary>
     '''<remarks>

@@ -1,4 +1,4 @@
-﻿' T4 code generation is enabled for model 'C:\Users\Andres Felipe Pinill\Source\Repos\AndiTecnica\AndiTecnica.Web\AndiTecnica.Model\Entities\Model.edmx'. 
+﻿' T4 code generation is enabled for model 'E:\DANILO\CODE\PROYECTOS\VISUAL BASIC\VB - .NET\ANDITECNICA\AndiTecnica.Web\AndiTecnica.Model\Entities\Model.edmx'. 
 ' To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 ' property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 ' is open in the designer.

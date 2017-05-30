@@ -11,8 +11,8 @@
     <title>AndiTecnica</title>
     <style type="text/css">
         .auto-style2 {
-            width: 199px;
-            height: 116px;
+            width: 100px;
+            height: 100px;
         }
     </style>
 </head>
@@ -38,7 +38,7 @@
                   </tr>
                   <tr>
                       <td rowspan="2" width="32%" align="center">
-                          <img alt="" class="auto-style2" src="img/parking_logo.png" /></td>
+                          <img alt="" class="auto-style2" src="Imagenes/logo.png" /></td>
                       <td width="44%">
                           <asp:TextBox ID="txt_usuario" class="form-control" runat="server" placeholder="Usuario"></asp:TextBox>
                       </td>

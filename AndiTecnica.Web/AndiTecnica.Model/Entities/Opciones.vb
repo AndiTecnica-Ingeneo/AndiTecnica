@@ -14,13 +14,13 @@ Partial Public Class Opciones
     Public Property OpcionId As Integer
     Public Property Nombre As String
     Public Property BotonFk As Integer
-    Public Property ElementoFk As Nullable(Of Integer)
+    Public Property MenuFk As Nullable(Of Integer)
     Public Property Describe As String
     Public Property Creado As Date
     Public Property Modificado As Date
 
     Public Overridable Property Botones As Botones
-    Public Overridable Property Elementos As Elementos
+    Public Overridable Property Menus As Menus
     Public Overridable Property Permisos As ICollection(Of Permisos) = New HashSet(Of Permisos)
 
 End Class

@@ -80,9 +80,6 @@
     <Compile Include="Entities\Botones.vb">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Elementos.vb">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Empleados.vb">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -117,9 +114,6 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Permisos.vb">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\TiposElementos.vb">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Usuarios.vb">

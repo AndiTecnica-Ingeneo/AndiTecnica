@@ -12,7 +12,7 @@
 
     Public Function ConsultarUsuarioxId(ByVal usuarioid As Integer) As Usuarios
             Using bd As New AndiTecnicaEntities
-                Dim query = From tbl In bd.Usuarios
+                Dim query = From tbl In bd.Usuarios.Include("Empleados")
                             Where tbl.UsuarioId = usuarioid
                             Select tbl
                 Return query.FirstOrDefault
@@ -48,6 +48,17 @@
                 Return query.FirstOrDefault
             End Using
         End Function
+
+
+        Public Function ConsultarModulosxUsuarioId(ByVal usuarioid As Integer) As Usuarios
+            Using bd As New AndiTecnicaEntities
+                Dim query = From tbl In bd.Usuarios
+                            Where tbl.UsuarioId = usuarioid
+                            Select tbl
+                Return query.FirstOrDefault
+            End Using
+        End Function
+
 
     End Class
 

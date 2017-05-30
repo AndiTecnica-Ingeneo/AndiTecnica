@@ -51,10 +51,12 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -67,7 +69,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Imagenes\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\Seguridad\" />
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +116,7 @@
     <Content Include="Estilo\CSS\font-awesome.css" />
     <Content Include="Estilo\CSS\jquery.toastmessage.css" />
     <Content Include="Estilo\CSS\style.css" />
+    <Content Include="Estilo\FONTS\fontawesome-webfont.svg" />
     <Content Include="Estilo\FONTS\glyphicons-halflings-regular.svg" />
     <Content Include="Estilo\JS\bootstrap-datepicker.min.js" />
     <Content Include="Estilo\JS\bootstrap-dialog.js" />
@@ -131,6 +134,8 @@
     <Content Include="Estilo\JS\npm.js" />
     <Content Include="Estilo\JS\respond-1.1.0.min.js" />
     <Content Include="Estilo\JS\wow.js" />
+    <Content Include="Imagenes\logo.png" />
+    <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -146,13 +151,23 @@
     <Content Include="Estilo\JS\b44zvk2h.ccn" />
     <Content Include="Estilo\JS\rlt23lk5.opm" />
     <Content Include="MasterPages\Principal.Master" />
+    <Content Include="Estilo\FONTS\fontawesome-webfont.eot" />
+    <Content Include="Estilo\FONTS\fontawesome-webfont.ttf" />
+    <Content Include="Estilo\FONTS\fontawesome-webfont.woff" />
+    <Content Include="Estilo\FONTS\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
-    <Content Include="Views\Base\Plantilla.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Index.aspx.designer.vb">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Index.aspx.vb">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Login.aspx.designer.vb">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
@@ -185,13 +200,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="Views\Base\Plantilla.aspx.designer.vb">
-      <DependentUpon>Plantilla.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Base\Plantilla.aspx.vb">
-      <DependentUpon>Plantilla.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -248,6 +256,9 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
@@ -265,6 +276,9 @@
           <CustomServerUrl>
           </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <servers defaultServer="SelfHostServer">
+            <server name="SelfHostServer" exePath="" cmdArgs="" url="http://localhost:3472/" workingDir="" />
+          </servers>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

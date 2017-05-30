@@ -538,6 +538,8 @@ a.contact_btn:hover {
 
 img {
     max-width: 100%;
+    height: 100px;
+    width: 100px;
 }
 
 /* no transition on .isotope container */

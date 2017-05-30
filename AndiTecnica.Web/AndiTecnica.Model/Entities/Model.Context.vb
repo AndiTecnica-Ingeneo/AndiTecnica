@@ -24,7 +24,6 @@ Partial Public Class AndiTecnicaEntities
 
     Public Property Autorizaciones() As DbSet(Of Autorizaciones)
     Public Property Botones() As DbSet(Of Botones)
-    Public Property Elementos() As DbSet(Of Elementos)
     Public Property Empleados() As DbSet(Of Empleados)
     Public Property Estados() As DbSet(Of Estados)
     Public Property Menus() As DbSet(Of Menus)
@@ -32,7 +31,6 @@ Partial Public Class AndiTecnicaEntities
     Public Property Opciones() As DbSet(Of Opciones)
     Public Property Perfiles() As DbSet(Of Perfiles)
     Public Property Permisos() As DbSet(Of Permisos)
-    Public Property TiposElementos() As DbSet(Of TiposElementos)
     Public Property Usuarios() As DbSet(Of Usuarios)
 
 End Class

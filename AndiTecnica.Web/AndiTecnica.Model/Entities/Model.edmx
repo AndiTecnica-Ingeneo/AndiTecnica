@@ -24,18 +24,6 @@
           <Property Name="Creado" Type="smalldatetime" Nullable="false" />
           <Property Name="Modificado" Type="smalldatetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="Elementos">
-          <Key>
-            <PropertyRef Name="ElementoId" />
-          </Key>
-          <Property Name="ElementoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ModuloFk" Type="int" Nullable="false" />
-          <Property Name="TipoElementoFk" Type="int" Nullable="false" />
-          <Property Name="Describe" Type="nvarchar(max)" />
-          <Property Name="Ruta" Type="nvarchar(max)" />
-          <Property Name="ElementoPadreFk" Type="int" />
-        </EntityType>
         <EntityType Name="Empleados">
           <Key>
             <PropertyRef Name="EmpleadoId" />
@@ -67,9 +55,8 @@
           </Key>
           <Property Name="MenuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="MenuPadre" Type="int" Nullable="false" />
-          <Property Name="Posicion" Type="int" Nullable="false" />
-          <Property Name="ElementoFk" Type="int" Nullable="false" />
+          <Property Name="Ruta" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModuloFk" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Modulos">
           <Key>
@@ -79,7 +66,6 @@
           <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Prefijo" Type="nvarchar" MaxLength="2" Nullable="false" />
           <Property Name="Describe" Type="nvarchar(max)" />
-          <Property Name="Visible" Type="bit" />
         </EntityType>
         <EntityType Name="Opciones">
           <Key>
@@ -88,7 +74,7 @@
           <Property Name="OpcionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="150" />
           <Property Name="BotonFk" Type="int" Nullable="false" />
-          <Property Name="ElementoFk" Type="int" />
+          <Property Name="MenuFk" Type="int" />
           <Property Name="Describe" Type="nvarchar(max)" />
           <Property Name="Creado" Type="smalldatetime" Nullable="false" />
           <Property Name="Modificado" Type="smalldatetime" Nullable="false" />
@@ -112,14 +98,6 @@
           <Property Name="PerfilFk" Type="int" Nullable="false" />
           <Property Name="OpcionFk" Type="int" Nullable="false" />
           <Property Name="Valor" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TiposElementos">
-          <Key>
-            <PropertyRef Name="TipoElementoId" />
-          </Key>
-          <Property Name="TipoElementoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Describe" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -160,30 +138,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Elementos_Modulos">
-          <End Role="Modulos" Type="Self.Modulos" Multiplicity="1" />
-          <End Role="Elementos" Type="Self.Elementos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Modulos">
-              <PropertyRef Name="ModuloId" />
-            </Principal>
-            <Dependent Role="Elementos">
-              <PropertyRef Name="ModuloFk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Elementos_TiposElementos">
-          <End Role="TiposElementos" Type="Self.TiposElementos" Multiplicity="1" />
-          <End Role="Elementos" Type="Self.Elementos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TiposElementos">
-              <PropertyRef Name="TipoElementoId" />
-            </Principal>
-            <Dependent Role="Elementos">
-              <PropertyRef Name="TipoElementoFk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Empleados_Estados">
           <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
           <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
@@ -208,15 +162,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Menus_Elementos">
-          <End Role="Elementos" Type="Self.Elementos" Multiplicity="1" />
+        <Association Name="FK_Menus_Modulos">
+          <End Role="Modulos" Type="Self.Modulos" Multiplicity="1" />
           <End Role="Menus" Type="Self.Menus" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Elementos">
-              <PropertyRef Name="ElementoId" />
+            <Principal Role="Modulos">
+              <PropertyRef Name="ModuloId" />
             </Principal>
             <Dependent Role="Menus">
-              <PropertyRef Name="ElementoFk" />
+              <PropertyRef Name="ModuloFk" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -232,15 +186,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Opciones_Elementos">
-          <End Role="Elementos" Type="Self.Elementos" Multiplicity="0..1" />
+        <Association Name="FK_Opciones_Menus">
+          <End Role="Menus" Type="Self.Menus" Multiplicity="0..1" />
           <End Role="Opciones" Type="Self.Opciones" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Elementos">
-              <PropertyRef Name="ElementoId" />
+            <Principal Role="Menus">
+              <PropertyRef Name="MenuId" />
             </Principal>
             <Dependent Role="Opciones">
-              <PropertyRef Name="ElementoFk" />
+              <PropertyRef Name="MenuFk" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -297,7 +251,6 @@
         <EntityContainer Name="AndiTecnicaModelStoreContainer">
           <EntitySet Name="Autorizaciones" EntityType="Self.Autorizaciones" Schema="Seguridad" store:Type="Tables" />
           <EntitySet Name="Botones" EntityType="Self.Botones" Schema="Seguridad" store:Type="Tables" />
-          <EntitySet Name="Elementos" EntityType="Self.Elementos" Schema="Seguridad" store:Type="Tables" />
           <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="Seguridad" store:Type="Tables" />
           <EntitySet Name="Estados" EntityType="Self.Estados" Schema="Seguridad" store:Type="Tables" />
           <EntitySet Name="Menus" EntityType="Self.Menus" Schema="Seguridad" store:Type="Tables" />
@@ -305,7 +258,6 @@
           <EntitySet Name="Opciones" EntityType="Self.Opciones" Schema="Seguridad" store:Type="Tables" />
           <EntitySet Name="Perfiles" EntityType="Self.Perfiles" Schema="Seguridad" store:Type="Tables" />
           <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="Seguridad" store:Type="Tables" />
-          <EntitySet Name="TiposElementos" EntityType="Self.TiposElementos" Schema="Seguridad" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="Seguridad" store:Type="Tables" />
           <AssociationSet Name="FK_Autorizaciones_Menus" Association="Self.FK_Autorizaciones_Menus">
             <End Role="Menus" EntitySet="Menus" />
@@ -315,14 +267,6 @@
             <End Role="Perfiles" EntitySet="Perfiles" />
             <End Role="Autorizaciones" EntitySet="Autorizaciones" />
           </AssociationSet>
-          <AssociationSet Name="FK_Elementos_Modulos" Association="Self.FK_Elementos_Modulos">
-            <End Role="Modulos" EntitySet="Modulos" />
-            <End Role="Elementos" EntitySet="Elementos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Elementos_TiposElementos" Association="Self.FK_Elementos_TiposElementos">
-            <End Role="TiposElementos" EntitySet="TiposElementos" />
-            <End Role="Elementos" EntitySet="Elementos" />
-          </AssociationSet>
           <AssociationSet Name="FK_Empleados_Estados" Association="Self.FK_Empleados_Estados">
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Empleados" EntitySet="Empleados" />
@@ -331,16 +275,16 @@
             <End Role="Modulos" EntitySet="Modulos" />
             <End Role="Estados" EntitySet="Estados" />
           </AssociationSet>
-          <AssociationSet Name="FK_Menus_Elementos" Association="Self.FK_Menus_Elementos">
-            <End Role="Elementos" EntitySet="Elementos" />
+          <AssociationSet Name="FK_Menus_Modulos" Association="Self.FK_Menus_Modulos">
+            <End Role="Modulos" EntitySet="Modulos" />
             <End Role="Menus" EntitySet="Menus" />
           </AssociationSet>
           <AssociationSet Name="FK_Opciones_Botones" Association="Self.FK_Opciones_Botones">
             <End Role="Botones" EntitySet="Botones" />
             <End Role="Opciones" EntitySet="Opciones" />
           </AssociationSet>
-          <AssociationSet Name="FK_Opciones_Elementos" Association="Self.FK_Opciones_Elementos">
-            <End Role="Elementos" EntitySet="Elementos" />
+          <AssociationSet Name="FK_Opciones_Menus" Association="Self.FK_Opciones_Menus">
+            <End Role="Menus" EntitySet="Menus" />
             <End Role="Opciones" EntitySet="Opciones" />
           </AssociationSet>
           <AssociationSet Name="FK_Permisos_Opciones" Association="Self.FK_Permisos_Opciones">
@@ -367,7 +311,6 @@
         <EntityContainer Name="AndiTecnicaEntities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="Autorizaciones" EntityType="AndiTecnicaModel.Autorizaciones" />
           <EntitySet Name="Botones" EntityType="AndiTecnicaModel.Botones" />
-          <EntitySet Name="Elementos" EntityType="AndiTecnicaModel.Elementos" />
           <EntitySet Name="Empleados" EntityType="AndiTecnicaModel.Empleados" />
           <EntitySet Name="Estados" EntityType="AndiTecnicaModel.Estados" />
           <EntitySet Name="Menus" EntityType="AndiTecnicaModel.Menus" />
@@ -375,7 +318,6 @@
           <EntitySet Name="Opciones" EntityType="AndiTecnicaModel.Opciones" />
           <EntitySet Name="Perfiles" EntityType="AndiTecnicaModel.Perfiles" />
           <EntitySet Name="Permisos" EntityType="AndiTecnicaModel.Permisos" />
-          <EntitySet Name="TiposElementos" EntityType="AndiTecnicaModel.TiposElementos" />
           <EntitySet Name="Usuarios" EntityType="AndiTecnicaModel.Usuarios" />
           <AssociationSet Name="FK_Autorizaciones_Menus" Association="AndiTecnicaModel.FK_Autorizaciones_Menus">
             <End Role="Menus" EntitySet="Menus" />
@@ -389,22 +331,6 @@
             <End Role="Botones" EntitySet="Botones" />
             <End Role="Opciones" EntitySet="Opciones" />
           </AssociationSet>
-          <AssociationSet Name="FK_Elementos_Modulos" Association="AndiTecnicaModel.FK_Elementos_Modulos">
-            <End Role="Modulos" EntitySet="Modulos" />
-            <End Role="Elementos" EntitySet="Elementos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Elementos_TiposElementos" Association="AndiTecnicaModel.FK_Elementos_TiposElementos">
-            <End Role="TiposElementos" EntitySet="TiposElementos" />
-            <End Role="Elementos" EntitySet="Elementos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Menus_Elementos" Association="AndiTecnicaModel.FK_Menus_Elementos">
-            <End Role="Elementos" EntitySet="Elementos" />
-            <End Role="Menus" EntitySet="Menus" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Opciones_Elementos" Association="AndiTecnicaModel.FK_Opciones_Elementos">
-            <End Role="Elementos" EntitySet="Elementos" />
-            <End Role="Opciones" EntitySet="Opciones" />
-          </AssociationSet>
           <AssociationSet Name="FK_Empleados_Estados" Association="AndiTecnicaModel.FK_Empleados_Estados">
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Empleados" EntitySet="Empleados" />
@@ -416,6 +342,14 @@
           <AssociationSet Name="FK_Estados_Modulos" Association="AndiTecnicaModel.FK_Estados_Modulos">
             <End Role="Modulos" EntitySet="Modulos" />
             <End Role="Estados" EntitySet="Estados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menus_Modulos" Association="AndiTecnicaModel.FK_Menus_Modulos">
+            <End Role="Modulos" EntitySet="Modulos" />
+            <End Role="Menus" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Opciones_Menus" Association="AndiTecnicaModel.FK_Opciones_Menus">
+            <End Role="Menus" EntitySet="Menus" />
+            <End Role="Opciones" EntitySet="Opciones" />
           </AssociationSet>
           <AssociationSet Name="FK_Permisos_Opciones" Association="AndiTecnicaModel.FK_Permisos_Opciones">
             <End Role="Opciones" EntitySet="Opciones" />
@@ -452,22 +386,6 @@
           <Property Name="Modificado" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Opciones" Relationship="AndiTecnicaModel.FK_Opciones_Botones" FromRole="Botones" ToRole="Opciones" />
         </EntityType>
-        <EntityType Name="Elementos">
-          <Key>
-            <PropertyRef Name="ElementoId" />
-          </Key>
-          <Property Name="ElementoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ModuloFk" Type="Int32" Nullable="false" />
-          <Property Name="TipoElementoFk" Type="Int32" Nullable="false" />
-          <Property Name="Describe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Ruta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ElementoPadreFk" Type="Int32" />
-          <NavigationProperty Name="Modulos" Relationship="AndiTecnicaModel.FK_Elementos_Modulos" FromRole="Elementos" ToRole="Modulos" />
-          <NavigationProperty Name="TiposElementos" Relationship="AndiTecnicaModel.FK_Elementos_TiposElementos" FromRole="Elementos" ToRole="TiposElementos" />
-          <NavigationProperty Name="Menus" Relationship="AndiTecnicaModel.FK_Menus_Elementos" FromRole="Elementos" ToRole="Menus" />
-          <NavigationProperty Name="Opciones" Relationship="AndiTecnicaModel.FK_Opciones_Elementos" FromRole="Elementos" ToRole="Opciones" />
-        </EntityType>
         <EntityType Name="Empleados">
           <Key>
             <PropertyRef Name="EmpleadoId" />
@@ -503,11 +421,11 @@
           </Key>
           <Property Name="MenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MenuPadre" Type="Int32" Nullable="false" />
-          <Property Name="Posicion" Type="Int32" Nullable="false" />
-          <Property Name="ElementoFk" Type="Int32" Nullable="false" />
+          <Property Name="Ruta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModuloFk" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Autorizaciones" Relationship="AndiTecnicaModel.FK_Autorizaciones_Menus" FromRole="Menus" ToRole="Autorizaciones" />
-          <NavigationProperty Name="Elementos" Relationship="AndiTecnicaModel.FK_Menus_Elementos" FromRole="Menus" ToRole="Elementos" />
+          <NavigationProperty Name="Modulos" Relationship="AndiTecnicaModel.FK_Menus_Modulos" FromRole="Menus" ToRole="Modulos" />
+          <NavigationProperty Name="Opciones" Relationship="AndiTecnicaModel.FK_Opciones_Menus" FromRole="Menus" ToRole="Opciones" />
         </EntityType>
         <EntityType Name="Modulos">
           <Key>
@@ -517,9 +435,8 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Prefijo" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
           <Property Name="Describe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Visible" Type="Boolean" />
-          <NavigationProperty Name="Elementos" Relationship="AndiTecnicaModel.FK_Elementos_Modulos" FromRole="Modulos" ToRole="Elementos" />
           <NavigationProperty Name="Estados" Relationship="AndiTecnicaModel.FK_Estados_Modulos" FromRole="Modulos" ToRole="Estados" />
+          <NavigationProperty Name="Menus" Relationship="AndiTecnicaModel.FK_Menus_Modulos" FromRole="Modulos" ToRole="Menus" />
         </EntityType>
         <EntityType Name="Opciones">
           <Key>
@@ -528,12 +445,12 @@
           <Property Name="OpcionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="BotonFk" Type="Int32" Nullable="false" />
-          <Property Name="ElementoFk" Type="Int32" />
+          <Property Name="MenuFk" Type="Int32" />
           <Property Name="Describe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Creado" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Modificado" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Botones" Relationship="AndiTecnicaModel.FK_Opciones_Botones" FromRole="Opciones" ToRole="Botones" />
-          <NavigationProperty Name="Elementos" Relationship="AndiTecnicaModel.FK_Opciones_Elementos" FromRole="Opciones" ToRole="Elementos" />
+          <NavigationProperty Name="Menus" Relationship="AndiTecnicaModel.FK_Opciones_Menus" FromRole="Opciones" ToRole="Menus" />
           <NavigationProperty Name="Permisos" Relationship="AndiTecnicaModel.FK_Permisos_Opciones" FromRole="Opciones" ToRole="Permisos" />
         </EntityType>
         <EntityType Name="Perfiles">
@@ -560,15 +477,6 @@
           <Property Name="Valor" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Opciones" Relationship="AndiTecnicaModel.FK_Permisos_Opciones" FromRole="Permisos" ToRole="Opciones" />
           <NavigationProperty Name="Perfiles" Relationship="AndiTecnicaModel.FK_Permisos_Perfiles" FromRole="Permisos" ToRole="Perfiles" />
-        </EntityType>
-        <EntityType Name="TiposElementos">
-          <Key>
-            <PropertyRef Name="TipoElementoId" />
-          </Key>
-          <Property Name="TipoElementoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Describe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Elementos" Relationship="AndiTecnicaModel.FK_Elementos_TiposElementos" FromRole="TiposElementos" ToRole="Elementos" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -623,54 +531,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Elementos_Modulos">
-          <End Type="AndiTecnicaModel.Modulos" Role="Modulos" Multiplicity="1" />
-          <End Type="AndiTecnicaModel.Elementos" Role="Elementos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Modulos">
-              <PropertyRef Name="ModuloId" />
-            </Principal>
-            <Dependent Role="Elementos">
-              <PropertyRef Name="ModuloFk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Elementos_TiposElementos">
-          <End Type="AndiTecnicaModel.TiposElementos" Role="TiposElementos" Multiplicity="1" />
-          <End Type="AndiTecnicaModel.Elementos" Role="Elementos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TiposElementos">
-              <PropertyRef Name="TipoElementoId" />
-            </Principal>
-            <Dependent Role="Elementos">
-              <PropertyRef Name="TipoElementoFk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Menus_Elementos">
-          <End Type="AndiTecnicaModel.Elementos" Role="Elementos" Multiplicity="1" />
-          <End Type="AndiTecnicaModel.Menus" Role="Menus" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Elementos">
-              <PropertyRef Name="ElementoId" />
-            </Principal>
-            <Dependent Role="Menus">
-              <PropertyRef Name="ElementoFk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Opciones_Elementos">
-          <End Type="AndiTecnicaModel.Elementos" Role="Elementos" Multiplicity="0..1" />
-          <End Type="AndiTecnicaModel.Opciones" Role="Opciones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Elementos">
-              <PropertyRef Name="ElementoId" />
-            </Principal>
-            <Dependent Role="Opciones">
-              <PropertyRef Name="ElementoFk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Empleados_Estados">
           <End Type="AndiTecnicaModel.Estados" Role="Estados" Multiplicity="0..1" />
           <End Type="AndiTecnicaModel.Empleados" Role="Empleados" Multiplicity="*" />
@@ -704,6 +564,30 @@
             </Principal>
             <Dependent Role="Estados">
               <PropertyRef Name="ModuloFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menus_Modulos">
+          <End Type="AndiTecnicaModel.Modulos" Role="Modulos" Multiplicity="1" />
+          <End Type="AndiTecnicaModel.Menus" Role="Menus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modulos">
+              <PropertyRef Name="ModuloId" />
+            </Principal>
+            <Dependent Role="Menus">
+              <PropertyRef Name="ModuloFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Opciones_Menus">
+          <End Type="AndiTecnicaModel.Menus" Role="Menus" Multiplicity="0..1" />
+          <End Type="AndiTecnicaModel.Opciones" Role="Opciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menus">
+              <PropertyRef Name="MenuId" />
+            </Principal>
+            <Dependent Role="Opciones">
+              <PropertyRef Name="MenuFk" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -745,7 +629,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -769,19 +653,6 @@
                 <ScalarProperty Name="Describe" ColumnName="Describe" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="BotonId" ColumnName="BotonId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Elementos">
-            <EntityTypeMapping TypeName="AndiTecnicaModel.Elementos">
-              <MappingFragment StoreEntitySet="Elementos">
-                <ScalarProperty Name="ElementoPadreFk" ColumnName="ElementoPadreFk" />
-                <ScalarProperty Name="Ruta" ColumnName="Ruta" />
-                <ScalarProperty Name="Describe" ColumnName="Describe" />
-                <ScalarProperty Name="TipoElementoFk" ColumnName="TipoElementoFk" />
-                <ScalarProperty Name="ModuloFk" ColumnName="ModuloFk" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="ElementoId" ColumnName="ElementoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -815,9 +686,8 @@
           <EntitySetMapping Name="Menus">
             <EntityTypeMapping TypeName="AndiTecnicaModel.Menus">
               <MappingFragment StoreEntitySet="Menus">
-                <ScalarProperty Name="ElementoFk" ColumnName="ElementoFk" />
-                <ScalarProperty Name="Posicion" ColumnName="Posicion" />
-                <ScalarProperty Name="MenuPadre" ColumnName="MenuPadre" />
+                <ScalarProperty Name="ModuloFk" ColumnName="ModuloFk" />
+                <ScalarProperty Name="Ruta" ColumnName="Ruta" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="MenuId" ColumnName="MenuId" />
               </MappingFragment>
@@ -826,7 +696,6 @@
           <EntitySetMapping Name="Modulos">
             <EntityTypeMapping TypeName="AndiTecnicaModel.Modulos">
               <MappingFragment StoreEntitySet="Modulos">
-                <ScalarProperty Name="Visible" ColumnName="Visible" />
                 <ScalarProperty Name="Describe" ColumnName="Describe" />
                 <ScalarProperty Name="Prefijo" ColumnName="Prefijo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -840,7 +709,7 @@
                 <ScalarProperty Name="Modificado" ColumnName="Modificado" />
                 <ScalarProperty Name="Creado" ColumnName="Creado" />
                 <ScalarProperty Name="Describe" ColumnName="Describe" />
-                <ScalarProperty Name="ElementoFk" ColumnName="ElementoFk" />
+                <ScalarProperty Name="MenuFk" ColumnName="MenuFk" />
                 <ScalarProperty Name="BotonFk" ColumnName="BotonFk" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="OpcionId" ColumnName="OpcionId" />
@@ -866,15 +735,6 @@
                 <ScalarProperty Name="OpcionFk" ColumnName="OpcionFk" />
                 <ScalarProperty Name="PerfilFk" ColumnName="PerfilFk" />
                 <ScalarProperty Name="PermisoId" ColumnName="PermisoId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TiposElementos">
-            <EntityTypeMapping TypeName="AndiTecnicaModel.TiposElementos">
-              <MappingFragment StoreEntitySet="TiposElementos">
-                <ScalarProperty Name="Describe" ColumnName="Describe" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="TipoElementoId" ColumnName="TipoElementoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

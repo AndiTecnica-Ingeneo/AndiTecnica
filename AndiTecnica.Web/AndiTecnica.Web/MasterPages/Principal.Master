@@ -54,6 +54,9 @@
                                                     </div>
                                                 </nav>
                                             </td>
+                                            <td class="dos">
+                                                <asp:LinkButton ID="lkb_cerrarsesion" CssClass="link_button" runat="server"><span class="fa fa-sign-out"></span></asp:LinkButton>
+                                            </td>
                                         </tr>
                                     </table>
                                 </td>

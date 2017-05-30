@@ -13,11 +13,11 @@ Imports System.Collections.Generic
 Partial Public Class Menus
     Public Property MenuId As Integer
     Public Property Nombre As String
-    Public Property MenuPadre As Integer
-    Public Property Posicion As Integer
-    Public Property ElementoFk As Integer
+    Public Property Ruta As String
+    Public Property ModuloFk As Integer
 
     Public Overridable Property Autorizaciones As ICollection(Of Autorizaciones) = New HashSet(Of Autorizaciones)
-    Public Overridable Property Elementos As Elementos
+    Public Overridable Property Modulos As Modulos
+    Public Overridable Property Opciones As ICollection(Of Opciones) = New HashSet(Of Opciones)
 
 End Class
