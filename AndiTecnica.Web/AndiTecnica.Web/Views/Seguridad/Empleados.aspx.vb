@@ -129,15 +129,15 @@ Public Class Empleados
     Public Sub ObtenerEmpleado()
         Dim Empleado = SeguridadFacade.ConsultarEmpleadoxId(hdf_id.Value)
         txt_nombreEmpleado.Text = Empleado.Nombre
-        txt_CedulaEmpleado.Text = Empleado.Describe
+        txt_CedulaEmpleado.Text = Empleado.Cedula
         txt_Telefono.Text = Empleado.Telefono
         txt_Ext.Text = Empleado.Extencion
-        txt_Celular.Text = Empleado.Celular
+        txt_Celular.Text = Empleado.Movil
         txt_Email.Text = Empleado.Correo
         'FOTO DIGITAL
     End Sub
 
-    Public Function AsignarEmpleado() As Empleados
+    Public Function AsignarEmpleado() As Model.Empleados
         Dim Empleado As New Model.Empleados
         Try
             Empleado.EmpleadoId = hdf_id.Value
@@ -162,6 +162,7 @@ Public Class Empleados
         Empleado.Correo = txt_Email.Text
 
         Return Empleado
+
     End Function
 
     Public Sub LimpiarEmpleado()

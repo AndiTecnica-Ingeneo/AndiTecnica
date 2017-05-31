@@ -1,5 +1,6 @@
 ﻿Imports AndiTecnica.Model.BL.Usuarios
 Imports AndiTecnica.Model.BL.Perfiles
+Imports AndiTecnica.Model.BL.Empleados
 
 Namespace SeguridadFacade
     Public Class SeguridadFacade
@@ -15,34 +16,6 @@ Namespace SeguridadFacade
             End Try
         End Function
 #End Region
-
-#Region "Usuario"
-        Public Function ConsultarUsuarioxId(ByVal usuarioid As Integer) As Usuarios
-            Try
-                Dim bl As New UsuariosBL
-                Return bl.ConsultarUsuarioxId(usuarioid)
-            Catch ex As Exception
-                Throw New Exception(ex.Message)
-            End Try
-        End Function
-
-        Public Function ConsultarModulosxUsuarioId(ByVal usuarioid As Integer) As List(Of ConsultarModulosxUsuarioId_Result)
-            Try
-                Dim bl As New UsuariosBL
-                Return bl.ConsultarModulosxUsuarioId(usuarioid)
-            Catch ex As Exception
-                Throw New Exception(ex.Message)
-            End Try
-        End Function
-
-        Public Function ConsultarMenusxUsuarioId(ByVal usuarioid As Integer) As List(Of ConsultarMenusxUsuarioId_Result)
-            Try
-                Dim bl As New UsuariosBL
-                Return bl.ConsultarMenusxUsuarioId(usuarioid)
-            Catch ex As Exception
-                Throw New Exception(ex.Message)
-            End Try
-        End Function
 
 #Region "Empleados"
 
@@ -102,6 +75,34 @@ Namespace SeguridadFacade
             End Try
         End Sub
 #End Region
+
+#Region "Usuario"
+        Public Function ConsultarUsuarioxId(ByVal usuarioid As Integer) As Usuarios
+            Try
+                Dim bl As New UsuariosBL
+                Return bl.ConsultarUsuarioxId(usuarioid)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+
+        Public Function ConsultarModulosxUsuarioId(ByVal usuarioid As Integer) As List(Of ConsultarModulosxUsuarioId_Result)
+            Try
+                Dim bl As New UsuariosBL
+                Return bl.ConsultarModulosxUsuarioId(usuarioid)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+
+        Public Function ConsultarMenusxUsuarioId(ByVal usuarioid As Integer) As List(Of ConsultarMenusxUsuarioId_Result)
+            Try
+                Dim bl As New UsuariosBL
+                Return bl.ConsultarMenusxUsuarioId(usuarioid)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
 
 #End Region
 
