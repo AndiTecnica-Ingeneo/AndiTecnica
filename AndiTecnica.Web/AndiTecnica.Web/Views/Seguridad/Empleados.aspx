@@ -7,6 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_botones" runat="server">
     <asp:LinkButton CssClass="link_button" ID="lkb_buscar" runat="server" ToolTip="Buscar"><span class="fa fa-search"></span></asp:LinkButton>
     <asp:LinkButton CssClass="link_button" ID="lkb_agregar" runat="server" ToolTip="Agregar"><span class="fa fa-plus"></span></asp:LinkButton>
+    <asp:linkbutton cssclass="link_button" id="lkb_editar" runat="server" tooltip="Editar"><span class="fa fa-pencil"></span></asp:linkbutton>
     <asp:LinkButton CssClass="link_button" ID="lkb_guardar" runat="server" ToolTip="Guardar"><span class="fa fa-floppy-o"></span></asp:LinkButton>
     <asp:LinkButton CssClass="link_button" ID="lkb_eliminar" runat="server" ToolTip="Eliminar"><span class="fa fa-trash-o"></span></asp:LinkButton>
     <asp:LinkButton CssClass="link_button" ID="lkb_salir" runat="server" ToolTip="Volver"><span class="fa fa-undo"></span></asp:LinkButton>
@@ -117,20 +118,18 @@
             </table>
             <br />
         </asp:Panel>
-        <asp:GridView ID="grd_Empleados" runat="server" AutoGenerateColumns="False" DataSourceID="ods_Empleados" DataKeyNames="EmpleadoId" CssClass="table table-bordered" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True">
+        <asp:GridView ID="grd_Empleados" runat="server" DataKeyNames="EmpleadoId" AutoGenerateColumns="False" DataSourceID="ods_Empleados" CssClass="table table-bordered" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:CommandField ShowSelectButton="True" ControlStyle-CssClass="fa fa-pencil" ItemStyle-HorizontalAlign="Center" SelectText="">
-                    <ControlStyle CssClass="fa fa-pencil link_button_select" />
-                </asp:CommandField>
-                <asp:BoundField DataField="EmpleadoId" HeaderText="EmpleadoId" SortExpression="EmpleadoId" Visible="false" />
+                <asp:CommandField ShowSelectButton="True" ControlStyle-CssClass="fa fa-pencil" ItemStyle-HorizontalAlign="Center" SelectText=""><ControlStyle CssClass="fa fa-pencil link_button_select"/></asp:CommandField>
+                <asp:BoundField DataField="Cedula" HeaderText="Cedula" SortExpression="Cedula" />
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
-                <asp:BoundField DataField="Describe" HeaderText="Describe" SortExpression="Describe" />
+                <asp:BoundField DataField="Correo" HeaderText="Correo" SortExpression="Correo" />
                 <asp:BoundField DataField="Creado" HeaderText="Creado" SortExpression="Creado" />
                 <asp:BoundField DataField="Modificado" HeaderText="Modificado" SortExpression="Modificado" />
-                <asp:BoundField DataField="Nombre" HeaderText="Estado" SortExpression="Nombre" />
-            </Columns>
-            <HeaderStyle ForeColor="White" BackColor="#005490" />
+                <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado" />
+             </Columns>
+            <HeaderStyle ForeColor="White" BackColor="#0f2612" />
         </asp:GridView>
     </asp:Panel>
 

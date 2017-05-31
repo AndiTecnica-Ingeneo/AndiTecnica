@@ -139,8 +139,6 @@ Namespace SeguridadFacade
         Public Sub GuardarPerfil(ByVal Perfil As Perfiles)
             Try
                 Dim bl As New PerfilesBL
-                Perfil.Creado = Date.Now
-                Perfil.Modificado = Date.Now
                 bl.GuardarPerfil(Perfil)
             Catch ex As Exception
                 Throw New Exception(ex.Message)

@@ -32,6 +32,15 @@ Partial Public Class Empleados
     Protected WithEvents lkb_agregar As Global.System.Web.UI.WebControls.LinkButton
     
     '''<summary>
+    '''lkb_editar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lkb_editar As Global.System.Web.UI.WebControls.LinkButton
+    
+    '''<summary>
     '''lkb_guardar control.
     '''</summary>
     '''<remarks>
@@ -176,15 +185,6 @@ Partial Public Class Empleados
     Protected WithEvents txt_Email As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''FileUpload1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents upl_FotoDigital As Global.System.Web.UI.WebControls.FileUpload
-    
-    '''<summary>
     '''Label6 control.
     '''</summary>
     '''<remarks>
@@ -192,6 +192,15 @@ Partial Public Class Empleados
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label6 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''upl_FotoDigital control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents upl_FotoDigital As Global.System.Web.UI.WebControls.FileUpload
     
     '''<summary>
     '''pnl_list control.

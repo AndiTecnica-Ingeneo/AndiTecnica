@@ -9,6 +9,7 @@ Public Class Perfil
     Public Enum EnumModoPagina
         Insert
         Edit
+        Update
     End Enum
 
     Public Property ModoPaginaPerfiles As EnumModoPagina
@@ -66,7 +67,7 @@ Public Class Perfil
     End Sub
 
     Private Sub lkb_editar_Click(sender As Object, e As EventArgs) Handles lkb_editar.Click
-        ModoPaginaPerfiles = EnumModoPagina.Insert
+        ModoPaginaPerfiles = EnumModoPagina.Update
         MostrarFormulario()
     End Sub
 
@@ -126,14 +127,12 @@ Public Class Perfil
         lkb_salir.Visible = True
 
         If ModoPaginaPerfiles = EnumModoPagina.Edit Then
-            txt_nombrePerfil.Enabled = False
-            txt_DescripcionPerfil.Enabled = False
+            pnl_form.Enabled = False
             lkb_eliminar.Visible = True
             lkb_editar.Visible = True
             lkb_guardar.Visible = False
-        ElseIf ModoPaginaPerfiles = EnumModoPagina.Insert Then
-            txt_nombrePerfil.Enabled = True
-            txt_DescripcionPerfil.Enabled = True
+        ElseIf ModoPaginaPerfiles = EnumModoPagina.Insert Or ModoPaginaPerfiles = EnumModoPagina.Update Then
+            pnl_form.Enabled = True
             lkb_guardar.Visible = True
             lkb_editar.Visible = False
         End If

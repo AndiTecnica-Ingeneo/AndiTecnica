@@ -4,6 +4,8 @@ Imports AndiTecnica.Model.SeguridadFacade
 Public Class Empleados
     Inherits System.Web.UI.Page
 
+    Public Shared prm As List(Of AutorizarBotones_Result)
+
     Public Enum EnumModoPagina
         Insert
         Edit
@@ -24,6 +26,7 @@ Public Class Empleados
         If Not Page.IsPostBack Then
             MostrarLista()
             pnl_buscar.Visible = False
+            CargarPermisos()
         End If
     End Sub
 
@@ -80,6 +83,11 @@ Public Class Empleados
         End Try
     End Sub
 
+    Private Sub lkb_editar_Click(sender As Object, e As EventArgs) Handles lkb_editar.Click
+        ModoPaginaEmpleados = EnumModoPagina.Insert
+        MostrarFormulario()
+    End Sub
+
     Protected Sub Eliminar(sender As Object, e As EventArgs) Handles lkb_eliminar.Click
         Try
             SeguridadFacade.EliminarEmpleado(hdf_id.Value)
@@ -114,11 +122,30 @@ Public Class Empleados
         pnl_list.Visible = False
         lkb_buscar.Visible = False
         lkb_agregar.Visible = False
-        lkb_guardar.Visible = True
-        If ModoPaginaEmpleados = EnumModoPagina.Edit Then
-            lkb_eliminar.Visible = True
-        End If
         lkb_salir.Visible = True
+
+        If ModoPaginaEmpleados = EnumModoPagina.Edit Then
+            txt_nombreEmpleado.Enabled = False
+            txt_CedulaEmpleado.Enabled = False
+            txt_Telefono.Enabled = False
+            txt_Ext.Enabled = False
+            txt_Celular.Enabled = False
+            txt_Email.Enabled = False
+            lkb_eliminar.Visible = True
+            lkb_editar.Visible = True
+            lkb_guardar.Visible = False
+
+        ElseIf ModoPaginaEmpleados = EnumModoPagina.Insert Then
+            txt_nombreEmpleado.Enabled = True
+            txt_CedulaEmpleado.Enabled = True
+            txt_Telefono.Enabled = True
+            txt_Ext.Enabled = True
+            txt_Celular.Enabled = True
+            txt_Email.Enabled = True
+            lkb_guardar.Visible = True
+            lkb_editar.Visible = False
+        End If
+
     End Sub
 
     Public Sub OcultarBusqueda()
@@ -153,7 +180,7 @@ Public Class Empleados
         If txt_CedulaEmpleado.Text = "" Then
             Throw New Exception("Por favor ingrese la Cedula")
         Else
-            Empleado.Nombre = txt_CedulaEmpleado.Text
+            Empleado.Cedula = txt_CedulaEmpleado.Text
         End If
 
         Empleado.Telefono = txt_Telefono.Text
@@ -175,6 +202,17 @@ Public Class Empleados
         txt_Email.Text = Nothing
         Master.mensajes = Nothing
         txt_nombreEmpleado.Focus()
+    End Sub
+
+    Protected Sub CargarPermisos()
+        Dim permisos As New SeguridadFacade
+        prm = permisos.AutorizarBotones("Empleados")
+        For i As Integer = 0 To prm.Count
+            Try
+                Me.Master.FindControl("cph_botones").FindControl(prm.Item(i).Nombre).Visible = prm.Item(i).Valor
+            Catch ex As Exception
+            End Try
+        Next
     End Sub
 
 End Class

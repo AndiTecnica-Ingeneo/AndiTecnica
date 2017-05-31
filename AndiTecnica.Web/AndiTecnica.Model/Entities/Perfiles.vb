@@ -21,5 +21,6 @@ Partial Public Class Perfiles
     Public Overridable Property Autorizaciones As ICollection(Of Autorizaciones) = New HashSet(Of Autorizaciones)
     Public Overridable Property Permisos As ICollection(Of Permisos) = New HashSet(Of Permisos)
     Public Overridable Property Usuarios As ICollection(Of Usuarios) = New HashSet(Of Usuarios)
+    Public Overridable Property Estados As Estados
 
 End Class

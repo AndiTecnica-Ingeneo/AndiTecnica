@@ -22,5 +22,6 @@ Partial Public Class Usuarios
 
     Public Overridable Property Empleados As Empleados
     Public Overridable Property Perfiles As Perfiles
+    Public Overridable Property Estados As Estados
 
 End Class

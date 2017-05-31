@@ -33,6 +33,8 @@ Namespace BL.Perfiles
         Public Sub GuardarPerfil(ByVal Perfil As Model.Perfiles)
             Try
                 Dim dao As New PerfilesDao
+                Perfil.Creado = Date.Now
+                Perfil.Modificado = Date.Now
                 dao.GuardarPerfil(Perfil)
             Catch ex As Exception
                 Throw New Exception(ex.Message)
@@ -42,6 +44,9 @@ Namespace BL.Perfiles
         Public Sub ActualizarPerfil(ByVal Perfil As Model.Perfiles)
             Try
                 Dim dao As New PerfilesDao
+                Dim p = ConsultarPerfilxId(Perfil.PerfilId)
+                Perfil.Creado = p.Creado
+                Perfil.Modificado = Date.Now
                 dao.ActualizarPerfil(Perfil)
             Catch ex As Exception
                 Throw New Exception(ex.Message)
