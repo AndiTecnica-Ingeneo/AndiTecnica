@@ -105,6 +105,45 @@ Namespace SeguridadFacade
             End Try
         End Function
 
+
+        Public Sub GuardarUsuario(ByVal usuario As Usuarios)
+            Try
+                Dim bl As New UsuariosBL
+                bl.GuardarUsuario(usuario)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Sub
+
+
+        Public Sub ActualizarUsuario(ByVal usuario As Usuarios)
+            Try
+                Dim bl As New UsuariosBL
+                bl.ActualizarUsuario(usuario)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Sub
+
+        Public Sub EliminarUsuario(ByVal usuarioId As Integer)
+            Try
+                Dim bl As New UsuariosBL
+                bl.EliminarUsuario(usuarioId)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Sub
+
+        Public Function ListarUsuarios() As List(Of Usuarios)
+            Try
+                Dim bl As New UsuariosBL
+                Return bl.ListarUsuarios
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+
+
 #End Region
 
 #Region "Perfiles"

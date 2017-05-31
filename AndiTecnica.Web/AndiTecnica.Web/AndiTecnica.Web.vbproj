@@ -158,6 +158,7 @@
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Views\Seguridad\Empleados.aspx" />
+    <Content Include="Views\Seguridad\Usuarios.aspx" />
     <Content Include="Views\Seguridad\Perfiles.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -207,6 +208,13 @@
     </Compile>
     <Compile Include="Views\Seguridad\Empleados.aspx.vb">
       <DependentUpon>Empleados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Seguridad\Usuarios.aspx.designer.vb">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Seguridad\Usuarios.aspx.vb">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Seguridad\Perfiles.aspx.designer.vb">
