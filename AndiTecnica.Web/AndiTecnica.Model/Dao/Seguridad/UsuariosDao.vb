@@ -50,15 +50,21 @@
         End Function
 
 
-        Public Function ConsultarModulosxUsuarioId(ByVal usuarioid As Integer) As Usuarios
+        Public Function ConsultarModulosxUsuarioId(ByVal usuarioid As Integer) As List(Of ConsultarModulosxUsuarioId_Result)
             Using bd As New AndiTecnicaEntities
-                Dim query = From tbl In bd.Usuarios
-                            Where tbl.UsuarioId = usuarioid
+                Dim query = From tbl In bd.ConsultarModulosxUsuarioId(usuarioid)
                             Select tbl
-                Return query.FirstOrDefault
+                Return query.ToList()
             End Using
         End Function
 
+        Public Function ConsultarMenusxUsuarioId(ByVal usuarioid As Integer) As List(Of ConsultarMenusxUsuarioId_Result)
+            Using bd As New AndiTecnicaEntities
+                Dim query = From tbl In bd.ConsultarMenusxUsuarioId(usuarioid)
+                            Select tbl
+                Return query.ToList()
+            End Using
+        End Function
 
     End Class
 

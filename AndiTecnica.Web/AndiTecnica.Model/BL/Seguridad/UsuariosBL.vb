@@ -92,6 +92,25 @@ Namespace BL.Usuarios
             End Try
         End Function
 
+
+        Public Function ConsultarModulosxUsuarioId(ByVal usuarioid As Integer) As List(Of ConsultarModulosxUsuarioId_Result)
+            Try
+                Dim dao As New UsuariosDao
+                Return dao.ConsultarModulosxUsuarioId(usuarioid)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+
+        Public Function ConsultarMenusxUsuarioId(ByVal usuarioid As Integer) As List(Of ConsultarMenusxUsuarioId_Result)
+            Try
+                Dim dao As New UsuariosDao
+                Return dao.ConsultarMenusxUsuarioId(usuarioid)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+
     End Class
 
 End Namespace

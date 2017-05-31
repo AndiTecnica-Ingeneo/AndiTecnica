@@ -25,8 +25,24 @@ Namespace SeguridadFacade
                 Throw New Exception(ex.Message)
             End Try
         End Function
-#End Region
 
+        Public Function ConsultarModulosxUsuarioId(ByVal usuarioid As Integer) As List(Of ConsultarModulosxUsuarioId_Result)
+            Try
+                Dim bl As New UsuariosBL
+                Return bl.ConsultarModulosxUsuarioId(usuarioid)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+
+        Public Function ConsultarMenusxUsuarioId(ByVal usuarioid As Integer) As List(Of ConsultarMenusxUsuarioId_Result)
+            Try
+                Dim bl As New UsuariosBL
+                Return bl.ConsultarMenusxUsuarioId(usuarioid)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
 
 #Region "Empleados"
 
@@ -87,6 +103,7 @@ Namespace SeguridadFacade
         End Sub
 #End Region
 
+#End Region
 
 #Region "Perfiles"
 
