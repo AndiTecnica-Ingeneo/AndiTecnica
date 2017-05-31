@@ -24,7 +24,7 @@ Public Class Principal
                     menusautorizados = String.Concat(menusautorizados, "<li Class='dropdown'>")
                     menusautorizados = String.Concat(menusautorizados, "<a href = '#' Class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>", modulos.Item(i).Nombre, " <span Class='caret'></span></a> <ul Class='dropdown-menu'> ")
                     For j As Integer = 0 To menus.Count - 1 'FORMULARIOS
-                        menusautorizados = String.Concat(menusautorizados, "<li id='", "Nombre", i, j, "' class='scroll-link'><a href='", menus.Item(j).Ruta, "#'><strong>", menus.Item(j).Nombre, "</strong></a></li>")
+                        menusautorizados = String.Concat(menusautorizados, "<li id='", "Nombre", i, j, "' class='scroll-link'><a href='/", menus.Item(j).Ruta, "'><strong>", menus.Item(j).Nombre, "</strong></a></li>")
                     Next
                     menusautorizados = String.Concat(menusautorizados, "</ul></li>")
                 Next
