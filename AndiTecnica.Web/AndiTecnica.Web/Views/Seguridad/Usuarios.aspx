@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPages/Principal.Master" CodeBehind="Usuarios.aspx.vb" Inherits="AndiTecnica.Web.Usuario" %>
 <%@ MasterType VirtualPath="~/MasterPages/Principal.Master" %>
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -17,12 +18,10 @@
       <tr>
           <td class="quince"></td>
           <td class="dos"></td>
-          <td class="quince alinear_der">
-            <asp:Label ID="Lbl_Estado" runat="server" Text="Estado"></asp:Label>
-          </td>
+          <td class="dos">
+              &nbsp;</td>
           <td class="veinticuatro">
-            <asp:Label ID="txt_Estado"  runat="server" ></asp:Label>
-          </td>
+              &nbsp;</td>
           <td class="dos">
             &nbsp;</td>
           <td class="veinticuatro"></td>
@@ -36,12 +35,11 @@
         </td>
         <td class="dos">&nbsp;</td>
         <td class="veinticuatro alinear_der">
-          <asp:Label ID="lbl_perfil" runat="server" Text="Perfil"></asp:Label>
-        </td>
+            <asp:Label ID="Lbl_Estado" runat="server" Text="Estado"></asp:Label>
+            </td>
         <td class="veinticuatro">
-            <asp:DropDownList ID="cbx_Perfiles" runat="server" DataSourceID="ods_Perfiles" DataTextField="Nombre" DataValueField="PerfilId" CssClass="dropdownlist">
-            </asp:DropDownList>
-        </td>
+            <asp:Label ID="txt_Estado" runat="server"></asp:Label>
+            </td>
         <td class="dos">&nbsp;</td>
         <td class="nueve">&nbsp;</td>
       </tr>
@@ -50,25 +48,30 @@
           <asp:Label ID="lbl_Empleado" runat="server" Text="Empleado"></asp:Label>
         </td>
         <td>
-            <asp:DropDownList ID="cbx_Empleados" runat="server" DataSourceID="ods_Empleados" DataTextField="Nombre" DataValueField="EmpleadoId" CssClass="dropdownlist">
-            </asp:DropDownList>
+            <telerik:RadComboBox ID="cbx_Empleados" runat="server" Class="dropdownlist" DataSourceID="ods_Empleados" DataTextField="Nombre" DataValueField="EmpleadoId" AutoPostBack="True" CausesValidation="False" Culture="es-ES"
+               EnableLoadOnDemand="True" EnableAutomaticLoadOnDemand="True" Filter="Contains" Height="45px" Width="270px">
+            </telerik:RadComboBox>
         </td>
-        <td>&nbsp;</td>
+        <td class="dos">&nbsp;</td>
         <td class="alinear_der">
-            &nbsp;</td>
+            <asp:Label ID="lbl_clave" runat="server" Text="Contraseña"></asp:Label>
+          </td>
         <td>
-            &nbsp;</td>
+            <asp:TextBox ID="txt_clave" runat="server" class="form-control" type="password"></asp:TextBox>
+          </td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
       </tr>
       <tr>
         <td class="alinear_der">
-          <asp:Label ID="lbl_clave" runat="server" Text="Contraseña"></asp:Label>
+            <asp:Label ID="lbl_perfil" runat="server" Text="Perfil"></asp:Label>
         </td>
         <td>
-          <asp:TextBox ID="txt_clave" runat="server" class="form-control" type="password"></asp:TextBox>
+            <telerik:RadComboBox ID="cbx_Perfiles" runat="server" Class="dropdownlist" DataSourceID="ods_Perfiles" DataTextField="Nombre" DataValueField="PerfilId" AutoPostBack="True" CausesValidation="False" Culture="es-ES"
+               EnableLoadOnDemand="True" EnableAutomaticLoadOnDemand="True" Filter="Contains" Height="45px" Width="270px">
+            </telerik:RadComboBox>
         </td>
-        <td>&nbsp;</td>
+        <td class="dos">&nbsp;</td>
         <td class="alinear_der">
           <asp:Label ID="lbl_confirmaclave" runat="server" Text="Confirmar Contraseña"></asp:Label>
         </td>
@@ -88,7 +91,7 @@
         <tr>
           <td class="veinte"></td>
           <td class="quince alinear_der" align="center">
-              <asp:Label ID="lbl_buscar" runat="server" Text="Buscar Perfil : "></asp:Label>
+              <asp:Label ID="lbl_buscar" runat="server" Text="Buscar Usuario : "></asp:Label>
           </td>
           <td class="veinte">
             <asp:TextBox ID="txt_bucar" class="form-control" runat="server"></asp:TextBox>
@@ -102,17 +105,18 @@
       </table>
       <br />
     </asp:Panel>
-    <asp:GridView ID="grd_Perfiles" runat="server" AutoGenerateColumns="False" DataSourceID="ods_Usuarios" CssClass="table table-bordered" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True">
+    <asp:GridView ID="grd_Usuarios" runat="server" AutoGenerateColumns="False" DataSourceID="ods_Usuarios" DataKeyNames="UsuarioId" CssClass="table table-bordered" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True">
       <AlternatingRowStyle BackColor="White" />
         <Columns>
-            <asp:BoundField DataField="UsuarioId" HeaderText="UsuarioId" SortExpression="UsuarioId" />
+            <asp:CommandField ShowSelectButton="True" ControlStyle-CssClass="fa fa-pencil" ItemStyle-HorizontalAlign="Center" SelectText=""><ControlStyle CssClass="fa fa-pencil link_button_select"/></asp:CommandField>
+            <asp:BoundField DataField="UsuarioId" HeaderText="UsuarioId" SortExpression="UsuarioId" Visible="false"/>
             <asp:BoundField DataField="Usuario" HeaderText="Usuario" SortExpression="Usuario" />
-            <asp:BoundField DataField="Clave" HeaderText="Clave" SortExpression="Clave" />
-            <asp:BoundField DataField="PerfilFk" HeaderText="PerfilFk" SortExpression="PerfilFk" />
-            <asp:BoundField DataField="EmpleadoFk" HeaderText="EmpleadoFk" SortExpression="EmpleadoFk" />
+            <asp:BoundField DataField="Clave" HeaderText="Clave" SortExpression="Clave"  Visible="false"/>
+            <asp:BoundField DataField="Perfiles.Nombre" HeaderText="Perfil" SortExpression="Perfiles.Nombre" />
+            <asp:BoundField DataField="Empleados.Nombre" HeaderText="Empleado" SortExpression="Empleados.Nombre" />
             <asp:BoundField DataField="Creado" HeaderText="Creado" SortExpression="Creado" />
             <asp:BoundField DataField="Modificado" HeaderText="Modificado" SortExpression="Modificado" />
-            <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado" />
+            <asp:BoundField DataField="Estados.Nombre" HeaderText="Estado" SortExpression="Estados.Nombre" />
         </Columns>
       <HeaderStyle ForeColor="White" BackColor="#0f2612" />
     </asp:GridView>

@@ -4,7 +4,7 @@
 
     Public Function ListarUsuarios() As List(Of Usuarios)
             Using bd As New AndiTecnicaEntities
-                Dim query = From tbl In bd.Usuarios.Include("Empleados").Include("Perfiles")
+                Dim query = From tbl In bd.Usuarios.Include("Empleados").Include("Perfiles").Include("Estados")
                             Select tbl
                 Return query.ToList
             End Using
@@ -12,7 +12,7 @@
 
     Public Function ConsultarUsuarioxId(ByVal usuarioid As Integer) As Usuarios
             Using bd As New AndiTecnicaEntities
-                Dim query = From tbl In bd.Usuarios.Include("Empleados")
+                Dim query = From tbl In bd.Usuarios.Include("Empleados").Include("Perfiles").Include("Estados")
                             Where tbl.UsuarioId = usuarioid
                             Select tbl
                 Return query.FirstOrDefault

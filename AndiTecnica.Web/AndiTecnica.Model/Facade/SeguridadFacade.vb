@@ -2,6 +2,8 @@
 Imports AndiTecnica.Model.BL.Perfiles
 Imports AndiTecnica.Model.BL.Empleados
 Imports AndiTecnica.Model.BL.Permisos
+Imports AndiTecnica.Model.BL.Estados
+Imports AndiTecnica.Model.BL.Modulos
 
 Namespace SeguridadFacade
     Public Class SeguridadFacade
@@ -210,7 +212,144 @@ Namespace SeguridadFacade
 
 #End Region
 
+#Region "Estados"
+        Public Function ConsultarEstadoxModulo(ByVal Modulo As Integer, ByVal Estado As String) As Estados
+            Try
+                Dim bl As New EstadosBL
+                Return bl.ConsultarEstadoxModulo(Modulo, Estado)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
 
+
+
+        Public Function ListarEstados() As List(Of Estados)
+            Try
+                Dim bl As New EstadosBL
+                Return bl.ListarEstados
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+
+        Public Function BuscarEstados(ByVal Nombre As String) As List(Of Estados)
+            Try
+                Dim bl As New EstadosBL
+                Return bl.BuscarEstados(Nombre)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+
+        Public Function ConsultarEstadoxId(ByVal Estadoid As Integer) As Estados
+            Try
+                Dim bl As New EstadosBL
+                Return bl.ConsultarEstadoxId(Estadoid)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+
+        Public Sub GuardarEstado(ByVal Estado As Estados)
+            Try
+                Dim bl As New EstadosBL
+                bl.GuardarEstado(Estado)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Sub
+
+        Public Sub ActualizarEstado(ByVal Estado As Estados)
+            Try
+                Dim bl As New EstadosBL
+                bl.ActualizarEstado(Estado)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Sub
+
+        Public Sub EliminarEstado(ByVal EstadoId As Integer)
+            Try
+                Dim bl As New EstadosBL
+                bl.EliminarEstado(EstadoId)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Sub
+
+
+#End Region
+
+#Region "Modulos"
+
+        Public Function ListarModulos() As List(Of Modulos)
+            Try
+                Dim bl As New ModulosBL
+                Return bl.ListarModulos
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+
+        Public Function BuscarModulos(ByVal Nombre As String) As List(Of Modulos)
+            Try
+                Dim bl As New ModulosBL
+                Return bl.BuscarModulos(Nombre)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+
+        Public Function ConsultarModuloxId(ByVal Moduloid As Integer) As Modulos
+            Try
+                Dim bl As New ModulosBL
+                Return bl.ConsultarModuloxId(Moduloid)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+
+
+        Public Function ConsultarModuloxNombre(ByVal Nombre As String) As Modulos
+            Try
+                Dim bl As New ModulosBL
+                Return bl.ConsultarModuloxNombre(Nombre)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+
+
+        Public Sub GuardarModulo(ByVal Modulo As Modulos)
+            Try
+                Dim bl As New ModulosBL
+                bl.GuardarModulo(Modulo)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Sub
+
+        Public Sub ActualizarModulo(ByVal Modulo As Modulos)
+            Try
+                Dim bl As New ModulosBL
+                bl.ActualizarModulo(Modulo)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Sub
+
+        Public Sub EliminarModulo(ByVal ModuloId As Integer)
+            Try
+                Dim bl As New ModulosBL
+                bl.EliminarModulo(ModuloId)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Sub
+
+
+#End Region
 
     End Class
 End Namespace

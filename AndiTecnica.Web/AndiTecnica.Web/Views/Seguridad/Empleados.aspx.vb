@@ -178,7 +178,8 @@ Public Class Empleados
         Empleado.Extencion = txt_Ext.Text
         Empleado.Movil = txt_Celular.Text
         Empleado.Correo = txt_Email.Text
-
+        Dim Modulo = SeguridadFacade.ConsultarModuloxNombre("Seguridad")
+        Empleado.Estado = SeguridadFacade.ConsultarEstadoxModulo(Modulo.ModuloId, "Activo").EstadoId
         Return Empleado
 
     End Function
