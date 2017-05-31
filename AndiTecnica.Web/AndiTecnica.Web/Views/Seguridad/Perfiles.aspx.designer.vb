@@ -32,6 +32,15 @@ Partial Public Class Perfil
     Protected WithEvents lkb_agregar As Global.System.Web.UI.WebControls.LinkButton
     
     '''<summary>
+    '''lkb_editar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lkb_editar As Global.System.Web.UI.WebControls.LinkButton
+    
+    '''<summary>
     '''lkb_guardar control.
     '''</summary>
     '''<remarks>

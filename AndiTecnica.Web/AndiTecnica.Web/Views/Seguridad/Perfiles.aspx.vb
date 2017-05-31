@@ -4,6 +4,8 @@ Imports AndiTecnica.Model.SeguridadFacade
 Public Class Perfil
     Inherits System.Web.UI.Page
 
+    Public Shared prm As List(Of AutorizarBotones_Result)
+
     Public Enum EnumModoPagina
         Insert
         Edit
@@ -24,6 +26,7 @@ Public Class Perfil
         If Not Page.IsPostBack Then
             MostrarLista()
             pnl_buscar.Visible = False
+            CargarPermisos()
         End If
     End Sub
 
@@ -154,6 +157,22 @@ Public Class Perfil
         txt_DescripcionPerfil.Text = Nothing
         Master.mensajes = Nothing
         txt_nombrePerfil.Focus()
+    End Sub
+
+    Protected Sub CargarPermisos()
+        Dim permisos As New SeguridadFacade
+
+        Dim elemento() As String
+        elemento = Me.Page.ToString.Split("_")
+
+        prm = permisos.AutorizarBotones("Perfiles")
+
+        For i As Integer = 0 To prm.Count
+            Try
+                Me.Master.FindControl("cph_botones").FindControl(prm.Item(i).Nombre).Visible = prm.Item(i).Valor
+            Catch ex As Exception
+            End Try
+        Next
     End Sub
 
 End Class

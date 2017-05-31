@@ -48,4 +48,12 @@ Partial Public Class AndiTecnicaEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of ConsultarMenusxUsuarioId_Result)("ConsultarMenusxUsuarioId", usuarioIdParameter)
     End Function
 
+    Public Overridable Function AutorizarBotones(usuarioId As Nullable(Of Integer), menu As Nullable(Of Integer)) As ObjectResult(Of AutorizarBotones_Result)
+        Dim usuarioIdParameter As ObjectParameter = If(usuarioId.HasValue, New ObjectParameter("UsuarioId", usuarioId), New ObjectParameter("UsuarioId", GetType(Integer)))
+
+        Dim menuParameter As ObjectParameter = If(menu.HasValue, New ObjectParameter("Menu", menu), New ObjectParameter("Menu", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of AutorizarBotones_Result)("AutorizarBotones", usuarioIdParameter, menuParameter)
+    End Function
+
 End Class

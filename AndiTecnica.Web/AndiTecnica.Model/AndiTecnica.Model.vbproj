@@ -74,11 +74,16 @@
   <ItemGroup>
     <Compile Include="BL\Seguridad\EmpleadosBL.vb" />
     <Compile Include="BL\Seguridad\PerfilesBL.vb" />
+    <Compile Include="BL\Seguridad\PermisosBL.vb" />
     <Compile Include="BL\Seguridad\UsuariosBL.vb" />
     <Compile Include="Dao\Seguridad\EmpleadosDao.vb" />
     <Compile Include="Dao\Seguridad\PerfilesDao.vb" />
+    <Compile Include="Dao\Seguridad\PermisosDao.vb" />
     <Compile Include="Dao\Seguridad\UsuariosDao.vb" />
     <Compile Include="Entities\Autorizaciones.vb">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AutorizarBotones_Result.vb">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Botones.vb">

@@ -1,6 +1,7 @@
 ﻿Imports AndiTecnica.Model.BL.Usuarios
 Imports AndiTecnica.Model.BL.Perfiles
 Imports AndiTecnica.Model.BL.Empleados
+Imports AndiTecnica.Model.BL.Permisos
 
 Namespace SeguridadFacade
     Public Class SeguridadFacade
@@ -163,6 +164,15 @@ Namespace SeguridadFacade
                 Throw New Exception(ex.Message)
             End Try
         End Sub
+#End Region
+
+#Region "Permisos"
+
+        Public Function AutorizarBotones(ByVal Menu As String) As List(Of AutorizarBotones_Result)
+            Dim bl As New PermisosBL
+            Return bl.AutorizarBotones(Menu)
+        End Function
+
 #End Region
 
 
