@@ -1,7 +1,7 @@
 ﻿Friend Class EmpleadosDao
     Public Function ListarEmpleados() As List(Of Empleados)
         Using bd As New AndiTecnicaEntities
-            Dim query = From tbl In bd.Empleados
+            Dim query = From tbl In bd.Empleados.Include("Estados")
                         Select tbl
             Return query.ToList
         End Using
@@ -9,7 +9,7 @@
 
     Public Function BuscarEmpleados(ByVal Nombre As String) As List(Of Empleados)
         Using bd As New AndiTecnicaEntities
-            Dim query = From tbl In bd.Empleados
+            Dim query = From tbl In bd.Empleados.Include("Estados")
                         Where tbl.Nombre.Contains(Nombre)
                         Select tbl
             Return query.ToList

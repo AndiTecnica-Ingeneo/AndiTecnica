@@ -9,7 +9,7 @@
 
     Public Function BuscarPerfiles(ByVal Nombre As String) As List(Of Perfiles)
         Using bd As New AndiTecnicaEntities
-            Dim query = From tbl In bd.Perfiles
+            Dim query = From tbl In bd.Perfiles.Include("Estados")
                         Where tbl.Nombre.Contains(Nombre)
                         Select tbl
             Return query.ToList

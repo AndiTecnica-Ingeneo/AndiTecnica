@@ -104,7 +104,7 @@
                 <tr>
                     <td class="veinte"></td>
                     <td class="quince alinear_der" align="center">
-                        <asp:Label ID="lbl_buscar" runat="server" Text="Buscar Empleado : "></asp:Label>
+                        <asp:Label ID="lbl_buscar" runat="server" Text="Buscar Empleado por Nombre : "></asp:Label>
                     </td>
                     <td class="veinte">
                         <asp:TextBox ID="txt_bucar" class="form-control" runat="server"></asp:TextBox>
@@ -127,7 +127,7 @@
                 <asp:BoundField DataField="Correo" HeaderText="Correo" SortExpression="Correo" />
                 <asp:BoundField DataField="Creado" HeaderText="Creado" SortExpression="Creado" />
                 <asp:BoundField DataField="Modificado" HeaderText="Modificado" SortExpression="Modificado" />
-                <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado" />
+                <asp:BoundField DataField="Estados.Nombre" HeaderText="Estado" SortExpression="Estado" />
              </Columns>
             <HeaderStyle ForeColor="White" BackColor="#0f2612" />
         </asp:GridView>
