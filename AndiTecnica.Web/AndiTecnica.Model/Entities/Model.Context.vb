@@ -36,22 +36,22 @@ Partial Public Class AndiTecnicaEntities
     Public Property Permisos() As DbSet(Of Permisos)
     Public Property Usuarios() As DbSet(Of Usuarios)
 
-    Public Overridable Function ConsultarModulosxUsuarioId(usuarioId As Nullable(Of Integer)) As ObjectResult(Of ConsultarModulosxUsuarioId_Result)
-        Dim usuarioIdParameter As ObjectParameter = If(usuarioId.HasValue, New ObjectParameter("UsuarioId", usuarioId), New ObjectParameter("UsuarioId", GetType(Integer)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of ConsultarModulosxUsuarioId_Result)("ConsultarModulosxUsuarioId", usuarioIdParameter)
-    End Function
-
     Public Overridable Function ConsultarMenusxUsuarioId(usuarioId As Nullable(Of Integer)) As ObjectResult(Of ConsultarMenusxUsuarioId_Result)
         Dim usuarioIdParameter As ObjectParameter = If(usuarioId.HasValue, New ObjectParameter("UsuarioId", usuarioId), New ObjectParameter("UsuarioId", GetType(Integer)))
 
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of ConsultarMenusxUsuarioId_Result)("ConsultarMenusxUsuarioId", usuarioIdParameter)
     End Function
 
-    Public Overridable Function AutorizarBotones(usuarioId As Nullable(Of Integer), menu As Nullable(Of Integer)) As ObjectResult(Of AutorizarBotones_Result)
+    Public Overridable Function ConsultarModulosxUsuarioId(usuarioId As Nullable(Of Integer)) As ObjectResult(Of ConsultarModulosxUsuarioId_Result)
         Dim usuarioIdParameter As ObjectParameter = If(usuarioId.HasValue, New ObjectParameter("UsuarioId", usuarioId), New ObjectParameter("UsuarioId", GetType(Integer)))
 
-        Dim menuParameter As ObjectParameter = If(menu.HasValue, New ObjectParameter("Menu", menu), New ObjectParameter("Menu", GetType(Integer)))
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of ConsultarModulosxUsuarioId_Result)("ConsultarModulosxUsuarioId", usuarioIdParameter)
+    End Function
+
+    Public Overridable Function AutorizarBotones(usuarioId As Nullable(Of Integer), menu As String) As ObjectResult(Of AutorizarBotones_Result)
+        Dim usuarioIdParameter As ObjectParameter = If(usuarioId.HasValue, New ObjectParameter("UsuarioId", usuarioId), New ObjectParameter("UsuarioId", GetType(Integer)))
+
+        Dim menuParameter As ObjectParameter = If(menu IsNot Nothing, New ObjectParameter("Menu", menu), New ObjectParameter("Menu", GetType(String)))
 
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of AutorizarBotones_Result)("AutorizarBotones", usuarioIdParameter, menuParameter)
     End Function

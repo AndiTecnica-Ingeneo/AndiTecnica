@@ -65,6 +65,11 @@ Public Class Perfil
         ObtenerPerfil()
     End Sub
 
+    Private Sub lkb_editar_Click(sender As Object, e As EventArgs) Handles lkb_editar.Click
+        ModoPaginaPerfiles = EnumModoPagina.Insert
+        MostrarFormulario()
+    End Sub
+
     Protected Sub Guardar(sender As Object, e As EventArgs) Handles lkb_guardar.Click
         Try
             Dim Perfil = AsignarPerfil()
@@ -104,6 +109,7 @@ Public Class Perfil
         lkb_buscar.Visible = True
         lkb_agregar.Visible = True
         lkb_guardar.Visible = False
+        lkb_editar.Visible = False
         lkb_eliminar.Visible = False
         lkb_salir.Visible = False
         ods_Perfiles.SelectParameters.Clear()
@@ -117,11 +123,21 @@ Public Class Perfil
         pnl_list.Visible = False
         lkb_buscar.Visible = False
         lkb_agregar.Visible = False
-        lkb_guardar.Visible = True
-        If ModoPaginaPerfiles = EnumModoPagina.Edit Then
-            lkb_eliminar.Visible = True
-        End If
         lkb_salir.Visible = True
+
+        If ModoPaginaPerfiles = EnumModoPagina.Edit Then
+            txt_nombrePerfil.Enabled = False
+            txt_DescripcionPerfil.Enabled = False
+            lkb_eliminar.Visible = True
+            lkb_editar.Visible = True
+            lkb_guardar.Visible = False
+        ElseIf ModoPaginaPerfiles = EnumModoPagina.Insert Then
+            txt_nombrePerfil.Enabled = True
+            txt_DescripcionPerfil.Enabled = True
+            lkb_guardar.Visible = True
+            lkb_editar.Visible = False
+        End If
+
     End Sub
 
     Public Sub OcultarBusqueda()
@@ -161,12 +177,7 @@ Public Class Perfil
 
     Protected Sub CargarPermisos()
         Dim permisos As New SeguridadFacade
-
-        Dim elemento() As String
-        elemento = Me.Page.ToString.Split("_")
-
         prm = permisos.AutorizarBotones("Perfiles")
-
         For i As Integer = 0 To prm.Count
             Try
                 Me.Master.FindControl("cph_botones").FindControl(prm.Item(i).Nombre).Visible = prm.Item(i).Valor

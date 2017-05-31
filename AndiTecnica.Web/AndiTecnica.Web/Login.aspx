@@ -30,7 +30,7 @@
             <br />
             <br />
             <br />
-            <table align="center" class="panel panel-primary" width="70%">
+            <table align="center" class="panel panel-success" width="70%">
                 <tr>
                     -
           <td>
@@ -47,7 +47,7 @@
                           <asp:TextBox ID="txt_usuario" class="form-control" runat="server" placeholder="Usuario"></asp:TextBox>
                       </td>
                       <td width="4%">&nbsp;</td>
-                      <td width="20%">
+                      <td rowspan="2" width="20%">
                           <asp:Button ID="btn_ingresar" runat="server" Text="Ingresar" class="input-btn" />
                       </td>
                       <td width="20%"></td>
@@ -57,7 +57,7 @@
                           <asp:TextBox ID="txt_contrasena" class="form-control" runat="server" placeholder="Contraseña" type="password"></asp:TextBox>
                       </td>
                       <td>&nbsp;</td>
-                      <td></td>
+                     
                   </tr>
                   <tr>
                       <td colspan="4">

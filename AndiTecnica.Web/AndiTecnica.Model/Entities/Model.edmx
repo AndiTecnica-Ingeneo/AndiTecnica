@@ -248,9 +248,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ConsultarMenusxUsuarioId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UsuarioId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ConsultarModulosxUsuarioId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UsuarioId" Type="int" Mode="In" />
+        </Function>
         <Function Name="AutorizarBotones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Seguridad">
           <Parameter Name="UsuarioId" Type="int" Mode="In" />
-          <Parameter Name="Menu" Type="int" Mode="In" />
+          <Parameter Name="Menu" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="AndiTecnicaModelStoreContainer">
           <EntitySet Name="Autorizaciones" EntityType="Self.Autorizaciones" Schema="Seguridad" store:Type="Tables" />
@@ -367,15 +373,15 @@
             <End Role="Perfiles" EntitySet="Perfiles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
+          <FunctionImport Name="ConsultarMenusxUsuarioId" ReturnType="Collection(AndiTecnicaModel.ConsultarMenusxUsuarioId_Result)">
+          <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="ConsultarModulosxUsuarioId" ReturnType="Collection(AndiTecnicaModel.ConsultarModulosxUsuarioId_Result)">
           <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="ConsultarMenusxUsuarioId" ReturnType="Collection(AndiTecnicaModel.ConsultarMenusxUsuarioId_Result)">
-            <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="AutorizarBotones" ReturnType="Collection(AndiTecnicaModel.AutorizarBotones_Result)">
             <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
-            <Parameter Name="Menu" Mode="In" Type="Int32" />
+            <Parameter Name="Menu" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Autorizaciones">
@@ -643,14 +649,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="ConsultarModulosxUsuarioId_Result">
-          <Property Type="Int32" Name="ModuloId" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-        </ComplexType>
         <ComplexType Name="ConsultarMenusxUsuarioId_Result">
           <Property Type="Int32" Name="MenuId" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Ruta" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ConsultarModulosxUsuarioId_Result">
+          <Property Type="Int32" Name="ModuloId" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="AutorizarBotones_Result">
           <Property Type="Boolean" Name="Valor" Nullable="false" />
@@ -779,6 +785,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarMenusxUsuarioId" FunctionName="AndiTecnicaModel.Store.ConsultarMenusxUsuarioId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AndiTecnicaModel.ConsultarMenusxUsuarioId_Result">
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Ruta" ColumnName="Ruta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarModulosxUsuarioId" FunctionName="AndiTecnicaModel.Store.ConsultarModulosxUsuarioId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AndiTecnicaModel.ConsultarModulosxUsuarioId_Result">
+                <ScalarProperty Name="ModuloId" ColumnName="ModuloId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="AutorizarBotones" FunctionName="AndiTecnicaModel.Store.AutorizarBotones">
             <ResultMapping>
               <ComplexTypeMapping TypeName="AndiTecnicaModel.AutorizarBotones_Result">
