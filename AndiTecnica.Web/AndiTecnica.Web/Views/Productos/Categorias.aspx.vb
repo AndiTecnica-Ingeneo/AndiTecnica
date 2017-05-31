@@ -23,6 +23,7 @@ Public Class Categorias
     End Property
 
     Dim ProductosFacade As New ProductosFacade
+    Dim SeguridadFacade As New SeguridadFacade
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
@@ -164,6 +165,10 @@ Public Class Categorias
             Categorias.Nombre = txt_nombreCategorias.Text
         End If
         Categorias.Descripcion = txt_DescripcionCategorias.Text
+
+        Dim Modulo = SeguridadFacade.ConsultarModuloxNombre("Seguridad")
+        Categorias.Estado = SeguridadFacade.ConsultarEstadoxModulo(Modulo.ModuloId, "Activo").EstadoId
+
         Return Categorias
     End Function
 
