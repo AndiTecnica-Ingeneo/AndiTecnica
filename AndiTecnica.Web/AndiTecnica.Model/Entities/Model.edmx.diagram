@@ -5,31 +5,31 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f4679f01bc334329807d2ee2a6732a8d" Name="Diagram1" ZoomLevel="64" >
-        <EntityTypeShape EntityType="AndiTecnicaModel.Autorizaciones" Width="1.5" PointX="3" PointY="1.875" />
-        <EntityTypeShape EntityType="AndiTecnicaModel.Botones" Width="1.5" PointX="1.5" PointY="16.875" />
-        <EntityTypeShape EntityType="AndiTecnicaModel.Empleados" Width="1.5" PointX="4.375" PointY="15.25" />
-        <EntityTypeShape EntityType="AndiTecnicaModel.Menus" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="AndiTecnicaModel.Modulos" Width="1.5" PointX="1.5" PointY="8.875" />
-        <EntityTypeShape EntityType="AndiTecnicaModel.Opciones" Width="1.5" PointX="0.75" PointY="12.5" />
-        <EntityTypeShape EntityType="AndiTecnicaModel.Perfiles" Width="1.5" PointX="0.75" PointY="4.5" />
-        <EntityTypeShape EntityType="AndiTecnicaModel.Permisos" Width="1.5" PointX="3" PointY="4.875" />
-        <EntityTypeShape EntityType="AndiTecnicaModel.Usuarios" Width="1.5" PointX="6" PointY="4.5" />
+        <EntityTypeShape EntityType="AndiTecnicaModel.CategoriasProductos" Width="1.5" PointX="5.25" PointY="7.25" />
+        <EntityTypeShape EntityType="AndiTecnicaModel.Autorizaciones" Width="1.5" PointX="7.5" PointY="14.375" />
+        <EntityTypeShape EntityType="AndiTecnicaModel.Botones" Width="1.5" PointX="3" PointY="18.125" />
+        <EntityTypeShape EntityType="AndiTecnicaModel.Empleados" Width="1.5" PointX="5.25" PointY="3" />
+        <EntityTypeShape EntityType="AndiTecnicaModel.Estados" Width="1.5" PointX="3" PointY="6.75" />
+        <EntityTypeShape EntityType="AndiTecnicaModel.Menus" Width="1.5" PointX="3" PointY="14.125" />
+        <EntityTypeShape EntityType="AndiTecnicaModel.Modulos" Width="1.5" PointX="0.75" PointY="8.625" />
+        <EntityTypeShape EntityType="AndiTecnicaModel.Opciones" Width="1.5" PointX="5.25" PointY="14.75" />
+        <EntityTypeShape EntityType="AndiTecnicaModel.Perfiles" Width="1.5" PointX="5.25" PointY="10.375" />
+        <EntityTypeShape EntityType="AndiTecnicaModel.Permisos" Width="1.5" PointX="7.5" PointY="10.75" />
+        <EntityTypeShape EntityType="AndiTecnicaModel.Usuarios" Width="1.5" PointX="7.5" PointY="6.625" />
+        <AssociationConnector Association="AndiTecnicaModel.FK_CategoriasProductos_Estados" />
         <AssociationConnector Association="AndiTecnicaModel.FK_Autorizaciones_Menus" />
         <AssociationConnector Association="AndiTecnicaModel.FK_Autorizaciones_Perfiles" />
         <AssociationConnector Association="AndiTecnicaModel.FK_Opciones_Botones" />
+        <AssociationConnector Association="AndiTecnicaModel.FK_Empleados_Estados" />
         <AssociationConnector Association="AndiTecnicaModel.FK_Usuarios_Empleados" />
+        <AssociationConnector Association="AndiTecnicaModel.FK_Estados_Modulos" />
+        <AssociationConnector Association="AndiTecnicaModel.FK_Perfiles_Estados" />
+        <AssociationConnector Association="AndiTecnicaModel.FK_Usuarios_Estados" />
         <AssociationConnector Association="AndiTecnicaModel.FK_Menus_Modulos" />
         <AssociationConnector Association="AndiTecnicaModel.FK_Opciones_Menus" />
         <AssociationConnector Association="AndiTecnicaModel.FK_Permisos_Opciones" />
         <AssociationConnector Association="AndiTecnicaModel.FK_Permisos_Perfiles" />
         <AssociationConnector Association="AndiTecnicaModel.FK_Usuarios_Perfiles" />
-        <EntityTypeShape EntityType="AndiTecnicaModel.Estados" Width="1.5" PointX="4.125" PointY="8.625" />
-        <AssociationConnector Association="AndiTecnicaModel.FK_Empleados_Estados" />
-        <AssociationConnector Association="AndiTecnicaModel.FK_Estados_Modulos" />
-        <AssociationConnector Association="AndiTecnicaModel.FK_Perfiles_Estados" />
-        <AssociationConnector Association="AndiTecnicaModel.FK_Usuarios_Estados" />
-        <EntityTypeShape EntityType="AndiTecnicaModel.CategoriasProductos" Width="1.5" PointX="6.375" PointY="8.875" />
-        <AssociationConnector Association="AndiTecnicaModel.FK_CategoriasProductos_Estados" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

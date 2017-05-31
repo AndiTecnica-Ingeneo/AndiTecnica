@@ -21,7 +21,7 @@ Partial Public Class Usuarios
     Public Property Estado As Nullable(Of Integer)
 
     Public Overridable Property Empleados As Empleados
-    Public Overridable Property Perfiles As Perfiles
     Public Overridable Property Estados As Estados
+    Public Overridable Property Perfiles As Perfiles
 
 End Class

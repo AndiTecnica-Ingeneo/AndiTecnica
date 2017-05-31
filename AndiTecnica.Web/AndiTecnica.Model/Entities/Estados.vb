@@ -16,10 +16,10 @@ Partial Public Class Estados
     Public Property ModuloFk As Integer
     Public Property Describe As String
 
+    Public Overridable Property CategoriasProductos As ICollection(Of CategoriasProductos) = New HashSet(Of CategoriasProductos)
     Public Overridable Property Empleados As ICollection(Of Empleados) = New HashSet(Of Empleados)
     Public Overridable Property Modulos As Modulos
     Public Overridable Property Perfiles As ICollection(Of Perfiles) = New HashSet(Of Perfiles)
     Public Overridable Property Usuarios As ICollection(Of Usuarios) = New HashSet(Of Usuarios)
-    Public Overridable Property CategoriasProductos As ICollection(Of CategoriasProductos) = New HashSet(Of CategoriasProductos)
 
 End Class

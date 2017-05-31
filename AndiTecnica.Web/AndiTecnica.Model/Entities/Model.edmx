@@ -12,9 +12,9 @@
           <Property Name="CategoriasId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Estado" Type="int" Nullable="false" />
-          <Property Name="Creado" Type="smalldatetime" Nullable="false" />
-          <Property Name="Modificado" Type="smalldatetime" Nullable="false" />
+          <Property Name="Estado" Type="int" />
+          <Property Name="Creado" Type="smalldatetime" />
+          <Property Name="Modificado" Type="smalldatetime" />
         </EntityType>
         <EntityType Name="Autorizaciones">
           <Key>
@@ -150,7 +150,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CategoriasProductos_Estados">
-          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
           <End Role="CategoriasProductos" Type="Self.CategoriasProductos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estados">
@@ -379,15 +379,31 @@
     <edmx:ConceptualModels>
       <Schema Namespace="AndiTecnicaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AndiTecnicaEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="ConsultarMenusxUsuarioId" ReturnType="Collection(AndiTecnicaModel.ConsultarMenusxUsuarioId_Result)">
+          <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarModulosxUsuarioId" ReturnType="Collection(AndiTecnicaModel.ConsultarModulosxUsuarioId_Result)">
+          <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AutorizarBotones" ReturnType="Collection(AndiTecnicaModel.AutorizarBotones_Result)">
+            <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
+            <Parameter Name="Menu" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="CategoriasProductos" EntityType="AndiTecnicaModel.CategoriasProductos" />
           <EntitySet Name="Autorizaciones" EntityType="AndiTecnicaModel.Autorizaciones" />
           <EntitySet Name="Botones" EntityType="AndiTecnicaModel.Botones" />
           <EntitySet Name="Empleados" EntityType="AndiTecnicaModel.Empleados" />
+          <EntitySet Name="Estados" EntityType="AndiTecnicaModel.Estados" />
           <EntitySet Name="Menus" EntityType="AndiTecnicaModel.Menus" />
           <EntitySet Name="Modulos" EntityType="AndiTecnicaModel.Modulos" />
           <EntitySet Name="Opciones" EntityType="AndiTecnicaModel.Opciones" />
           <EntitySet Name="Perfiles" EntityType="AndiTecnicaModel.Perfiles" />
           <EntitySet Name="Permisos" EntityType="AndiTecnicaModel.Permisos" />
           <EntitySet Name="Usuarios" EntityType="AndiTecnicaModel.Usuarios" />
+          <AssociationSet Name="FK_CategoriasProductos_Estados" Association="AndiTecnicaModel.FK_CategoriasProductos_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="CategoriasProductos" EntitySet="CategoriasProductos" />
+          </AssociationSet>
           <AssociationSet Name="FK_Autorizaciones_Menus" Association="AndiTecnicaModel.FK_Autorizaciones_Menus">
             <End Role="Menus" EntitySet="Menus" />
             <End Role="Autorizaciones" EntitySet="Autorizaciones" />
@@ -400,8 +416,24 @@
             <End Role="Botones" EntitySet="Botones" />
             <End Role="Opciones" EntitySet="Opciones" />
           </AssociationSet>
+          <AssociationSet Name="FK_Empleados_Estados" Association="AndiTecnicaModel.FK_Empleados_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Empleados" EntitySet="Empleados" />
+          </AssociationSet>
           <AssociationSet Name="FK_Usuarios_Empleados" Association="AndiTecnicaModel.FK_Usuarios_Empleados">
             <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estados_Modulos" Association="AndiTecnicaModel.FK_Estados_Modulos">
+            <End Role="Modulos" EntitySet="Modulos" />
+            <End Role="Estados" EntitySet="Estados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Perfiles_Estados" Association="AndiTecnicaModel.FK_Perfiles_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Perfiles" EntitySet="Perfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Estados" Association="AndiTecnicaModel.FK_Usuarios_Estados">
+            <End Role="Estados" EntitySet="Estados" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
           <AssociationSet Name="FK_Menus_Modulos" Association="AndiTecnicaModel.FK_Menus_Modulos">
@@ -424,39 +456,32 @@
             <End Role="Perfiles" EntitySet="Perfiles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
-          <FunctionImport Name="ConsultarMenusxUsuarioId" ReturnType="Collection(AndiTecnicaModel.ConsultarMenusxUsuarioId_Result)">
-          <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="ConsultarModulosxUsuarioId" ReturnType="Collection(AndiTecnicaModel.ConsultarModulosxUsuarioId_Result)">
-          <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="AutorizarBotones" ReturnType="Collection(AndiTecnicaModel.AutorizarBotones_Result)">
-            <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
-            <Parameter Name="Menu" Mode="In" Type="String" />
-          </FunctionImport>
-          <EntitySet Name="Estados" EntityType="AndiTecnicaModel.Estados" />
-          <AssociationSet Name="FK_Empleados_Estados" Association="AndiTecnicaModel.FK_Empleados_Estados">
-            <End Role="Estados" EntitySet="Estados" />
-            <End Role="Empleados" EntitySet="Empleados" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Estados_Modulos" Association="AndiTecnicaModel.FK_Estados_Modulos">
-            <End Role="Modulos" EntitySet="Modulos" />
-            <End Role="Estados" EntitySet="Estados" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Perfiles_Estados" Association="AndiTecnicaModel.FK_Perfiles_Estados">
-            <End Role="Estados" EntitySet="Estados" />
-            <End Role="Perfiles" EntitySet="Perfiles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Usuarios_Estados" Association="AndiTecnicaModel.FK_Usuarios_Estados">
-            <End Role="Estados" EntitySet="Estados" />
-            <End Role="Usuarios" EntitySet="Usuarios" />
-          </AssociationSet>
-          <EntitySet Name="CategoriasProductos" EntityType="AndiTecnicaModel.CategoriasProductos" />
-          <AssociationSet Name="FK_CategoriasProductos_Estados" Association="AndiTecnicaModel.FK_CategoriasProductos_Estados">
-            <End Role="Estados" EntitySet="Estados" />
-            <End Role="CategoriasProductos" EntitySet="CategoriasProductos" />
-          </AssociationSet>
         </EntityContainer>
+        <ComplexType Name="ConsultarMenusxUsuarioId_Result">
+          <Property Type="Int32" Name="MenuId" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Ruta" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ConsultarModulosxUsuarioId_Result">
+          <Property Type="Int32" Name="ModuloId" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="AutorizarBotones_Result">
+          <Property Type="Boolean" Name="Valor" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="CategoriasProductos">
+          <Key>
+            <PropertyRef Name="CategoriasId" />
+          </Key>
+          <Property Name="CategoriasId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="Int32" />
+          <Property Name="Creado" Type="DateTime" Precision="0" />
+          <Property Name="Modificado" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Estados" Relationship="AndiTecnicaModel.FK_CategoriasProductos_Estados" FromRole="CategoriasProductos" ToRole="Estados" />
+        </EntityType>
         <EntityType Name="Autorizaciones">
           <Key>
             <PropertyRef Name="AutorizacionId" />
@@ -494,8 +519,22 @@
           <Property Name="Modificado" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Estado" Type="Int32" />
           <Property Name="RutaFirma" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Usuarios" Relationship="AndiTecnicaModel.FK_Usuarios_Empleados" FromRole="Empleados" ToRole="Usuarios" />
           <NavigationProperty Name="Estados" Relationship="AndiTecnicaModel.FK_Empleados_Estados" FromRole="Empleados" ToRole="Estados" />
+          <NavigationProperty Name="Usuarios" Relationship="AndiTecnicaModel.FK_Usuarios_Empleados" FromRole="Empleados" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="EstadoId" />
+          </Key>
+          <Property Name="EstadoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModuloFk" Type="Int32" Nullable="false" />
+          <Property Name="Describe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CategoriasProductos" Relationship="AndiTecnicaModel.FK_CategoriasProductos_Estados" FromRole="Estados" ToRole="CategoriasProductos" />
+          <NavigationProperty Name="Empleados" Relationship="AndiTecnicaModel.FK_Empleados_Estados" FromRole="Estados" ToRole="Empleados" />
+          <NavigationProperty Name="Modulos" Relationship="AndiTecnicaModel.FK_Estados_Modulos" FromRole="Estados" ToRole="Modulos" />
+          <NavigationProperty Name="Perfiles" Relationship="AndiTecnicaModel.FK_Perfiles_Estados" FromRole="Estados" ToRole="Perfiles" />
+          <NavigationProperty Name="Usuarios" Relationship="AndiTecnicaModel.FK_Usuarios_Estados" FromRole="Estados" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Menus">
           <Key>
@@ -517,8 +556,8 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Prefijo" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
           <Property Name="Describe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Menus" Relationship="AndiTecnicaModel.FK_Menus_Modulos" FromRole="Modulos" ToRole="Menus" />
           <NavigationProperty Name="Estados" Relationship="AndiTecnicaModel.FK_Estados_Modulos" FromRole="Modulos" ToRole="Estados" />
+          <NavigationProperty Name="Menus" Relationship="AndiTecnicaModel.FK_Menus_Modulos" FromRole="Modulos" ToRole="Menus" />
         </EntityType>
         <EntityType Name="Opciones">
           <Key>
@@ -546,9 +585,9 @@
           <Property Name="Modificado" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Estado" Type="Int32" />
           <NavigationProperty Name="Autorizaciones" Relationship="AndiTecnicaModel.FK_Autorizaciones_Perfiles" FromRole="Perfiles" ToRole="Autorizaciones" />
+          <NavigationProperty Name="Estados" Relationship="AndiTecnicaModel.FK_Perfiles_Estados" FromRole="Perfiles" ToRole="Estados" />
           <NavigationProperty Name="Permisos" Relationship="AndiTecnicaModel.FK_Permisos_Perfiles" FromRole="Perfiles" ToRole="Permisos" />
           <NavigationProperty Name="Usuarios" Relationship="AndiTecnicaModel.FK_Usuarios_Perfiles" FromRole="Perfiles" ToRole="Usuarios" />
-          <NavigationProperty Name="Estados" Relationship="AndiTecnicaModel.FK_Perfiles_Estados" FromRole="Perfiles" ToRole="Estados" />
         </EntityType>
         <EntityType Name="Permisos">
           <Key>
@@ -574,9 +613,21 @@
           <Property Name="Modificado" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Estado" Type="Int32" />
           <NavigationProperty Name="Empleados" Relationship="AndiTecnicaModel.FK_Usuarios_Empleados" FromRole="Usuarios" ToRole="Empleados" />
-          <NavigationProperty Name="Perfiles" Relationship="AndiTecnicaModel.FK_Usuarios_Perfiles" FromRole="Usuarios" ToRole="Perfiles" />
           <NavigationProperty Name="Estados" Relationship="AndiTecnicaModel.FK_Usuarios_Estados" FromRole="Usuarios" ToRole="Estados" />
+          <NavigationProperty Name="Perfiles" Relationship="AndiTecnicaModel.FK_Usuarios_Perfiles" FromRole="Usuarios" ToRole="Perfiles" />
         </EntityType>
+        <Association Name="FK_CategoriasProductos_Estados">
+          <End Type="AndiTecnicaModel.Estados" Role="Estados" Multiplicity="0..1" />
+          <End Type="AndiTecnicaModel.CategoriasProductos" Role="CategoriasProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="EstadoId" />
+            </Principal>
+            <Dependent Role="CategoriasProductos">
+              <PropertyRef Name="Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Autorizaciones_Menus">
           <End Type="AndiTecnicaModel.Menus" Role="Menus" Multiplicity="1" />
           <End Type="AndiTecnicaModel.Autorizaciones" Role="Autorizaciones" Multiplicity="*" />
@@ -615,6 +666,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Empleados_Estados">
+          <End Type="AndiTecnicaModel.Estados" Role="Estados" Multiplicity="0..1" />
+          <End Type="AndiTecnicaModel.Empleados" Role="Empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="EstadoId" />
+            </Principal>
+            <Dependent Role="Empleados">
+              <PropertyRef Name="Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Usuarios_Empleados">
           <End Type="AndiTecnicaModel.Empleados" Role="Empleados" Multiplicity="1" />
           <End Type="AndiTecnicaModel.Usuarios" Role="Usuarios" Multiplicity="*" />
@@ -624,6 +687,42 @@
             </Principal>
             <Dependent Role="Usuarios">
               <PropertyRef Name="EmpleadoFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estados_Modulos">
+          <End Type="AndiTecnicaModel.Modulos" Role="Modulos" Multiplicity="1" />
+          <End Type="AndiTecnicaModel.Estados" Role="Estados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modulos">
+              <PropertyRef Name="ModuloId" />
+            </Principal>
+            <Dependent Role="Estados">
+              <PropertyRef Name="ModuloFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Perfiles_Estados">
+          <End Type="AndiTecnicaModel.Estados" Role="Estados" Multiplicity="0..1" />
+          <End Type="AndiTecnicaModel.Perfiles" Role="Perfiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="EstadoId" />
+            </Principal>
+            <Dependent Role="Perfiles">
+              <PropertyRef Name="Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Estados">
+          <End Type="AndiTecnicaModel.Estados" Role="Estados" Multiplicity="0..1" />
+          <End Type="AndiTecnicaModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="EstadoId" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="Estado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -689,111 +788,49 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="ConsultarMenusxUsuarioId_Result">
-          <Property Type="Int32" Name="MenuId" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Ruta" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="ConsultarModulosxUsuarioId_Result">
-          <Property Type="Int32" Name="ModuloId" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="AutorizarBotones_Result">
-          <Property Type="Boolean" Name="Valor" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <EntityType Name="Estados">
-          <Key>
-            <PropertyRef Name="EstadoId" />
-          </Key>
-          <Property Name="EstadoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ModuloFk" Type="Int32" Nullable="false" />
-          <Property Name="Describe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Empleados" Relationship="AndiTecnicaModel.FK_Empleados_Estados" FromRole="Estados" ToRole="Empleados" />
-          <NavigationProperty Name="Modulos" Relationship="AndiTecnicaModel.FK_Estados_Modulos" FromRole="Estados" ToRole="Modulos" />
-          <NavigationProperty Name="Perfiles" Relationship="AndiTecnicaModel.FK_Perfiles_Estados" FromRole="Estados" ToRole="Perfiles" />
-          <NavigationProperty Name="Usuarios" Relationship="AndiTecnicaModel.FK_Usuarios_Estados" FromRole="Estados" ToRole="Usuarios" />
-          <NavigationProperty Name="CategoriasProductos" Relationship="AndiTecnicaModel.FK_CategoriasProductos_Estados" FromRole="Estados" ToRole="CategoriasProductos" />
-        </EntityType>
-        <Association Name="FK_Empleados_Estados">
-          <End Type="AndiTecnicaModel.Estados" Role="Estados" Multiplicity="0..1" />
-          <End Type="AndiTecnicaModel.Empleados" Role="Empleados" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estados">
-              <PropertyRef Name="EstadoId" />
-            </Principal>
-            <Dependent Role="Empleados">
-              <PropertyRef Name="Estado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Estados_Modulos">
-          <End Type="AndiTecnicaModel.Modulos" Role="Modulos" Multiplicity="1" />
-          <End Type="AndiTecnicaModel.Estados" Role="Estados" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Modulos">
-              <PropertyRef Name="ModuloId" />
-            </Principal>
-            <Dependent Role="Estados">
-              <PropertyRef Name="ModuloFk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Perfiles_Estados">
-          <End Type="AndiTecnicaModel.Estados" Role="Estados" Multiplicity="0..1" />
-          <End Type="AndiTecnicaModel.Perfiles" Role="Perfiles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estados">
-              <PropertyRef Name="EstadoId" />
-            </Principal>
-            <Dependent Role="Perfiles">
-              <PropertyRef Name="Estado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Usuarios_Estados">
-          <End Type="AndiTecnicaModel.Estados" Role="Estados" Multiplicity="0..1" />
-          <End Type="AndiTecnicaModel.Usuarios" Role="Usuarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estados">
-              <PropertyRef Name="EstadoId" />
-            </Principal>
-            <Dependent Role="Usuarios">
-              <PropertyRef Name="Estado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="CategoriasProductos">
-          <Key>
-            <PropertyRef Name="CategoriasId" />
-          </Key>
-          <Property Name="CategoriasId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Estado" Type="Int32" Nullable="false" />
-          <Property Name="Creado" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Modificado" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Estados" Relationship="AndiTecnicaModel.FK_CategoriasProductos_Estados" FromRole="CategoriasProductos" ToRole="Estados" />
-        </EntityType>
-        <Association Name="FK_CategoriasProductos_Estados">
-          <End Type="AndiTecnicaModel.Estados" Role="Estados" Multiplicity="1" />
-          <End Type="AndiTecnicaModel.CategoriasProductos" Role="CategoriasProductos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estados">
-              <PropertyRef Name="EstadoId" />
-            </Principal>
-            <Dependent Role="CategoriasProductos">
-              <PropertyRef Name="Estado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="AndiTecnicaModelStoreContainer" CdmEntityContainer="AndiTecnicaEntities" >
+          <FunctionImportMapping FunctionImportName="ConsultarMenusxUsuarioId" FunctionName="AndiTecnicaModel.Store.ConsultarMenusxUsuarioId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AndiTecnicaModel.ConsultarMenusxUsuarioId_Result">
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Ruta" ColumnName="Ruta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarModulosxUsuarioId" FunctionName="AndiTecnicaModel.Store.ConsultarModulosxUsuarioId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AndiTecnicaModel.ConsultarModulosxUsuarioId_Result">
+                <ScalarProperty Name="ModuloId" ColumnName="ModuloId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AutorizarBotones" FunctionName="AndiTecnicaModel.Store.AutorizarBotones">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AndiTecnicaModel.AutorizarBotones_Result">
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="CategoriasProductos">
+            <EntityTypeMapping TypeName="AndiTecnicaModel.CategoriasProductos">
+              <MappingFragment StoreEntitySet="CategoriasProductos">
+                <ScalarProperty Name="Modificado" ColumnName="Modificado" />
+                <ScalarProperty Name="Creado" ColumnName="Creado" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CategoriasId" ColumnName="CategoriasId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Autorizaciones">
             <EntityTypeMapping TypeName="AndiTecnicaModel.Autorizaciones">
               <MappingFragment StoreEntitySet="Autorizaciones">
@@ -829,6 +866,16 @@
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Cedula" ColumnName="Cedula" />
                 <ScalarProperty Name="EmpleadoId" ColumnName="EmpleadoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estados">
+            <EntityTypeMapping TypeName="AndiTecnicaModel.Estados">
+              <MappingFragment StoreEntitySet="Estados">
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="ModuloFk" ColumnName="ModuloFk" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -898,53 +945,6 @@
                 <ScalarProperty Name="Clave" ColumnName="Clave" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
                 <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="ConsultarMenusxUsuarioId" FunctionName="AndiTecnicaModel.Store.ConsultarMenusxUsuarioId">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AndiTecnicaModel.ConsultarMenusxUsuarioId_Result">
-                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Ruta" ColumnName="Ruta" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="ConsultarModulosxUsuarioId" FunctionName="AndiTecnicaModel.Store.ConsultarModulosxUsuarioId">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AndiTecnicaModel.ConsultarModulosxUsuarioId_Result">
-                <ScalarProperty Name="ModuloId" ColumnName="ModuloId" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AutorizarBotones" FunctionName="AndiTecnicaModel.Store.AutorizarBotones">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AndiTecnicaModel.AutorizarBotones_Result">
-                <ScalarProperty Name="Valor" ColumnName="Valor" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <EntitySetMapping Name="Estados">
-            <EntityTypeMapping TypeName="AndiTecnicaModel.Estados">
-              <MappingFragment StoreEntitySet="Estados">
-                <ScalarProperty Name="Describe" ColumnName="Describe" />
-                <ScalarProperty Name="ModuloFk" ColumnName="ModuloFk" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CategoriasProductos">
-            <EntityTypeMapping TypeName="AndiTecnicaModel.CategoriasProductos">
-              <MappingFragment StoreEntitySet="CategoriasProductos">
-                <ScalarProperty Name="Modificado" ColumnName="Modificado" />
-                <ScalarProperty Name="Creado" ColumnName="Creado" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="CategoriasId" ColumnName="CategoriasId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

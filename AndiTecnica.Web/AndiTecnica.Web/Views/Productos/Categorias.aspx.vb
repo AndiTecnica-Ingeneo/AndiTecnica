@@ -44,7 +44,7 @@ Public Class Categorias
             Try
                 ods_CategoriasProductos.SelectParameters.Clear()
                 ods_CategoriasProductos.SelectMethod = "BuscarCategoriasProductos"
-                ods_CategoriasProductos.TypeName = "AndiTecnica.Model.SeguridadFacade.SeguridadFacade"
+                ods_CategoriasProductos.TypeName = "AndiTecnica.Model.ProductosFacade.ProductosFacade"
                 ods_CategoriasProductos.SelectParameters.Add("Nombre", txt_bucar.Text)
                 Master.mensajes = Nothing
             Catch ex As Exception
@@ -116,7 +116,7 @@ Public Class Categorias
         lkb_salir.Visible = False
         ods_CategoriasProductos.SelectParameters.Clear()
         ods_CategoriasProductos.SelectMethod = "ListarCategoriasProductos"
-        ods_CategoriasProductos.TypeName = "AndiTecnica.Model.SeguridadFacade.SeguridadFacade"
+        ods_CategoriasProductos.TypeName = "AndiTecnica.Model.ProductosFacade.ProductosFacade"
         grd_CategoriasProductos.DataBind()
     End Sub
 

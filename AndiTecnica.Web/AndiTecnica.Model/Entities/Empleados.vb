@@ -23,7 +23,7 @@ Partial Public Class Empleados
     Public Property Estado As Nullable(Of Integer)
     Public Property RutaFirma As String
 
-    Public Overridable Property Usuarios As ICollection(Of Usuarios) = New HashSet(Of Usuarios)
     Public Overridable Property Estados As Estados
+    Public Overridable Property Usuarios As ICollection(Of Usuarios) = New HashSet(Of Usuarios)
 
 End Class

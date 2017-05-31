@@ -16,7 +16,7 @@ Partial Public Class Modulos
     Public Property Prefijo As String
     Public Property Describe As String
 
-    Public Overridable Property Menus As ICollection(Of Menus) = New HashSet(Of Menus)
     Public Overridable Property Estados As ICollection(Of Estados) = New HashSet(Of Estados)
+    Public Overridable Property Menus As ICollection(Of Menus) = New HashSet(Of Menus)
 
 End Class

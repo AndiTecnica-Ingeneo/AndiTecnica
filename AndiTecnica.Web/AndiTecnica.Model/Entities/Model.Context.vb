@@ -25,17 +25,17 @@ Partial Public Class AndiTecnicaEntities
         Throw New UnintentionalCodeFirstException()
     End Sub
 
+    Public Property CategoriasProductos() As DbSet(Of CategoriasProductos)
     Public Property Autorizaciones() As DbSet(Of Autorizaciones)
     Public Property Botones() As DbSet(Of Botones)
     Public Property Empleados() As DbSet(Of Empleados)
+    Public Property Estados() As DbSet(Of Estados)
     Public Property Menus() As DbSet(Of Menus)
     Public Property Modulos() As DbSet(Of Modulos)
     Public Property Opciones() As DbSet(Of Opciones)
     Public Property Perfiles() As DbSet(Of Perfiles)
     Public Property Permisos() As DbSet(Of Permisos)
     Public Property Usuarios() As DbSet(Of Usuarios)
-    Public Property Estados() As DbSet(Of Estados)
-    Public Property CategoriasProductos() As DbSet(Of CategoriasProductos)
 
     Public Overridable Function ConsultarMenusxUsuarioId(usuarioId As Nullable(Of Integer)) As ObjectResult(Of ConsultarMenusxUsuarioId_Result)
         Dim usuarioIdParameter As ObjectParameter = If(usuarioId.HasValue, New ObjectParameter("UsuarioId", usuarioId), New ObjectParameter("UsuarioId", GetType(Integer)))

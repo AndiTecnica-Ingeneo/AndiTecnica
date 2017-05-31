@@ -14,9 +14,9 @@ Partial Public Class CategoriasProductos
     Public Property CategoriasId As Integer
     Public Property Nombre As String
     Public Property Descripcion As String
-    Public Property Estado As Integer
-    Public Property Creado As Date
-    Public Property Modificado As Date
+    Public Property Estado As Nullable(Of Integer)
+    Public Property Creado As Nullable(Of Date)
+    Public Property Modificado As Nullable(Of Date)
 
     Public Overridable Property Estados As Estados
 
