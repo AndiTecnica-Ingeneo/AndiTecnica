@@ -9,8 +9,7 @@ Public Class Principal
     Dim Facade As New SeguridadFacade
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Dim modulos = Facade.ConsultarModulosxUsuarioId(SessionManager.UserId)
-        Dim menus = Facade.ConsultarMenusxUsuarioId(SessionManager.UserId)
+
 
         If Not Page.IsPostBack Then
             If SessionManager.UserId = 0 Then
@@ -19,8 +18,9 @@ Public Class Principal
                 Dim usuario = Facade.ConsultarUsuarioxId(SessionManager.UserId)
                 Dim menusautorizados As String = ""
                 lkb_cerrarsesion.ToolTip = String.Concat("Cerrar sesion de ", usuario.Empleados.Nombre)
-
+                Dim modulos = Facade.ConsultarModulosxUsuarioId(SessionManager.UserId)
                 For i As Integer = 0 To modulos.Count - 1 'MODULOS
+                    Dim menus = Facade.ConsultarMenusxUsuarioId(SessionManager.UserId, modulos.Item(i).ModuloId)
                     menusautorizados = String.Concat(menusautorizados, "<li Class='dropdown'>")
                     menusautorizados = String.Concat(menusautorizados, "<a href = '#' Class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>", modulos.Item(i).Nombre, " <span Class='caret'></span></a> <ul Class='dropdown-menu'> ")
                     For j As Integer = 0 To menus.Count - 1 'FORMULARIOS
@@ -39,13 +39,18 @@ Public Class Principal
                 Response.Redirect("Login.aspx", True)
             Else
                 Dim autorizado = False
-                For i As Integer = 0 To menus.Count - 1
-                    If (paginactual) = (menus.Item(i).Ruta).Replace("/", ".").ToLower.Trim Then
-                        autorizado = True
-                        Exit For
-                    End If
-                Next
+                Dim modulos = Facade.ConsultarModulosxUsuarioId(SessionManager.UserId)
+                For i As Integer = 0 To modulos.Count - 1 'MODULOS
+                    Dim menus = Facade.ConsultarMenusxUsuarioId(SessionManager.UserId, modulos.Item(i).ModuloId)
 
+                    For j As Integer = 0 To menus.Count - 1
+                        If (paginactual) = (menus.Item(j).Ruta).Replace("/", ".").ToLower.Trim Then
+                            autorizado = True
+                            Exit For
+                        End If
+                    Next
+
+                Next
                 If autorizado = False Then
                     Response.Redirect("Index.aspx", True)
                 End If

@@ -70,10 +70,10 @@ Namespace BL.Usuarios
             End Try
         End Function
 
-        Public Function ConsultarMenusxUsuarioId(ByVal usuarioid As Integer) As List(Of ConsultarMenusxUsuarioId_Result)
+        Public Function ConsultarMenusxUsuarioId(ByVal usuarioid As Integer, ByVal moduloid As Integer) As List(Of ConsultarMenusxUsuarioId_Result)
             Try
                 Dim dao As New UsuariosDao
-                Return dao.ConsultarMenusxUsuarioId(usuarioid)
+                Return dao.ConsultarMenusxUsuarioId(usuarioid, moduloid)
             Catch ex As Exception
                 Throw New Exception(ex.Message)
             End Try

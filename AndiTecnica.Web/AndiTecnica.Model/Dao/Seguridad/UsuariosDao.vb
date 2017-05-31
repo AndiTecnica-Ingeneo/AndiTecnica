@@ -58,9 +58,9 @@
             End Using
         End Function
 
-        Public Function ConsultarMenusxUsuarioId(ByVal usuarioid As Integer) As List(Of ConsultarMenusxUsuarioId_Result)
+        Public Function ConsultarMenusxUsuarioId(ByVal usuarioid As Integer, ByVal moduloid As Integer) As List(Of ConsultarMenusxUsuarioId_Result)
             Using bd As New AndiTecnicaEntities
-                Dim query = From tbl In bd.ConsultarMenusxUsuarioId(usuarioid)
+                Dim query = From tbl In bd.ConsultarMenusxUsuarioId(usuarioid, moduloid)
                             Select tbl
                 Return query.ToList()
             End Using

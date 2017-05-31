@@ -297,6 +297,7 @@
         </Association>
         <Function Name="ConsultarMenusxUsuarioId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UsuarioId" Type="int" Mode="In" />
+          <Parameter Name="ModuloId" Type="int" Mode="In" />
         </Function>
         <Function Name="ConsultarModulosxUsuarioId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UsuarioId" Type="int" Mode="In" />
@@ -379,9 +380,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="AndiTecnicaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AndiTecnicaEntities" annotation:LazyLoadingEnabled="true" >
-          <FunctionImport Name="ConsultarMenusxUsuarioId" ReturnType="Collection(AndiTecnicaModel.ConsultarMenusxUsuarioId_Result)">
-          <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="ConsultarModulosxUsuarioId" ReturnType="Collection(AndiTecnicaModel.ConsultarModulosxUsuarioId_Result)">
           <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -456,12 +454,11 @@
             <End Role="Perfiles" EntitySet="Perfiles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
+          <FunctionImport Name="ConsultarMenusxUsuarioId" ReturnType="Collection(AndiTecnicaModel.ConsultarMenusxUsuarioId_Result)">
+            <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
+            <Parameter Name="ModuloId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="ConsultarMenusxUsuarioId_Result">
-          <Property Type="Int32" Name="MenuId" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Ruta" Nullable="false" MaxLength="50" />
-        </ComplexType>
         <ComplexType Name="ConsultarModulosxUsuarioId_Result">
           <Property Type="Int32" Name="ModuloId" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
@@ -788,21 +785,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="ConsultarMenusxUsuarioId_Result">
+          <Property Type="Int32" Name="MenuId" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Ruta" Nullable="false" MaxLength="50" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="AndiTecnicaModelStoreContainer" CdmEntityContainer="AndiTecnicaEntities" >
-          <FunctionImportMapping FunctionImportName="ConsultarMenusxUsuarioId" FunctionName="AndiTecnicaModel.Store.ConsultarMenusxUsuarioId">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AndiTecnicaModel.ConsultarMenusxUsuarioId_Result">
-                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Ruta" ColumnName="Ruta" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ConsultarModulosxUsuarioId" FunctionName="AndiTecnicaModel.Store.ConsultarModulosxUsuarioId">
             <ResultMapping>
               <ComplexTypeMapping TypeName="AndiTecnicaModel.ConsultarModulosxUsuarioId_Result">
@@ -948,6 +941,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarMenusxUsuarioId" FunctionName="AndiTecnicaModel.Store.ConsultarMenusxUsuarioId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AndiTecnicaModel.ConsultarMenusxUsuarioId_Result">
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Ruta" ColumnName="Ruta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

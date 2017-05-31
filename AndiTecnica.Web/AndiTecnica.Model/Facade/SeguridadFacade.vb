@@ -96,10 +96,10 @@ Namespace SeguridadFacade
             End Try
         End Function
 
-        Public Function ConsultarMenusxUsuarioId(ByVal usuarioid As Integer) As List(Of ConsultarMenusxUsuarioId_Result)
+        Public Function ConsultarMenusxUsuarioId(ByVal usuarioid As Integer, ByVal moduloid As Integer) As List(Of ConsultarMenusxUsuarioId_Result)
             Try
                 Dim bl As New UsuariosBL
-                Return bl.ConsultarMenusxUsuarioId(usuarioid)
+                Return bl.ConsultarMenusxUsuarioId(usuarioid, moduloid)
             Catch ex As Exception
                 Throw New Exception(ex.Message)
             End Try
