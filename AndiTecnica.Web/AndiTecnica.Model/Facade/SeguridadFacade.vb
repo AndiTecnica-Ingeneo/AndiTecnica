@@ -52,8 +52,6 @@ Namespace SeguridadFacade
         Public Sub GuardarEmpleado(ByVal Empleado As Empleados)
             Try
                 Dim bl As New EmpleadosBL
-                Empleado.Creado = Date.Now
-                Empleado.Modificado = Date.Now
                 bl.GuardarEmpleado(Empleado)
             Catch ex As Exception
                 Throw New Exception(ex.Message)

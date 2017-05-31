@@ -33,6 +33,8 @@ Namespace BL.Empleados
         Public Sub GuardarEmpleado(ByVal Empleado As Model.Empleados)
             Try
                 Dim dao As New EmpleadosDao
+                Empleado.Creado = Date.Now
+                Empleado.Modificado = Date.Now
                 dao.GuardarEmpleado(Empleado)
             Catch ex As Exception
                 Throw New Exception(ex.Message)
@@ -42,6 +44,9 @@ Namespace BL.Empleados
         Public Sub ActualizarEmpleado(ByVal Empleado As Model.Empleados)
             Try
                 Dim dao As New EmpleadosDao
+                Dim e = ConsultarEmpleadoxId(Empleado.EmpleadoId)
+                Empleado.Creado = e.Creado
+                Empleado.Modificado = Date.Now
                 dao.ActualizarEmpleado(Empleado)
             Catch ex As Exception
                 Throw New Exception(ex.Message)

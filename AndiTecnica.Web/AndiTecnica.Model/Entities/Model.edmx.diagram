@@ -28,6 +28,8 @@
         <AssociationConnector Association="AndiTecnicaModel.FK_Estados_Modulos" />
         <AssociationConnector Association="AndiTecnicaModel.FK_Perfiles_Estados" />
         <AssociationConnector Association="AndiTecnicaModel.FK_Usuarios_Estados" />
+        <EntityTypeShape EntityType="AndiTecnicaModel.CategoriasProductos" Width="1.5" PointX="6.375" PointY="8.875" />
+        <AssociationConnector Association="AndiTecnicaModel.FK_CategoriasProductos_Estados" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

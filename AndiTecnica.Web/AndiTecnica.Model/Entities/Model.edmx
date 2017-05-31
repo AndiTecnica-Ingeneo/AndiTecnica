@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="AndiTecnicaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CategoriasProductos">
+          <Key>
+            <PropertyRef Name="CategoriasId" />
+          </Key>
+          <Property Name="CategoriasId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="Creado" Type="smalldatetime" Nullable="false" />
+          <Property Name="Modificado" Type="smalldatetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Autorizaciones">
           <Key>
             <PropertyRef Name="AutorizacionId" />
@@ -135,6 +146,18 @@
             </Principal>
             <Dependent Role="Autorizaciones">
               <PropertyRef Name="PerfilFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoriasProductos_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="CategoriasProductos" Type="Self.CategoriasProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="EstadoId" />
+            </Principal>
+            <Dependent Role="CategoriasProductos">
+              <PropertyRef Name="Estado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -283,6 +306,7 @@
           <Parameter Name="Menu" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="AndiTecnicaModelStoreContainer">
+          <EntitySet Name="CategoriasProductos" EntityType="Self.CategoriasProductos" Schema="Productos" store:Type="Tables" />
           <EntitySet Name="Autorizaciones" EntityType="Self.Autorizaciones" Schema="Seguridad" store:Type="Tables" />
           <EntitySet Name="Botones" EntityType="Self.Botones" Schema="Seguridad" store:Type="Tables" />
           <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="Seguridad" store:Type="Tables" />
@@ -300,6 +324,10 @@
           <AssociationSet Name="FK_Autorizaciones_Perfiles" Association="Self.FK_Autorizaciones_Perfiles">
             <End Role="Perfiles" EntitySet="Perfiles" />
             <End Role="Autorizaciones" EntitySet="Autorizaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoriasProductos_Estados" Association="Self.FK_CategoriasProductos_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="CategoriasProductos" EntitySet="CategoriasProductos" />
           </AssociationSet>
           <AssociationSet Name="FK_Empleados_Estados" Association="Self.FK_Empleados_Estados">
             <End Role="Estados" EntitySet="Estados" />
@@ -422,6 +450,11 @@
           <AssociationSet Name="FK_Usuarios_Estados" Association="AndiTecnicaModel.FK_Usuarios_Estados">
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <EntitySet Name="CategoriasProductos" EntityType="AndiTecnicaModel.CategoriasProductos" />
+          <AssociationSet Name="FK_CategoriasProductos_Estados" Association="AndiTecnicaModel.FK_CategoriasProductos_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="CategoriasProductos" EntitySet="CategoriasProductos" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Autorizaciones">
@@ -681,6 +714,7 @@
           <NavigationProperty Name="Modulos" Relationship="AndiTecnicaModel.FK_Estados_Modulos" FromRole="Estados" ToRole="Modulos" />
           <NavigationProperty Name="Perfiles" Relationship="AndiTecnicaModel.FK_Perfiles_Estados" FromRole="Estados" ToRole="Perfiles" />
           <NavigationProperty Name="Usuarios" Relationship="AndiTecnicaModel.FK_Usuarios_Estados" FromRole="Estados" ToRole="Usuarios" />
+          <NavigationProperty Name="CategoriasProductos" Relationship="AndiTecnicaModel.FK_CategoriasProductos_Estados" FromRole="Estados" ToRole="CategoriasProductos" />
         </EntityType>
         <Association Name="FK_Empleados_Estados">
           <End Type="AndiTecnicaModel.Estados" Role="Estados" Multiplicity="0..1" />
@@ -726,6 +760,30 @@
               <PropertyRef Name="EstadoId" />
             </Principal>
             <Dependent Role="Usuarios">
+              <PropertyRef Name="Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CategoriasProductos">
+          <Key>
+            <PropertyRef Name="CategoriasId" />
+          </Key>
+          <Property Name="CategoriasId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <Property Name="Creado" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Modificado" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Estados" Relationship="AndiTecnicaModel.FK_CategoriasProductos_Estados" FromRole="CategoriasProductos" ToRole="Estados" />
+        </EntityType>
+        <Association Name="FK_CategoriasProductos_Estados">
+          <End Type="AndiTecnicaModel.Estados" Role="Estados" Multiplicity="1" />
+          <End Type="AndiTecnicaModel.CategoriasProductos" Role="CategoriasProductos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="EstadoId" />
+            </Principal>
+            <Dependent Role="CategoriasProductos">
               <PropertyRef Name="Estado" />
             </Dependent>
           </ReferentialConstraint>
@@ -875,6 +933,18 @@
                 <ScalarProperty Name="ModuloFk" ColumnName="ModuloFk" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoriasProductos">
+            <EntityTypeMapping TypeName="AndiTecnicaModel.CategoriasProductos">
+              <MappingFragment StoreEntitySet="CategoriasProductos">
+                <ScalarProperty Name="Modificado" ColumnName="Modificado" />
+                <ScalarProperty Name="Creado" ColumnName="Creado" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CategoriasId" ColumnName="CategoriasId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

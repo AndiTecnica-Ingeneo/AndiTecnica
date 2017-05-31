@@ -35,6 +35,7 @@ Partial Public Class AndiTecnicaEntities
     Public Property Permisos() As DbSet(Of Permisos)
     Public Property Usuarios() As DbSet(Of Usuarios)
     Public Property Estados() As DbSet(Of Estados)
+    Public Property CategoriasProductos() As DbSet(Of CategoriasProductos)
 
     Public Overridable Function ConsultarMenusxUsuarioId(usuarioId As Nullable(Of Integer)) As ObjectResult(Of ConsultarMenusxUsuarioId_Result)
         Dim usuarioIdParameter As ObjectParameter = If(usuarioId.HasValue, New ObjectParameter("UsuarioId", usuarioId), New ObjectParameter("UsuarioId", GetType(Integer)))

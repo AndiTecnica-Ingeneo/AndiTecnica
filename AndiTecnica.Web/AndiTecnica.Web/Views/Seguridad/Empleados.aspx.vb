@@ -9,6 +9,7 @@ Public Class Empleados
     Public Enum EnumModoPagina
         Insert
         Edit
+        Update
     End Enum
 
     Public Property ModoPaginaEmpleados As EnumModoPagina
@@ -84,7 +85,7 @@ Public Class Empleados
     End Sub
 
     Private Sub lkb_editar_Click(sender As Object, e As EventArgs) Handles lkb_editar.Click
-        ModoPaginaEmpleados = EnumModoPagina.Insert
+        ModoPaginaEmpleados = EnumModoPagina.Update
         MostrarFormulario()
     End Sub
 
@@ -125,23 +126,13 @@ Public Class Empleados
         lkb_salir.Visible = True
 
         If ModoPaginaEmpleados = EnumModoPagina.Edit Then
-            txt_nombreEmpleado.Enabled = False
-            txt_CedulaEmpleado.Enabled = False
-            txt_Telefono.Enabled = False
-            txt_Ext.Enabled = False
-            txt_Celular.Enabled = False
-            txt_Email.Enabled = False
+            pnl_form.Enabled = False
             lkb_eliminar.Visible = True
             lkb_editar.Visible = True
             lkb_guardar.Visible = False
 
-        ElseIf ModoPaginaEmpleados = EnumModoPagina.Insert Then
-            txt_nombreEmpleado.Enabled = True
-            txt_CedulaEmpleado.Enabled = True
-            txt_Telefono.Enabled = True
-            txt_Ext.Enabled = True
-            txt_Celular.Enabled = True
-            txt_Email.Enabled = True
+        ElseIf ModoPaginaEmpleados = EnumModoPagina.Insert Or ModoPaginaEmpleados = EnumModoPagina.Update Then
+            pnl_form.Enabled = True
             lkb_guardar.Visible = True
             lkb_editar.Visible = False
         End If

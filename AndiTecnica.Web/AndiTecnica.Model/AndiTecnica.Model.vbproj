@@ -72,12 +72,14 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\Productos\CategoriasBL.vb" />
     <Compile Include="BL\Seguridad\EmpleadosBL.vb" />
     <Compile Include="BL\Seguridad\ModulosBL.vb" />
     <Compile Include="BL\Seguridad\EstadosBL.vb" />
     <Compile Include="BL\Seguridad\PerfilesBL.vb" />
     <Compile Include="BL\Seguridad\PermisosBL.vb" />
     <Compile Include="BL\Seguridad\UsuariosBL.vb" />
+    <Compile Include="Dao\Productos\CategoriasDao.vb" />
     <Compile Include="Dao\Seguridad\EmpleadosDao.vb" />
     <Compile Include="Dao\Seguridad\Modulos.vb" />
     <Compile Include="Dao\Seguridad\Estados.vb" />
@@ -91,6 +93,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Botones.vb">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CategoriasProductos.vb">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\ConsultarMenusxUsuarioId_Result.vb">
@@ -138,6 +143,7 @@
     <Compile Include="Entities\Usuarios.vb">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Facade\ProductosFacade.vb" />
     <Compile Include="Facade\SeguridadFacade.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
