@@ -10,6 +10,9 @@
 Imports System
 Imports System.Data.Entity
 Imports System.Data.Entity.Infrastructure
+Imports System.Data.Objects
+Imports System.Data.Objects.DataClasses
+Imports System.Linq
 
 Partial Public Class AndiTecnicaEntities
     Inherits DbContext
@@ -32,5 +35,17 @@ Partial Public Class AndiTecnicaEntities
     Public Property Perfiles() As DbSet(Of Perfiles)
     Public Property Permisos() As DbSet(Of Permisos)
     Public Property Usuarios() As DbSet(Of Usuarios)
+
+    Public Overridable Function ConsultarModulosxUsuarioId(usuarioId As Nullable(Of Integer)) As ObjectResult(Of ConsultarModulosxUsuarioId_Result)
+        Dim usuarioIdParameter As ObjectParameter = If(usuarioId.HasValue, New ObjectParameter("UsuarioId", usuarioId), New ObjectParameter("UsuarioId", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of ConsultarModulosxUsuarioId_Result)("ConsultarModulosxUsuarioId", usuarioIdParameter)
+    End Function
+
+    Public Overridable Function ConsultarMenusxUsuarioId(usuarioId As Nullable(Of Integer)) As ObjectResult(Of ConsultarMenusxUsuarioId_Result)
+        Dim usuarioIdParameter As ObjectParameter = If(usuarioId.HasValue, New ObjectParameter("UsuarioId", usuarioId), New ObjectParameter("UsuarioId", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of ConsultarMenusxUsuarioId_Result)("ConsultarMenusxUsuarioId", usuarioIdParameter)
+    End Function
 
 End Class

@@ -82,6 +82,12 @@
     <Compile Include="Entities\Botones.vb">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\ConsultarMenusxUsuarioId_Result.vb">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ConsultarModulosxUsuarioId_Result.vb">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Empleados.vb">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
