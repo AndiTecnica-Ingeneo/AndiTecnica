@@ -4,7 +4,7 @@
 
     Public Function ListarUsuarios() As List(Of Usuarios)
             Using bd As New AndiTecnicaEntities
-                Dim query = From tbl In bd.Usuarios
+                Dim query = From tbl In bd.Usuarios.Include("Empleados").Include("Perfiles")
                             Select tbl
                 Return query.ToList
             End Using

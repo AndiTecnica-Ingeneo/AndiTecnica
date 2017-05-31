@@ -248,6 +248,15 @@ Partial Public Class Usuario
     Protected WithEvents hdf_id As Global.System.Web.UI.WebControls.HiddenField
     
     '''<summary>
+    '''ods_Usuarios control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ods_Usuarios As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
     '''ods_Perfiles control.
     '''</summary>
     '''<remarks>

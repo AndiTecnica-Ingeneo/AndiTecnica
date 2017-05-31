@@ -102,22 +102,25 @@
       </table>
       <br />
     </asp:Panel>
-    <asp:GridView ID="grd_Perfiles" runat="server" AutoGenerateColumns="False" DataSourceID="ods_Perfiles" CssClass="table table-bordered" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True">
+    <asp:GridView ID="grd_Perfiles" runat="server" AutoGenerateColumns="False" DataSourceID="ods_Usuarios" CssClass="table table-bordered" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True">
       <AlternatingRowStyle BackColor="White" />
-      <Columns>
-        <asp:BoundField DataField="PerfilId" HeaderText="PerfilId" SortExpression="PerfilId"/>
-        <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
-        <asp:BoundField DataField="Describe" HeaderText="Describe" SortExpression="Describe" />
-        <asp:BoundField DataField="Creado" HeaderText="Creado" SortExpression="Creado" />
-        <asp:BoundField DataField="Modificado" HeaderText="Modificado" SortExpression="Modificado" />
-        <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado" />
-      </Columns>
+        <Columns>
+            <asp:BoundField DataField="UsuarioId" HeaderText="UsuarioId" SortExpression="UsuarioId" />
+            <asp:BoundField DataField="Usuario" HeaderText="Usuario" SortExpression="Usuario" />
+            <asp:BoundField DataField="Clave" HeaderText="Clave" SortExpression="Clave" />
+            <asp:BoundField DataField="PerfilFk" HeaderText="PerfilFk" SortExpression="PerfilFk" />
+            <asp:BoundField DataField="EmpleadoFk" HeaderText="EmpleadoFk" SortExpression="EmpleadoFk" />
+            <asp:BoundField DataField="Creado" HeaderText="Creado" SortExpression="Creado" />
+            <asp:BoundField DataField="Modificado" HeaderText="Modificado" SortExpression="Modificado" />
+            <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado" />
+        </Columns>
       <HeaderStyle ForeColor="White" BackColor="#0f2612" />
     </asp:GridView>
   </asp:panel>
 
     <asp:hiddenfield id="hdf_id" runat="server" />
 
+    <asp:ObjectDataSource ID="ods_Usuarios" runat="server" SelectMethod="ListarUsuarios" TypeName="AndiTecnica.Model.SeguridadFacade.SeguridadFacade"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="ods_Perfiles" runat="server" SelectMethod="ListarPerfiles" TypeName="AndiTecnica.Model.SeguridadFacade.SeguridadFacade"></asp:ObjectDataSource>
     <asp:ObjectDataSource ID="ods_Empleados" runat="server" SelectMethod="ListarEmpleados" TypeName="AndiTecnica.Model.SeguridadFacade.SeguridadFacade"></asp:ObjectDataSource>
 

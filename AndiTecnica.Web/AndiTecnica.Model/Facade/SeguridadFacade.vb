@@ -134,6 +134,15 @@ Namespace SeguridadFacade
             End Try
         End Sub
 
+        Public Function ListarUsuarios() As List(Of Usuarios)
+            Try
+                Dim bl As New UsuariosBL
+                Return bl.ListarUsuarios
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+
 
 #End Region
 
