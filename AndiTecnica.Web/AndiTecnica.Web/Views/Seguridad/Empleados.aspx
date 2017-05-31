@@ -127,7 +127,7 @@
                 <asp:BoundField DataField="Correo" HeaderText="Correo" SortExpression="Correo" />
                 <asp:BoundField DataField="Creado" HeaderText="Creado" SortExpression="Creado" />
                 <asp:BoundField DataField="Modificado" HeaderText="Modificado" SortExpression="Modificado" />
-                <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado" />
+                <asp:BoundField DataField="Estados.Nombre" HeaderText="Estado" SortExpression="Estados.Nombre" />
              </Columns>
             <HeaderStyle ForeColor="White" BackColor="#0f2612" />
         </asp:GridView>

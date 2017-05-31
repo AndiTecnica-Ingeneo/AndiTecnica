@@ -163,6 +163,9 @@ Public Class Perfil
             Perfil.Nombre = txt_nombrePerfil.Text
         End If
         Perfil.Describe = txt_DescripcionPerfil.Text
+        Dim Modulo = SeguridadFacade.ConsultarModuloxNombre("Seguridad")
+        Perfil.Estado = SeguridadFacade.ConsultarEstadoxModulo(Modulo.ModuloId, "Activo").EstadoId
+
         Return Perfil
     End Function
 

@@ -9,14 +9,15 @@ Public Class Usuario
     Public Enum EnumModoPagina
         Insert
         Edit
+        Update
     End Enum
 
-    Public Property ModoPaginaPerfiles As EnumModoPagina
+    Public Property ModoPaginaUsuarios As EnumModoPagina
         Get
-            Return ViewState("ModoPaginaPerfiles")
+            Return ViewState("ModoPaginaUsuarios")
         End Get
         Set(ByVal value As EnumModoPagina)
-            ViewState("ModoPaginaPerfiles") = value
+            ViewState("ModoPaginaUsuarios") = value
         End Set
     End Property
 
@@ -40,10 +41,10 @@ Public Class Usuario
             Master.mensajes = "warning;Por favor ingrese la informacion a buscar"
         Else
             Try
-                ods_Perfiles.SelectParameters.Clear()
-                ods_Perfiles.SelectMethod = "BuscarPerfiles"
-                ods_Perfiles.TypeName = "AndiTecnica.Model.SeguridadFacade.SeguridadFacade"
-                ods_Perfiles.SelectParameters.Add("Nombre", txt_bucar.Text)
+                ods_Usuarios.SelectParameters.Clear()
+                ods_Usuarios.SelectMethod = "BuscarUsuarios"
+                ods_Usuarios.TypeName = "AndiTecnica.Model.SeguridadFacade.SeguridadFacade"
+                ods_Usuarios.SelectParameters.Add("Nombre", txt_bucar.Text)
                 Master.mensajes = Nothing
             Catch ex As Exception
                 Master.mensajes = "danger;" & ex.Message
@@ -52,35 +53,35 @@ Public Class Usuario
     End Sub
 
     Protected Sub Agregar(sender As Object, e As EventArgs) Handles lkb_agregar.Click
-        ModoPaginaPerfiles = EnumModoPagina.Insert
+        ModoPaginaUsuarios = EnumModoPagina.Insert
         MostrarFormulario()
-        LimpiarPerfil()
+        LimpiarUsuario()
     End Sub
 
-    Protected Sub Editar(sender As Object, e As EventArgs) Handles grd_Perfiles.SelectedIndexChanged
-        ModoPaginaPerfiles = EnumModoPagina.Edit
+    Protected Sub Editar(sender As Object, e As EventArgs) Handles grd_Usuarios.SelectedIndexChanged
+        ModoPaginaUsuarios = EnumModoPagina.Edit
         MostrarFormulario()
-        LimpiarPerfil()
-        hdf_id.Value = grd_Perfiles.SelectedValue
-        ObtenerPerfil()
+        LimpiarUsuario()
+        hdf_id.Value = grd_Usuarios.SelectedValue
+        ObtenerUsuario()
     End Sub
 
     Private Sub lkb_editar_Click(sender As Object, e As EventArgs) Handles lkb_editar.Click
-        ModoPaginaPerfiles = EnumModoPagina.Insert
+        ModoPaginaUsuarios = EnumModoPagina.Update
         MostrarFormulario()
     End Sub
 
     Protected Sub Guardar(sender As Object, e As EventArgs) Handles lkb_guardar.Click
         Try
-            Dim Perfil = AsignarPerfil()
-            If ModoPaginaPerfiles = EnumModoPagina.Insert Then
-                SeguridadFacade.GuardarPerfil(Perfil)
-                Master.mensajes = "success;Perfil creado con exito"
+            Dim Usuario = AsignarUsuario()
+            If ModoPaginaUsuarios = EnumModoPagina.Insert Then
+                SeguridadFacade.GuardarUsuario(Usuario)
+                Master.mensajes = "success;Usuario creado con exito"
                 OcultarBusqueda()
-                ModoPaginaPerfiles = EnumModoPagina.Edit
+                ModoPaginaUsuarios = EnumModoPagina.Edit
             Else
-                SeguridadFacade.ActualizarPerfil(Perfil)
-                Master.mensajes = "success;Perfil modificado con exito"
+                SeguridadFacade.ActualizarUsuario(Usuario)
+                Master.mensajes = "success;Usuario modificado con exito"
             End If
             MostrarLista()
         Catch ex As Exception
@@ -90,8 +91,8 @@ Public Class Usuario
 
     Protected Sub Eliminar(sender As Object, e As EventArgs) Handles lkb_eliminar.Click
         Try
-            SeguridadFacade.EliminarPerfil(hdf_id.Value)
-            Master.mensajes = "success;Perfil eliminado con exito"
+            SeguridadFacade.EliminarUsuario(hdf_id.Value)
+            Master.mensajes = "success;Usuario eliminado con exito"
             MostrarLista()
         Catch ex As Exception
             Master.mensajes = "danger;" & ex.Message
@@ -112,10 +113,10 @@ Public Class Usuario
         lkb_editar.Visible = False
         lkb_eliminar.Visible = False
         lkb_salir.Visible = False
-        ods_Perfiles.SelectParameters.Clear()
-        ods_Perfiles.SelectMethod = "ListarPerfiles"
-        ods_Perfiles.TypeName = "AndiTecnica.Model.SeguridadFacade.SeguridadFacade"
-        grd_Perfiles.DataBind()
+        ods_Usuarios.SelectParameters.Clear()
+        ods_Usuarios.SelectMethod = "ListarUsuarios"
+        ods_Usuarios.TypeName = "AndiTecnica.Model.SeguridadFacade.SeguridadFacade"
+        grd_Usuarios.DataBind()
     End Sub
 
     Public Sub MostrarFormulario()
@@ -125,18 +126,16 @@ Public Class Usuario
         lkb_agregar.Visible = False
         lkb_salir.Visible = True
 
-        'If ModoPaginaPerfiles = EnumModoPagina.Edit Then
-        '    txt_nombrePerfil.Enabled = False
-        '    txt_DescripcionPerfil.Enabled = False
-        '    lkb_eliminar.Visible = True
-        '    lkb_editar.Visible = True
-        '    lkb_guardar.Visible = False
-        'ElseIf ModoPaginaPerfiles = EnumModoPagina.Insert Then
-        '    txt_nombrePerfil.Enabled = True
-        '    txt_DescripcionPerfil.Enabled = True
-        '    lkb_guardar.Visible = True
-        '    lkb_editar.Visible = False
-        'End If
+        If ModoPaginaUsuarios = EnumModoPagina.Edit Then
+            pnl_form.Enabled = False
+            lkb_eliminar.Visible = True
+            lkb_editar.Visible = True
+            lkb_guardar.Visible = False
+        ElseIf ModoPaginaUsuarios = EnumModoPagina.Insert Or ModoPaginaUsuarios = EnumModoPagina.Update Then
+            pnl_form.Enabled = True
+            lkb_guardar.Visible = True
+            lkb_editar.Visible = False
+        End If
 
     End Sub
 
@@ -145,39 +144,65 @@ Public Class Usuario
         txt_bucar.Text = ""
     End Sub
 
-    Public Sub ObtenerPerfil()
-        Dim Perfil = SeguridadFacade.ConsultarPerfilxId(hdf_id.Value)
-        'txt_nombrePerfil.Text = Perfil.Nombre
-        'txt_DescripcionPerfil.Text = Perfil.Describe
+    Public Sub ObtenerUsuario()
+        Dim Usuario = SeguridadFacade.ConsultarUsuarioxId(hdf_id.Value)
+        txt_Estado.Text = Usuario.Estados.Nombre
+        txt_usuario.Text = Usuario.Usuario
+        cbx_Empleados.SelectedValue = Usuario.EmpleadoFk
+        cbx_Empleados.Text = Usuario.Empleados.Nombre
+        cbx_Perfiles.SelectedValue = Usuario.PerfilFk
+        cbx_Perfiles.Text = Usuario.Perfiles.Nombre
     End Sub
 
-    Public Function AsignarPerfil() As Perfiles
-        Dim Perfil As New Perfiles
+    Public Function AsignarUsuario() As Usuarios
+        If txt_clave.Text <> txt_confirmaclave.Text Then
+            Throw New Exception("Las claves ingresadas no coinciden")
+        End If
+        Dim usuario As New Usuarios
         Try
-            Perfil.PerfilId = hdf_id.Value
+            usuario.UsuarioId = hdf_id.Value
         Catch ex As Exception
 
         End Try
-        'If txt_nombrePerfil.Text = "" Then
-        '    Throw New Exception("Por favor ingrese un nombre")
-        'Else
-        '    Perfil.Nombre = txt_nombrePerfil.Text
-        'End If
-        'Perfil.Describe = txt_DescripcionPerfil.Text
-        Return Perfil
+
+        If txt_usuario.Text = "" Then
+            Throw New Exception("Por favor ingrese un usuario")
+        Else
+            usuario.Usuario = txt_usuario.Text
+        End If
+
+        If txt_clave.Text = "" Then
+            Throw New Exception("Por favor ingrese una contraseña")
+        Else
+            usuario.Clave = FormsAuthentication.HashPasswordForStoringInConfigFile(txt_clave.Text, "md5")
+        End If
+
+        usuario.EmpleadoFk = cbx_Empleados.SelectedValue
+        usuario.PerfilFk = cbx_Perfiles.SelectedValue
+
+
+        Dim Modulo = SeguridadFacade.ConsultarModuloxNombre("Seguridad")
+        usuario.Estado = SeguridadFacade.ConsultarEstadoxModulo(Modulo.ModuloId, "Activo").EstadoId
+
+        Return usuario
+
     End Function
 
-    Public Sub LimpiarPerfil()
+    Public Sub LimpiarUsuario()
         hdf_id.Value = Nothing
-        'txt_nombrePerfil.Text = Nothing
-        'txt_DescripcionPerfil.Text = Nothing
-        'Master.mensajes = Nothing
-        'txt_nombrePerfil.Focus()
+        txt_Estado.Text = Nothing
+        txt_usuario.Text = Nothing
+        cbx_Empleados.SelectedValue = Nothing
+        cbx_Empleados.Text = Nothing
+        cbx_Perfiles.SelectedValue = Nothing
+        cbx_Perfiles.Text = Nothing
+        Master.mensajes = Nothing
+        txt_usuario.Focus()
     End Sub
 
     Protected Sub CargarPermisos()
         Dim permisos As New SeguridadFacade
-        prm = permisos.AutorizarBotones("Perfiles")
+        prm = permisos.AutorizarBotones("Usuarios")
         For i As Integer = 0 To prm.Count
             Try
                 Me.Master.FindControl("cph_botones").FindControl(prm.Item(i).Nombre).Visible = prm.Item(i).Valor

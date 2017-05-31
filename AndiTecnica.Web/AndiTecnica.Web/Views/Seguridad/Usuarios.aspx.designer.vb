@@ -77,24 +77,6 @@ Partial Public Class Usuario
     Protected WithEvents pnl_form As Global.System.Web.UI.WebControls.Panel
     
     '''<summary>
-    '''Lbl_Estado control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Lbl_Estado As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''txt_Estado control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txt_Estado As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
     '''lbl_usuario control.
     '''</summary>
     '''<remarks>
@@ -113,22 +95,22 @@ Partial Public Class Usuario
     Protected WithEvents txt_usuario As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''lbl_perfil control.
+    '''Lbl_Estado control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_perfil As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Lbl_Estado As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''cbx_Perfiles control.
+    '''txt_Estado control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cbx_Perfiles As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents txt_Estado As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''lbl_Empleado control.
@@ -146,7 +128,7 @@ Partial Public Class Usuario
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cbx_Empleados As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents cbx_Empleados As Global.Telerik.Web.UI.RadComboBox
     
     '''<summary>
     '''lbl_clave control.
@@ -165,6 +147,24 @@ Partial Public Class Usuario
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_clave As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''lbl_perfil control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_perfil As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''cbx_Perfiles control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbx_Perfiles As Global.Telerik.Web.UI.RadComboBox
     
     '''<summary>
     '''lbl_confirmaclave control.
@@ -230,13 +230,13 @@ Partial Public Class Usuario
     Protected WithEvents btn_filtrar As Global.System.Web.UI.HtmlControls.HtmlButton
     
     '''<summary>
-    '''grd_Perfiles control.
+    '''grd_Usuarios control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents grd_Perfiles As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents grd_Usuarios As Global.System.Web.UI.WebControls.GridView
     
     '''<summary>
     '''hdf_id control.
