@@ -4,16 +4,20 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <link href="Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="Content/style.css" rel="stylesheet" />
-    <link href="Content/font-awesome.css" rel="stylesheet" />
-    <link href="Content/animate.css" rel="stylesheet" />
+    <link href="../Estilo/CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Estilo/CSS/style.css" rel="stylesheet" />
+    <link href="../Estilo/CSS/font-awesome.css" rel="stylesheet" />
+    <link href="../Estilo/CSS/animate.css" rel="stylesheet" />
+    <link href="../Estilo/CSS/diseno_app.css" rel="stylesheet" />
+
     <title>AndiTecnica</title>
     <style type="text/css">
         .auto-style2 {
             width: 100px;
             height: 100px;
         }
+
+
     </style>
 </head>
 <body>
