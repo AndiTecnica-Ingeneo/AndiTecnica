@@ -165,6 +165,14 @@ Public Class Usuario
 
         End Try
 
+        If cbx_Empleados.SelectedValue Is Nothing Or cbx_Empleados.SelectedValue = 0 Or cbx_Empleados.SelectedValue = "" Then
+            Throw New Exception("Por favor ingrese un empleado")
+        End If
+
+        If cbx_Perfiles.SelectedValue Is Nothing Or cbx_Perfiles.SelectedValue = 0 Or cbx_Perfiles.SelectedValue = "" Then
+            Throw New Exception("Por favor ingrese un perfil")
+        End If
+
         If txt_usuario.Text = "" Then
             Throw New Exception("Por favor ingrese un usuario")
         Else

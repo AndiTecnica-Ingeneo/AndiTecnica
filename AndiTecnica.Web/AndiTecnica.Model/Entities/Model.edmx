@@ -139,6 +139,23 @@
           <Property Name="Modificado" Type="smalldatetime" Nullable="false" />
           <Property Name="Estado" Type="int" />
         </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="ProveedorId" />
+          </Key>
+          <Property Name="ProveedorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PaisFk" Type="int" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="PlazoFk" Type="int" Nullable="false" />
+          <Property Name="Notas" Type="nvarchar(max)" />
+          <Property Name="Creado" Type="smalldatetime" Nullable="false" />
+          <Property Name="Modificado" Type="smalldatetime" Nullable="false" />
+          <Property Name="EstadoFk" Type="int" Nullable="false" />
+          <Property Name="Identificacion" Type="nvarchar" MaxLength="18" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Autorizaciones_Menus">
           <End Role="Menus" Type="Self.Menus" Multiplicity="1" />
           <End Role="Autorizaciones" Type="Self.Autorizaciones" Multiplicity="*" />
@@ -359,6 +376,7 @@
           <EntitySet Name="Perfiles" EntityType="Self.Perfiles" Schema="Seguridad" store:Type="Tables" />
           <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="Seguridad" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="Seguridad" store:Type="Tables" />
+          <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="Terceros" store:Type="Tables" />
           <AssociationSet Name="FK_Autorizaciones_Menus" Association="Self.FK_Autorizaciones_Menus">
             <End Role="Menus" EntitySet="Menus" />
             <End Role="Autorizaciones" EntitySet="Autorizaciones" />
@@ -410,6 +428,10 @@
           <AssociationSet Name="FK_Productos_Estados" Association="Self.FK_Productos_Estados">
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_Estados" Association="Self.FK_Proveedores_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuarios_Empleados" Association="Self.FK_Usuarios_Empleados">
             <End Role="Empleados" EntitySet="Empleados" />
@@ -516,6 +538,11 @@
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
+          <EntitySet Name="Proveedores" EntityType="AndiTecnicaModel.Proveedores" />
+          <AssociationSet Name="FK_Proveedores_Estados" Association="AndiTecnicaModel.FK_Proveedores_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="ConsultarModulosxUsuarioId_Result">
           <Property Type="Int32" Name="ModuloId" Nullable="false" />
@@ -591,6 +618,7 @@
           <NavigationProperty Name="Modulos" Relationship="AndiTecnicaModel.FK_Estados_Modulos" FromRole="Estados" ToRole="Modulos" />
           <NavigationProperty Name="Perfiles" Relationship="AndiTecnicaModel.FK_Perfiles_Estados" FromRole="Estados" ToRole="Perfiles" />
           <NavigationProperty Name="Usuarios" Relationship="AndiTecnicaModel.FK_Usuarios_Estados" FromRole="Estados" ToRole="Usuarios" />
+          <NavigationProperty Name="Proveedores" Relationship="AndiTecnicaModel.FK_Proveedores_Estados" FromRole="Estados" ToRole="Proveedores" />
           <NavigationProperty Name="Productos" Relationship="AndiTecnicaModel.FK_Productos_Estados" FromRole="Estados" ToRole="Productos" />
         </EntityType>
         <EntityType Name="Menus">
@@ -1052,6 +1080,24 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Proveedores">
+            <EntityTypeMapping TypeName="AndiTecnicaModel.Proveedores">
+              <MappingFragment StoreEntitySet="Proveedores">
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="EstadoFk" ColumnName="EstadoFk" />
+                <ScalarProperty Name="Modificado" ColumnName="Modificado" />
+                <ScalarProperty Name="Creado" ColumnName="Creado" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="PlazoFk" ColumnName="PlazoFk" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="PaisFk" ColumnName="PaisFk" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ProveedorId" ColumnName="ProveedorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Productos">
             <EntityTypeMapping TypeName="AndiTecnicaModel.Productos">
               <MappingFragment StoreEntitySet="Productos">
