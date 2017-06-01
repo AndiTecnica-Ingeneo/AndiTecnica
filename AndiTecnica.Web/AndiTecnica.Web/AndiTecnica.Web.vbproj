@@ -165,6 +165,7 @@
     <Content Include="Views\Seguridad\Empleados.aspx" />
     <Content Include="Views\Seguridad\Usuarios.aspx" />
     <Content Include="Views\Seguridad\Perfiles.aspx" />
+    <Content Include="Views\Terceros\Proveedores.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +235,13 @@
     </Compile>
     <Compile Include="Views\Seguridad\Perfiles.aspx.vb">
       <DependentUpon>Perfiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Terceros\Proveedores.aspx.designer.vb">
+      <DependentUpon>Proveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Terceros\Proveedores.aspx.vb">
+      <DependentUpon>Proveedores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
   </ItemGroup>

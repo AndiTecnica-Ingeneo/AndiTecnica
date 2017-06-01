@@ -123,6 +123,23 @@
           <Property Name="Modificado" Type="smalldatetime" Nullable="false" />
           <Property Name="Estado" Type="int" />
         </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="ProveedorId" />
+          </Key>
+          <Property Name="ProveedorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PaisFk" Type="int" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="PlazoFk" Type="int" Nullable="false" />
+          <Property Name="Notas" Type="nvarchar(max)" />
+          <Property Name="Creado" Type="smalldatetime" Nullable="false" />
+          <Property Name="Modificado" Type="smalldatetime" Nullable="false" />
+          <Property Name="EstadoFk" Type="int" Nullable="false" />
+          <Property Name="Identificacion" Type="nvarchar" MaxLength="18" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Autorizaciones_Menus">
           <End Role="Menus" Type="Self.Menus" Multiplicity="1" />
           <End Role="Autorizaciones" Type="Self.Autorizaciones" Multiplicity="*" />
@@ -259,6 +276,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Proveedores_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="EstadoId" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="EstadoFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Usuarios_Empleados">
           <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
@@ -318,6 +347,7 @@
           <EntitySet Name="Perfiles" EntityType="Self.Perfiles" Schema="Seguridad" store:Type="Tables" />
           <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="Seguridad" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="Seguridad" store:Type="Tables" />
+          <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="Terceros" store:Type="Tables" />
           <AssociationSet Name="FK_Autorizaciones_Menus" Association="Self.FK_Autorizaciones_Menus">
             <End Role="Menus" EntitySet="Menus" />
             <End Role="Autorizaciones" EntitySet="Autorizaciones" />
@@ -361,6 +391,10 @@
           <AssociationSet Name="FK_Permisos_Perfiles" Association="Self.FK_Permisos_Perfiles">
             <End Role="Perfiles" EntitySet="Perfiles" />
             <End Role="Permisos" EntitySet="Permisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_Estados" Association="Self.FK_Proveedores_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuarios_Empleados" Association="Self.FK_Usuarios_Empleados">
             <End Role="Empleados" EntitySet="Empleados" />
@@ -458,6 +492,11 @@
             <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
             <Parameter Name="ModuloId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="Proveedores" EntityType="AndiTecnicaModel.Proveedores" />
+          <AssociationSet Name="FK_Proveedores_Estados" Association="AndiTecnicaModel.FK_Proveedores_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="ConsultarModulosxUsuarioId_Result">
           <Property Type="Int32" Name="ModuloId" Nullable="false" />
@@ -532,6 +571,7 @@
           <NavigationProperty Name="Modulos" Relationship="AndiTecnicaModel.FK_Estados_Modulos" FromRole="Estados" ToRole="Modulos" />
           <NavigationProperty Name="Perfiles" Relationship="AndiTecnicaModel.FK_Perfiles_Estados" FromRole="Estados" ToRole="Perfiles" />
           <NavigationProperty Name="Usuarios" Relationship="AndiTecnicaModel.FK_Usuarios_Estados" FromRole="Estados" ToRole="Usuarios" />
+          <NavigationProperty Name="Proveedores" Relationship="AndiTecnicaModel.FK_Proveedores_Estados" FromRole="Estados" ToRole="Proveedores" />
         </EntityType>
         <EntityType Name="Menus">
           <Key>
@@ -790,6 +830,36 @@
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Ruta" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="ProveedorId" />
+          </Key>
+          <Property Name="ProveedorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PaisFk" Type="Int32" Nullable="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PlazoFk" Type="Int32" Nullable="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Creado" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Modificado" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EstadoFk" Type="Int32" Nullable="false" />
+          <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Estados" Relationship="AndiTecnicaModel.FK_Proveedores_Estados" FromRole="Proveedores" ToRole="Estados" />
+        </EntityType>
+        <Association Name="FK_Proveedores_Estados">
+          <End Type="AndiTecnicaModel.Estados" Role="Estados" Multiplicity="1" />
+          <End Type="AndiTecnicaModel.Proveedores" Role="Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="EstadoId" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="EstadoFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -950,6 +1020,24 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Proveedores">
+            <EntityTypeMapping TypeName="AndiTecnicaModel.Proveedores">
+              <MappingFragment StoreEntitySet="Proveedores">
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="EstadoFk" ColumnName="EstadoFk" />
+                <ScalarProperty Name="Modificado" ColumnName="Modificado" />
+                <ScalarProperty Name="Creado" ColumnName="Creado" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="PlazoFk" ColumnName="PlazoFk" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="PaisFk" ColumnName="PaisFk" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ProveedorId" ColumnName="ProveedorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
