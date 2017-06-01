@@ -14,11 +14,11 @@ Imports System.Data.Objects
 Imports System.Data.Objects.DataClasses
 Imports System.Linq
 
-Partial Public Class AndiTecnicaEntities
+Partial Public Class Entities
     Inherits DbContext
 
     Public Sub New()
-        MyBase.New("name=AndiTecnicaEntities")
+        MyBase.New("name=Entities")
     End Sub
 
     Protected Overrides Sub OnModelCreating(modelBuilder As DbModelBuilder)
@@ -26,6 +26,7 @@ Partial Public Class AndiTecnicaEntities
     End Sub
 
     Public Property CategoriasProductos() As DbSet(Of CategoriasProductos)
+    Public Property Productos() As DbSet(Of Productos)
     Public Property Autorizaciones() As DbSet(Of Autorizaciones)
     Public Property Botones() As DbSet(Of Botones)
     Public Property Empleados() As DbSet(Of Empleados)
@@ -37,7 +38,14 @@ Partial Public Class AndiTecnicaEntities
     Public Property Permisos() As DbSet(Of Permisos)
     Public Property Usuarios() As DbSet(Of Usuarios)
     Public Property Proveedores() As DbSet(Of Proveedores)
-    Public Property Productos() As DbSet(Of Productos)
+
+    Public Overridable Function ConsultarMenusxUsuarioId(usuarioId As Nullable(Of Integer), moduloId As Nullable(Of Integer)) As ObjectResult(Of ConsultarMenusxUsuarioId_Result)
+        Dim usuarioIdParameter As ObjectParameter = If(usuarioId.HasValue, New ObjectParameter("UsuarioId", usuarioId), New ObjectParameter("UsuarioId", GetType(Integer)))
+
+        Dim moduloIdParameter As ObjectParameter = If(moduloId.HasValue, New ObjectParameter("ModuloId", moduloId), New ObjectParameter("ModuloId", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of ConsultarMenusxUsuarioId_Result)("ConsultarMenusxUsuarioId", usuarioIdParameter, moduloIdParameter)
+    End Function
 
     Public Overridable Function ConsultarModulosxUsuarioId(usuarioId As Nullable(Of Integer)) As ObjectResult(Of ConsultarModulosxUsuarioId_Result)
         Dim usuarioIdParameter As ObjectParameter = If(usuarioId.HasValue, New ObjectParameter("UsuarioId", usuarioId), New ObjectParameter("UsuarioId", GetType(Integer)))
@@ -51,14 +59,6 @@ Partial Public Class AndiTecnicaEntities
         Dim menuParameter As ObjectParameter = If(menu IsNot Nothing, New ObjectParameter("Menu", menu), New ObjectParameter("Menu", GetType(String)))
 
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of AutorizarBotones_Result)("AutorizarBotones", usuarioIdParameter, menuParameter)
-    End Function
-
-    Public Overridable Function ConsultarMenusxUsuarioId(usuarioId As Nullable(Of Integer), moduloId As Nullable(Of Integer)) As ObjectResult(Of ConsultarMenusxUsuarioId_Result)
-        Dim usuarioIdParameter As ObjectParameter = If(usuarioId.HasValue, New ObjectParameter("UsuarioId", usuarioId), New ObjectParameter("UsuarioId", GetType(Integer)))
-
-        Dim moduloIdParameter As ObjectParameter = If(moduloId.HasValue, New ObjectParameter("ModuloId", moduloId), New ObjectParameter("ModuloId", GetType(Integer)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of ConsultarMenusxUsuarioId_Result)("ConsultarMenusxUsuarioId", usuarioIdParameter, moduloIdParameter)
     End Function
 
 End Class

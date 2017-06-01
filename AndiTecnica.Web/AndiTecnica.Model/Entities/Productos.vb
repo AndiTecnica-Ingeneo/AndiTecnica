@@ -17,6 +17,9 @@ Partial Public Class Productos
     Public Property Descripcion As String
     Public Property Costo As Nullable(Of Decimal)
     Public Property Stock As Nullable(Of Integer)
+    Public Property Largo As Nullable(Of Integer)
+    Public Property Alto As Nullable(Of Integer)
+    Public Property Ancho As Nullable(Of Integer)
     Public Property CategoriaFk As Integer
     Public Property RutaFoto As String
     Public Property Estado As Nullable(Of Integer)

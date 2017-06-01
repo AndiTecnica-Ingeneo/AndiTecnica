@@ -7,7 +7,7 @@ Namespace Dao.Permisos
     Friend Class PermisosDao
 
         Public Function AutorizarBotones(ByVal Menu As String) As List(Of AutorizarBotones_Result)
-            Using bd As New AndiTecnicaEntities
+            Using bd As New Entities
                 Dim sp = From tbl In bd.AutorizarBotones(SessionManager.UserId, Menu)
                          Select tbl
                 Return sp.ToList()

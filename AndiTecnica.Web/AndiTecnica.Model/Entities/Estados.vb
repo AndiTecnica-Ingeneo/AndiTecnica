@@ -17,11 +17,11 @@ Partial Public Class Estados
     Public Property Describe As String
 
     Public Overridable Property CategoriasProductos As ICollection(Of CategoriasProductos) = New HashSet(Of CategoriasProductos)
+    Public Overridable Property Productos As ICollection(Of Productos) = New HashSet(Of Productos)
     Public Overridable Property Empleados As ICollection(Of Empleados) = New HashSet(Of Empleados)
     Public Overridable Property Modulos As Modulos
     Public Overridable Property Perfiles As ICollection(Of Perfiles) = New HashSet(Of Perfiles)
-    Public Overridable Property Usuarios As ICollection(Of Usuarios) = New HashSet(Of Usuarios)
     Public Overridable Property Proveedores As ICollection(Of Proveedores) = New HashSet(Of Proveedores)
-    Public Overridable Property Productos As ICollection(Of Productos) = New HashSet(Of Productos)
+    Public Overridable Property Usuarios As ICollection(Of Usuarios) = New HashSet(Of Usuarios)
 
 End Class

@@ -1,6 +1,6 @@
 ﻿Friend Class PerfilesDao
     Public Function ListarPerfiles() As List(Of Perfiles)
-        Using bd As New AndiTecnicaEntities
+        Using bd As New Entities
             Dim query = From tbl In bd.Perfiles.Include("Estados")
                         Select tbl
             Return query.ToList
@@ -8,7 +8,7 @@
     End Function
 
     Public Function BuscarPerfiles(ByVal Nombre As String) As List(Of Perfiles)
-        Using bd As New AndiTecnicaEntities
+        Using bd As New Entities
             Dim query = From tbl In bd.Perfiles.Include("Estados")
                         Where tbl.Nombre.Contains(Nombre)
                         Select tbl
@@ -17,7 +17,7 @@
     End Function
 
     Public Function ConsultarPerfilxId(ByVal Perfilid As Integer) As Perfiles
-        Using bd As New AndiTecnicaEntities
+        Using bd As New Entities
             Dim query = From tbl In bd.Perfiles
                         Where tbl.PerfilId = Perfilid
                         Select tbl
@@ -26,21 +26,21 @@
     End Function
 
     Public Sub GuardarPerfil(ByVal Perfil As Perfiles)
-        Using bd As New AndiTecnicaEntities
+        Using bd As New Entities
             bd.Entry(Perfil).State = EntityState.Added
             bd.SaveChanges()
         End Using
     End Sub
 
     Public Sub ActualizarPerfil(ByVal Perfil As Perfiles)
-        Using bd As New AndiTecnicaEntities
+        Using bd As New Entities
             bd.Entry(Perfil).State = EntityState.Modified
             bd.SaveChanges()
         End Using
     End Sub
 
     Public Sub EliminarPerfil(ByVal Perfil As Perfiles)
-        Using bd As New AndiTecnicaEntities
+        Using bd As New Entities
             bd.Entry(Perfil).State = EntityState.Deleted
             bd.SaveChanges()
         End Using

@@ -13,6 +13,7 @@ Imports System.Collections.Generic
 Partial Public Class Proveedores
     Public Property ProveedorId As Integer
     Public Property Nombre As String
+    Public Property Identificacion As String
     Public Property Direccion As String
     Public Property PaisFk As Integer
     Public Property Correo As String
@@ -22,7 +23,6 @@ Partial Public Class Proveedores
     Public Property Creado As Date
     Public Property Modificado As Date
     Public Property EstadoFk As Integer
-    Public Property Identificacion As String
 
     Public Overridable Property Estados As Estados
 

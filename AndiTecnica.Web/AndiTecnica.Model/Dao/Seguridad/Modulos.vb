@@ -4,7 +4,7 @@
     End Sub
 
     Public Function ListarModulos() As List(Of Modulos)
-        Using bd As New AndiTecnicaEntities
+        Using bd As New Entities
             Dim query = From tbl In bd.Modulos
                         Select tbl
             Return query.ToList
@@ -12,7 +12,7 @@
     End Function
 
     Public Function BuscarModulos(ByVal Nombre As String) As List(Of Modulos)
-        Using bd As New AndiTecnicaEntities
+        Using bd As New Entities
             Dim query = From tbl In bd.Modulos
                         Where tbl.Nombre.Contains(Nombre)
                         Select tbl
@@ -21,7 +21,7 @@
     End Function
 
     Public Function ConsultarModuloxId(ByVal Moduloid As Integer) As Modulos
-        Using bd As New AndiTecnicaEntities
+        Using bd As New Entities
             Dim query = From tbl In bd.Modulos
                         Where tbl.ModuloId = Moduloid
                         Select tbl
@@ -31,7 +31,7 @@
 
 
     Public Function ConsultarModuloxNombre(ByVal Nombre As String) As Modulos
-        Using bd As New AndiTecnicaEntities
+        Using bd As New Entities
             Dim query = From tbl In bd.Modulos
                         Where tbl.Nombre = Nombre
                         Select tbl
@@ -41,21 +41,21 @@
 
 
     Public Sub GuardarModulo(ByVal Modulo As Modulos)
-        Using bd As New AndiTecnicaEntities
+        Using bd As New Entities
             bd.Entry(Modulo).State = EntityState.Added
             bd.SaveChanges()
         End Using
     End Sub
 
     Public Sub ActualizarModulo(ByVal Modulo As Modulos)
-        Using bd As New AndiTecnicaEntities
+        Using bd As New Entities
             bd.Entry(Modulo).State = EntityState.Modified
             bd.SaveChanges()
         End Using
     End Sub
 
     Public Sub EliminarModulo(ByVal Modulo As Modulos)
-        Using bd As New AndiTecnicaEntities
+        Using bd As New Entities
             bd.Entry(Modulo).State = EntityState.Deleted
             bd.SaveChanges()
         End Using
