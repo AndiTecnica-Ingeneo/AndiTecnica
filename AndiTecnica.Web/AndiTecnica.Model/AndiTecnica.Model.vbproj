@@ -80,6 +80,7 @@
     <Compile Include="BL\Seguridad\PerfilesBL.vb" />
     <Compile Include="BL\Seguridad\PermisosBL.vb" />
     <Compile Include="BL\Seguridad\UsuariosBL.vb" />
+    <Compile Include="BL\Terceros\ClientesBL.vb" />
     <Compile Include="BL\Terceros\ProveedoresBL.vb" />
     <Compile Include="Dao\Productos\ProductosDao.vb" />
     <Compile Include="Dao\Productos\CategoriasDao.vb" />
@@ -89,6 +90,7 @@
     <Compile Include="Dao\Seguridad\PerfilesDao.vb" />
     <Compile Include="Dao\Seguridad\PermisosDao.vb" />
     <Compile Include="Dao\Seguridad\UsuariosDao.vb" />
+    <Compile Include="Dao\Terceros\ClientesDao.vb" />
     <Compile Include="Dao\Terceros\ProveedoresDao.vb" />
     <Compile Include="Entities\Autorizaciones.vb">
       <DependentUpon>Model.tt</DependentUpon>

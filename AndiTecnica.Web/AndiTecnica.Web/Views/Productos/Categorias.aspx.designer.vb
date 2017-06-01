@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class Categorias
-
+    
     '''<summary>
     '''lkb_buscar control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lkb_buscar As Global.System.Web.UI.WebControls.LinkButton
-
+    
     '''<summary>
     '''lkb_agregar control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lkb_agregar As Global.System.Web.UI.WebControls.LinkButton
-
+    
     '''<summary>
     '''lkb_editar control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lkb_editar As Global.System.Web.UI.WebControls.LinkButton
-
+    
     '''<summary>
     '''lkb_guardar control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lkb_guardar As Global.System.Web.UI.WebControls.LinkButton
-
+    
     '''<summary>
     '''lkb_eliminar control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lkb_eliminar As Global.System.Web.UI.WebControls.LinkButton
-
+    
     '''<summary>
     '''lkb_salir control.
     '''</summary>
@@ -66,7 +66,16 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lkb_salir As Global.System.Web.UI.WebControls.LinkButton
-
+    
+    '''<summary>
+    '''pnl_head control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnl_head As Global.System.Web.UI.WebControls.Panel
+    
     '''<summary>
     '''pnl_form control.
     '''</summary>
@@ -75,7 +84,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnl_form As Global.System.Web.UI.WebControls.Panel
-
+    
     '''<summary>
     '''lbl_Nombre control.
     '''</summary>
@@ -84,7 +93,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_Nombre As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''txt_nombreCategorias control.
     '''</summary>
@@ -93,7 +102,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_nombreCategorias As Global.System.Web.UI.WebControls.TextBox
-
+    
     '''<summary>
     '''lbl_descripcion control.
     '''</summary>
@@ -102,7 +111,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_descripcion As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''txt_DescripcionCategorias control.
     '''</summary>
@@ -111,7 +120,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_DescripcionCategorias As Global.System.Web.UI.WebControls.TextBox
-
+    
     '''<summary>
     '''pnl_list control.
     '''</summary>
@@ -120,7 +129,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnl_list As Global.System.Web.UI.WebControls.Panel
-
+    
     '''<summary>
     '''pnl_buscar control.
     '''</summary>
@@ -129,7 +138,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnl_buscar As Global.System.Web.UI.WebControls.Panel
-
+    
     '''<summary>
     '''lbl_buscar control.
     '''</summary>
@@ -138,7 +147,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_buscar As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''txt_bucar control.
     '''</summary>
@@ -147,7 +156,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_bucar As Global.System.Web.UI.WebControls.TextBox
-
+    
     '''<summary>
     '''btn_filtrar control.
     '''</summary>
@@ -156,7 +165,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_filtrar As Global.System.Web.UI.HtmlControls.HtmlButton
-
+    
     '''<summary>
     '''grd_CategoriasProductos control.
     '''</summary>
@@ -165,7 +174,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents grd_CategoriasProductos As Global.System.Web.UI.WebControls.GridView
-
+    
     '''<summary>
     '''hdf_id control.
     '''</summary>
@@ -174,7 +183,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hdf_id As Global.System.Web.UI.WebControls.HiddenField
-
+    
     '''<summary>
     '''ods_CategoriasProductos control.
     '''</summary>
@@ -183,7 +192,7 @@ Partial Public Class Categorias
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ods_CategoriasProductos As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''Master property.
     '''</summary>
@@ -192,7 +201,7 @@ Partial Public Class Categorias
     '''</remarks>
     Public Shadows ReadOnly Property Master() As AndiTecnica.Web.Principal
         Get
-            Return CType(MyBase.Master, AndiTecnica.Web.Principal)
+            Return CType(MyBase.Master,AndiTecnica.Web.Principal)
         End Get
     End Property
 End Class

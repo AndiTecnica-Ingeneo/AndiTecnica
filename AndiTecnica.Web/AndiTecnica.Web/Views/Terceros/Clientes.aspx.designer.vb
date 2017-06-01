@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Perfil
+Partial Public Class Clientes
     
     '''<summary>
     '''lkb_buscar control.
@@ -86,40 +86,166 @@ Partial Public Class Perfil
     Protected WithEvents pnl_form As Global.System.Web.UI.WebControls.Panel
     
     '''<summary>
-    '''lbl_Nombre control.
+    '''lbl_Estado control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_Nombre As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_Estado As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''txt_nombrePerfil control.
+    '''txt_Estado control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_nombrePerfil As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_Estado As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''lbl_descripcion control.
+    '''lbl_nombre control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_descripcion As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_nombre As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''txt_DescripcionPerfil control.
+    '''txt_nombre control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_DescripcionPerfil As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_nombre As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''lbl_identificacion control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_identificacion As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''txt_identificacion control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_identificacion As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''lbl_Direccion control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_Direccion As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''txt_direccion control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_direccion As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''lbl_Pais control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_Pais As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''cbx_Paises control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbx_Paises As Global.Telerik.Web.UI.RadComboBox
+    
+    '''<summary>
+    '''lbl_correo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_correo As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''txt_correo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_correo As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''lbl_Telefono control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_Telefono As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''txt_telefono control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_telefono As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''lbl_plazo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_plazo As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''cbx_plazos control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbx_plazos As Global.Telerik.Web.UI.RadComboBox
+    
+    '''<summary>
+    '''lbl_notas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_notas As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''txt_Notas control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_Notas As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''pnl_list control.
@@ -167,13 +293,13 @@ Partial Public Class Perfil
     Protected WithEvents btn_filtrar As Global.System.Web.UI.HtmlControls.HtmlButton
     
     '''<summary>
-    '''grd_Perfiles control.
+    '''grd_Clientes control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents grd_Perfiles As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents grd_Clientes As Global.System.Web.UI.WebControls.GridView
     
     '''<summary>
     '''hdf_id control.
@@ -185,13 +311,13 @@ Partial Public Class Perfil
     Protected WithEvents hdf_id As Global.System.Web.UI.WebControls.HiddenField
     
     '''<summary>
-    '''ods_Perfiles control.
+    '''ods_Clientes control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ods_Perfiles As Global.System.Web.UI.WebControls.ObjectDataSource
+    Protected WithEvents ods_Clientes As Global.System.Web.UI.WebControls.ObjectDataSource
     
     '''<summary>
     '''Master property.

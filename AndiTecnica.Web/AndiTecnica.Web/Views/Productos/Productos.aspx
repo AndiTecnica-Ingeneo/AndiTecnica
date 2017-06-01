@@ -14,6 +14,14 @@
     <asp:linkbutton cssclass="link_button" id="lkb_salir" runat="server" tooltip="Volver"><span class="fa fa-undo"></span></asp:linkbutton>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenido" runat="server">
+    <asp:Panel id="pnl_head" runat="server">
+        <table class="cien">
+            <tr>                
+                <td class="cien text-center">Productos</td>
+            </tr>           
+        </table>
+    </asp:Panel>
+    <br />
     <asp:panel id="pnl_form" runat="server">
    <table class="nav-justified">
        <tr>

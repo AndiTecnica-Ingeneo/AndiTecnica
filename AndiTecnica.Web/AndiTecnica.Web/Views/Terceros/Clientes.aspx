@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPages/Principal.Master" CodeBehind="Proveedores.aspx.vb" Inherits="AndiTecnica.Web.Proveedores" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPages/Principal.Master" CodeBehind="Clientes.aspx.vb" Inherits="AndiTecnica.Web.Clientes" %>
 <%@ MasterType VirtualPath="~/MasterPages/Principal.Master" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
@@ -13,15 +13,15 @@
     <asp:linkbutton cssclass="link_button" id="lkb_salir" runat="server" tooltip="Volver"><span class="fa fa-undo"></span></asp:linkbutton>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cph_contenido" runat="server">
-   <asp:Panel id="pnl_head" runat="server">
-   <table class="cien">
+    <asp:Panel id="pnl_head" runat="server">
+        <table class="cien">
             <tr>                
-                <td class="cien text-center">Proveedores</td>
+                <td class="cien text-center">Clientes</td>
             </tr>           
         </table>
-   </asp:Panel>
-   <br />
-   <asp:panel id="pnl_form" runat="server">
+    </asp:Panel>
+    <br />
+    <asp:panel id="pnl_form" runat="server">
    <table class="nav-justified">
       <tr>
         <td class="quince alinear_der">
@@ -132,7 +132,7 @@
         <tr>
           <td class="veinte"></td>
           <td class="quince alinear_der" align="center">
-              <asp:Label ID="lbl_buscar" runat="server" Text="Buscar Proveedor : "></asp:Label>
+              <asp:Label ID="lbl_buscar" runat="server" Text="Buscar Cliente : "></asp:Label>
           </td>
           <td class="veinte">
             <asp:TextBox ID="txt_bucar" class="form-control" runat="server"></asp:TextBox>
@@ -146,11 +146,11 @@
       </table>
       <br />
     </asp:Panel>
-    <asp:GridView ID="grd_Proveedores" runat="server" AutoGenerateColumns="False" DataSourceID="ods_Proveedores" DataKeyNames="ProveedorId" CssClass="table table-bordered" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True">
+    <asp:GridView ID="grd_Clientes" runat="server" AutoGenerateColumns="False" DataSourceID="ods_Clientes" DataKeyNames="ClienteId" CssClass="table table-bordered" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True">
       <AlternatingRowStyle BackColor="White" />
       <Columns>
         <asp:CommandField ShowSelectButton="True" ControlStyle-CssClass="fa fa-pencil" ItemStyle-HorizontalAlign="Center" SelectText=""><ControlStyle CssClass="fa fa-pencil link_button_select"/></asp:CommandField>
-        <asp:BoundField DataField="ProveedorId" HeaderText="ProveedorId" SortExpression="ProveedorId" visible ="false"/>
+        <asp:BoundField DataField="ClienteId" HeaderText="ClienteId" SortExpression="ClienteId" visible ="false"/>
         <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
         <asp:BoundField DataField="Identificacion" HeaderText="Identificacion" SortExpression="Identificacion" />
         <asp:BoundField DataField="Direccion" HeaderText="Direccion" SortExpression="Direccion" />
@@ -166,7 +166,7 @@
 
     <asp:hiddenfield id="hdf_id" runat="server" />
 
-    <asp:ObjectDataSource ID="ods_Proveedores" runat="server" SelectMethod="ListarProveedores" TypeName="AndiTecnica.Model.TercerosFacade.TercerosFacade"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="ods_Clientes" runat="server" SelectMethod="ListarClientes" TypeName="AndiTecnica.Model.TercerosFacade.TercerosFacade"></asp:ObjectDataSource>
 
     <script type="text/javascript">
         $(document).ready(function () {

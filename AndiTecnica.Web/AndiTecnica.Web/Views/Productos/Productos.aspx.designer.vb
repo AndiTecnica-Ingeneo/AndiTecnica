@@ -68,6 +68,15 @@ Partial Public Class Productos
     Protected WithEvents lkb_salir As Global.System.Web.UI.WebControls.LinkButton
     
     '''<summary>
+    '''pnl_head control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnl_head As Global.System.Web.UI.WebControls.Panel
+    
+    '''<summary>
     '''pnl_form control.
     '''</summary>
     '''<remarks>

@@ -1,4 +1,5 @@
 ﻿Imports AndiTecnica.Model.BL.Proveedores
+Imports AndiTecnica.Model.BL.Clientes
 
 
 Namespace TercerosFacade
@@ -56,6 +57,64 @@ Namespace TercerosFacade
             Try
                 Dim bl As New ProveedoresBL
                 bl.EliminarProveedor(ProveedorId)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Sub
+#End Region
+
+
+#Region "Clientes"
+
+        Public Function ListarClientes() As List(Of Clientes)
+            Try
+                Dim bl As New ClientesBL
+                Return bl.ListarClientes
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+
+        Public Function BuscarClientes(ByVal Nombre As String) As List(Of Clientes)
+            Try
+                Dim bl As New ClientesBL
+                Return bl.BuscarClientes(Nombre)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+
+        Public Function ConsultarClientexId(ByVal Clienteid As Integer) As Clientes
+            Try
+                Dim bl As New ClientesBL
+                Return bl.ConsultarClientexId(Clienteid)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Function
+
+        Public Sub GuardarCliente(ByVal Cliente As Clientes)
+            Try
+                Dim bl As New ClientesBL
+                bl.GuardarCliente(Cliente)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Sub
+
+        Public Sub ActualizarCliente(ByVal Cliente As Clientes)
+            Try
+                Dim bl As New ClientesBL
+                bl.ActualizarCliente(Cliente)
+            Catch ex As Exception
+                Throw New Exception(ex.Message)
+            End Try
+        End Sub
+
+        Public Sub EliminarCliente(ByVal ClienteId As Integer)
+            Try
+                Dim bl As New ClientesBL
+                bl.EliminarCliente(ClienteId)
             Catch ex As Exception
                 Throw New Exception(ex.Message)
             End Try
