@@ -38,6 +38,7 @@ Partial Public Class Entities
     Public Property Permisos() As DbSet(Of Permisos)
     Public Property Usuarios() As DbSet(Of Usuarios)
     Public Property Proveedores() As DbSet(Of Proveedores)
+    Public Property Clientes() As DbSet(Of Clientes)
 
     Public Overridable Function ConsultarMenusxUsuarioId(usuarioId As Nullable(Of Integer), moduloId As Nullable(Of Integer)) As ObjectResult(Of ConsultarMenusxUsuarioId_Result)
         Dim usuarioIdParameter As ObjectParameter = If(usuarioId.HasValue, New ObjectParameter("UsuarioId", usuarioId), New ObjectParameter("UsuarioId", GetType(Integer)))

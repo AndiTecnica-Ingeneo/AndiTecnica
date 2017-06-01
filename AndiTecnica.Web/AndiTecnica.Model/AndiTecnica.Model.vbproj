@@ -102,6 +102,9 @@
     <Compile Include="Entities\CategoriasProductos.vb">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Clientes.vb">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\ConsultarMenusxUsuarioId_Result.vb">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

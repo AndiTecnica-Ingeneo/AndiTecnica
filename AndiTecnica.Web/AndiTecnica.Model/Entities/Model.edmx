@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AndiTecnicaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AndiTecnicaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CategoriasProductos">
           <Key>
             <PropertyRef Name="CategoriasId" />
@@ -142,6 +142,23 @@
           <Property Name="Modificado" Type="smalldatetime" Nullable="false" />
           <Property Name="Estado" Type="int" />
         </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+          </Key>
+          <Property Name="ClienteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Identificacion" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PaisFk" Type="int" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="PlazoFk" Type="int" Nullable="false" />
+          <Property Name="Notas" Type="nvarchar(max)" />
+          <Property Name="Creado" Type="smalldatetime" Nullable="false" />
+          <Property Name="Modificado" Type="smalldatetime" Nullable="false" />
+          <Property Name="EstadoFk" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Proveedores">
           <Key>
             <PropertyRef Name="ProveedorId" />
@@ -194,6 +211,18 @@
             </Principal>
             <Dependent Role="CategoriasProductos">
               <PropertyRef Name="Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Clientes_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="EstadoId" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="EstadoFk" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -391,6 +420,7 @@
           <EntitySet Name="Perfiles" EntityType="Self.Perfiles" Schema="Seguridad" store:Type="Tables" />
           <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="Seguridad" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="Seguridad" store:Type="Tables" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="Terceros" store:Type="Tables" />
           <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="Terceros" store:Type="Tables" />
           <AssociationSet Name="FK_Autorizaciones_Menus" Association="Self.FK_Autorizaciones_Menus">
             <End Role="Menus" EntitySet="Menus" />
@@ -403,6 +433,10 @@
           <AssociationSet Name="FK_CategoriasProductos_Estados" Association="Self.FK_CategoriasProductos_Estados">
             <End Role="Estados" EntitySet="Estados" />
             <End Role="CategoriasProductos" EntitySet="CategoriasProductos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Clientes_Estados" Association="Self.FK_Clientes_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Clientes" EntitySet="Clientes" />
           </AssociationSet>
           <AssociationSet Name="FK_Empleados_Estados" Association="Self.FK_Empleados_Estados">
             <End Role="Estados" EntitySet="Estados" />
@@ -461,8 +495,7 @@
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AndiTecnicaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -555,6 +588,7 @@
           <NavigationProperty Name="Perfiles" Relationship="Self.FK_Perfiles_Estados" FromRole="Estados" ToRole="Perfiles" />
           <NavigationProperty Name="Proveedores" Relationship="Self.FK_Proveedores_Estados" FromRole="Estados" ToRole="Proveedores" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Estados" FromRole="Estados" ToRole="Usuarios" />
+          <NavigationProperty Name="Clientes" Relationship="AndiTecnicaModel.FK_Clientes_Estados" FromRole="Estados" ToRole="Clientes" />
         </EntityType>
         <EntityType Name="Menus">
           <Key>
@@ -949,12 +983,17 @@
             <Parameter Name="ModuloId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ConsultarModulosxUsuarioId" ReturnType="Collection(AndiTecnicaModel.ConsultarModulosxUsuarioId_Result)">
-            <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
+          <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AutorizarBotones" ReturnType="Collection(AndiTecnicaModel.AutorizarBotones_Result)">
             <Parameter Name="UsuarioId" Mode="In" Type="Int32" />
             <Parameter Name="Menu" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Clientes" EntityType="AndiTecnicaModel.Clientes" />
+          <AssociationSet Name="FK_Clientes_Estados" Association="AndiTecnicaModel.FK_Clientes_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Clientes" EntitySet="Clientes" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="ConsultarMenusxUsuarioId_Result">
           <Property Type="Int32" Name="MenuId" Nullable="false" />
@@ -969,6 +1008,36 @@
           <Property Type="Boolean" Name="Valor" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+          </Key>
+          <Property Name="ClienteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PaisFk" Type="Int32" Nullable="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PlazoFk" Type="Int32" Nullable="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Creado" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Modificado" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EstadoFk" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="AndiTecnicaModel.FK_Clientes_Estados" FromRole="Clientes" ToRole="Estados" />
+        </EntityType>
+        <Association Name="FK_Clientes_Estados">
+          <End Type="AndiTecnicaModel.Estados" Role="Estados" Multiplicity="1" />
+          <End Type="AndiTecnicaModel.Clientes" Role="Clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="EstadoId" />
+            </Principal>
+            <Dependent Role="Clientes">
+              <PropertyRef Name="EstadoFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1167,6 +1236,24 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="AndiTecnicaModel.Clientes">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="EstadoFk" ColumnName="EstadoFk" />
+                <ScalarProperty Name="Modificado" ColumnName="Modificado" />
+                <ScalarProperty Name="Creado" ColumnName="Creado" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="PlazoFk" ColumnName="PlazoFk" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="PaisFk" ColumnName="PaisFk" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -23,5 +23,6 @@ Partial Public Class Estados
     Public Overridable Property Perfiles As ICollection(Of Perfiles) = New HashSet(Of Perfiles)
     Public Overridable Property Proveedores As ICollection(Of Proveedores) = New HashSet(Of Proveedores)
     Public Overridable Property Usuarios As ICollection(Of Usuarios) = New HashSet(Of Usuarios)
+    Public Overridable Property Clientes As ICollection(Of Clientes) = New HashSet(Of Clientes)
 
 End Class
