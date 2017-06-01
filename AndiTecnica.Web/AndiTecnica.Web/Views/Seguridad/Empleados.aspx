@@ -89,7 +89,7 @@
                     <asp:Label ID="Label6" runat="server" Text="Firma Digital : "></asp:Label>
                 </td>
                 <td class="veinticuatro">
-                    <asp:FileUpload ID="upl_FotoDigital" runat="server" Height="26px" Width="253px" />
+                    <asp:FileUpload ID="upl_FirmaDigital" runat="server" Height="26px" Width="253px" />
                 </td>
                 <td class="dos">&nbsp;</td>
                 <td class="nueve">&nbsp;</td>

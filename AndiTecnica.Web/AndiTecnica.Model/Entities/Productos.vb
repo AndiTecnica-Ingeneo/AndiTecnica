@@ -10,15 +10,20 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class CategoriasProductos
-    Public Property CategoriasId As Integer
+Partial Public Class Productos
+    Public Property ProductoId As Integer
     Public Property Nombre As String
+    Public Property Codigo As String
     Public Property Descripcion As String
+    Public Property Costo As Nullable(Of Decimal)
+    Public Property Stock As Nullable(Of Integer)
+    Public Property CategoriaFk As Integer
+    Public Property RutaFoto As String
     Public Property Estado As Nullable(Of Integer)
     Public Property Creado As Nullable(Of Date)
     Public Property Modificado As Nullable(Of Date)
 
+    Public Overridable Property CategoriasProductos As CategoriasProductos
     Public Overridable Property Estados As Estados
-    Public Overridable Property Productos As ICollection(Of Productos) = New HashSet(Of Productos)
 
 End Class

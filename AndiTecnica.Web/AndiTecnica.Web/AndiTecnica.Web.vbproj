@@ -161,6 +161,7 @@
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Views\Productos\Productos.aspx" />
     <Content Include="Views\Productos\Categorias.aspx" />
     <Content Include="Views\Seguridad\Empleados.aspx" />
     <Content Include="Views\Seguridad\Usuarios.aspx" />
@@ -207,6 +208,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Views\Productos\Productos.aspx.designer.vb">
+      <DependentUpon>Productos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Productos\Productos.aspx.vb">
+      <DependentUpon>Productos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Productos\Categorias.aspx.designer.vb">
       <DependentUpon>Categorias.aspx</DependentUpon>

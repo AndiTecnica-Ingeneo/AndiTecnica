@@ -72,6 +72,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\Productos\ProductosBL.vb" />
     <Compile Include="BL\Productos\CategoriasBL.vb" />
     <Compile Include="BL\Seguridad\EmpleadosBL.vb" />
     <Compile Include="BL\Seguridad\ModulosBL.vb" />
@@ -79,6 +80,7 @@
     <Compile Include="BL\Seguridad\PerfilesBL.vb" />
     <Compile Include="BL\Seguridad\PermisosBL.vb" />
     <Compile Include="BL\Seguridad\UsuariosBL.vb" />
+    <Compile Include="Dao\Productos\ProductosDao.vb" />
     <Compile Include="Dao\Productos\CategoriasDao.vb" />
     <Compile Include="Dao\Seguridad\EmpleadosDao.vb" />
     <Compile Include="Dao\Seguridad\Modulos.vb" />
@@ -138,6 +140,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Permisos.vb">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Productos.vb">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Usuarios.vb">

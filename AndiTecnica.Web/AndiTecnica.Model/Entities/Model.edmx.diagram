@@ -30,6 +30,9 @@
         <AssociationConnector Association="AndiTecnicaModel.FK_Permisos_Opciones" />
         <AssociationConnector Association="AndiTecnicaModel.FK_Permisos_Perfiles" />
         <AssociationConnector Association="AndiTecnicaModel.FK_Usuarios_Perfiles" />
+        <EntityTypeShape EntityType="AndiTecnicaModel.Productos" Width="1.5" PointX="10.5" PointY="6.5" />
+        <AssociationConnector Association="AndiTecnicaModel.FK_Productos_Categorias" />
+        <AssociationConnector Association="AndiTecnicaModel.FK_Productos_Estados" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

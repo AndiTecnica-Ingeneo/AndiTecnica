@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Empleados
+Partial Public Class Productos
     
     '''<summary>
     '''lkb_buscar control.
@@ -86,13 +86,13 @@ Partial Public Class Empleados
     Protected WithEvents lbl_Nombre As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''txt_nombreEmpleado control.
+    '''txt_nombreProducto control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_nombreEmpleado As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_nombreProducto As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''lbl_descripcion control.
@@ -104,13 +104,13 @@ Partial Public Class Empleados
     Protected WithEvents lbl_descripcion As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''txt_CedulaEmpleado control.
+    '''txt_Codigo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_CedulaEmpleado As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_Codigo As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''Label1 control.
@@ -122,13 +122,13 @@ Partial Public Class Empleados
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''txt_Telefono control.
+    '''cbx_Categorias control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_Telefono As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents cbx_Categorias As Global.Telerik.Web.UI.RadComboBox
     
     '''<summary>
     '''Label2 control.
@@ -140,13 +140,13 @@ Partial Public Class Empleados
     Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''txt_Ext control.
+    '''txt_costo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_Ext As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_costo As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''Label3 control.
@@ -158,13 +158,13 @@ Partial Public Class Empleados
     Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''txt_Celular control.
+    '''txt_DescripcionProducto control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_Celular As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_DescripcionProducto As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''Label4 control.
@@ -176,13 +176,13 @@ Partial Public Class Empleados
     Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''txt_Email control.
+    '''txt_Stock control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_Email As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_Stock As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''Label6 control.
@@ -194,13 +194,13 @@ Partial Public Class Empleados
     Protected WithEvents Label6 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''upl_FirmaDigital control.
+    '''upl_FotoProducto control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents upl_FirmaDigital As Global.System.Web.UI.WebControls.FileUpload
+    Protected WithEvents upl_FotoProducto As Global.System.Web.UI.WebControls.FileUpload
     
     '''<summary>
     '''pnl_list control.
@@ -248,13 +248,13 @@ Partial Public Class Empleados
     Protected WithEvents btn_filtrar As Global.System.Web.UI.HtmlControls.HtmlButton
     
     '''<summary>
-    '''grd_Empleados control.
+    '''grd_Productos control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents grd_Empleados As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents grd_Productos As Global.System.Web.UI.WebControls.GridView
     
     '''<summary>
     '''hdf_id control.
@@ -266,13 +266,22 @@ Partial Public Class Empleados
     Protected WithEvents hdf_id As Global.System.Web.UI.WebControls.HiddenField
     
     '''<summary>
-    '''ods_Empleados control.
+    '''ods_Productos control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ods_Empleados As Global.System.Web.UI.WebControls.ObjectDataSource
+    Protected WithEvents ods_Productos As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
+    '''ods_Categorias control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ods_Categorias As Global.System.Web.UI.WebControls.ObjectDataSource
     
     '''<summary>
     '''Master property.

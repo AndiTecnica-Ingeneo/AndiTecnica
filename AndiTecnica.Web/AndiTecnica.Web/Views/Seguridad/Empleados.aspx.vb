@@ -152,7 +152,7 @@ Public Class Empleados
         txt_Ext.Text = Empleado.Extencion
         txt_Celular.Text = Empleado.Movil
         txt_Email.Text = Empleado.Correo
-        'FOTO DIGITAL
+        'FIRMA DIGITAL
     End Sub
 
     Public Function AsignarEmpleado() As Model.Empleados
