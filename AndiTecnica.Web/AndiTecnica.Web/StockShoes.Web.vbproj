@@ -294,9 +294,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AndiTecnica.Model\AndiTecnica.Model.vbproj">
+    <ProjectReference Include="..\AndiTecnica.Model\StockShoes.Model.vbproj">
       <Project>{a18dcad9-82cb-4e43-ae0e-1ab3f4bb96d3}</Project>
-      <Name>AndiTecnica.Model</Name>
+      <Name>StockShoes.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

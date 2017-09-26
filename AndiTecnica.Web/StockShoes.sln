@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AndiTecnica.Web", "AndiTecnica.Web\AndiTecnica.Web.vbproj", "{5200F5BA-5ABD-479A-B8CC-1FE086B5DF1C}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "StockShoes.Web", "AndiTecnica.Web\StockShoes.Web.vbproj", "{5200F5BA-5ABD-479A-B8CC-1FE086B5DF1C}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AndiTecnica.Model", "AndiTecnica.Model\AndiTecnica.Model.vbproj", "{A18DCAD9-82CB-4E43-AE0E-1AB3F4BB96D3}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "StockShoes.Model", "AndiTecnica.Model\StockShoes.Model.vbproj", "{A18DCAD9-82CB-4E43-AE0E-1AB3F4BB96D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
