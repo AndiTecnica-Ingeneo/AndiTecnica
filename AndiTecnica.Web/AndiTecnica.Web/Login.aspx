@@ -10,7 +10,7 @@
     <link href="../Estilo/CSS/animate.css" rel="stylesheet" />
     <link href="../Estilo/CSS/diseno_app.css" rel="stylesheet" />
 
-    <title>AndiTecnica</title>
+    <title>StockShoes</title>
     <style type="text/css">
         .auto-style2 {
             width: 100px;
