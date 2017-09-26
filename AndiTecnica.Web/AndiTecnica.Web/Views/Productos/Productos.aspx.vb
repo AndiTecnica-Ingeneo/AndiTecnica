@@ -195,6 +195,8 @@ Public Class Productos
         Producto.Costo = txt_costo.Text
         Producto.Descripcion = txt_Codigo.Text
         Producto.Stock = txt_Stock.Text
+        Producto.Largo = txt_Largo.Text
+        Producto.Ancho = txt_Ancho.Text
 
         Dim Modulo = SeguridadFacade.ConsultarModuloxNombre("Productos")
         Producto.Estado = SeguridadFacade.ConsultarEstadoxModulo(Modulo.ModuloId, "Activo").EstadoId
